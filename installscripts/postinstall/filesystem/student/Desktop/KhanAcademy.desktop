@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Link
+URL=http://khan
+Name=Khan Academy
+Comment=Click here to open Khan Academy
+Icon=/usr/share/icons/Humanity/actions/48/go-jump.svg

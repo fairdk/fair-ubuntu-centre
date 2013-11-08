@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=Change system-wide settings (affects all users)
+Icon=preferences-system
+Name=Administration
+NoDisplay=true
+Type=Directory
+X-Ubuntu-Gettext-Domain=gnome-menus

@@ -1,0 +1,13 @@
+deb http://repository.fair/ precise main restricted
+deb http://repository.fair/ precise-updates main restricted
+
+deb http://repository.fair/ precise universe
+deb http://repository.fair/ precise-updates universe
+
+deb http://repository.fair/ precise multiverse
+deb http://repository.fair/ precise-updates multiverse
+
+deb http://repository.fair/ precise-security main restricted
+deb http://repository.fair/ precise-security universe
+deb http://repository.fair/ precise-security multiverse
+

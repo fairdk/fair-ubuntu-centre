@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Link
+Icon=/usr/share/icons/Human/scalable/actions/stock_home.svg
+URL=http://intranet
+Name[en_DK]=START HERE!
+Comment[en_DK]=Click here to launch the intranet
+Name=START HERE!
+Comment=Click here to launch the intranet

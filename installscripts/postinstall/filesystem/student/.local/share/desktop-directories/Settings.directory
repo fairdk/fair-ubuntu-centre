@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=Personal preferences
+Icon=preferences-desktop
+Name=Preferences
+NoDisplay=true
+Type=Directory
+X-Ubuntu-Gettext-Domain=gnome-menus

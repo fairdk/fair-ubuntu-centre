@@ -1,0 +1,13 @@
+FAIR Client Manager
+
+This application is for managing who is logged in and out on clients that are 
+active on the network. 
+
+This involves selecting which account to log in to, and for how long.
+
+Refer to settings.py and settings_customize.py -- use settings_customize.py
+for your own customisations.
+
+Running the program:
+
+python /path/to/main.py

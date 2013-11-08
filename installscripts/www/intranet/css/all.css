@@ -1,0 +1,111 @@
+@font-face {
+	font-family: Futurist;
+	src: url('forgottr.ttf');
+}
+
+body
+{
+  font-family: Futurist;
+  margin: 20px;
+  height: 100%;
+  color: #555;
+}
+
+a.menubutton
+{
+  text-decoration: none;
+  display: block;
+  color: #FFF;
+  font-size: 48px;
+  width: 215px;
+  height: 215px;
+  background-image: url('../img/menubutton.png');
+  margin: 20px;
+  padding: 30px;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  line-height: 80%;
+}
+
+a.menubutton p
+{
+  margin-top: 10px;
+  font-size: 24px;
+  line-height: 100%;
+}
+
+a.go_back
+{
+  background-image: url('../img/menubutton_black.png');
+  text-align: center;
+  display: none;
+  color: #FFF;
+}
+
+a.go_forward
+{
+  background-image: url('../img/menubutton_black.png');
+  text-align: center;
+  display: none;
+  color: #FFF;
+}
+
+a div.bg
+{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+
+.contents
+{
+  display: none;
+  font-size: 18px;
+  padding: 20px;
+  color: #444;
+  width: 80%;
+}
+
+.contents a, 
+.contents a:visited,
+.contents a:active
+{
+  color: #6B0;
+}
+
+.contents li,
+.contents p
+{
+  font-family: 'Liberation Sans';
+}
+
+.contents ul
+{
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.contents table
+{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px dotted #DDD;
+  padding-bottom: 10px;
+  
+}
+
+.contents table td
+{
+  padding-right: 20px;
+}
+.contents table td.title
+{
+  font-size: 24px;
+}
+
