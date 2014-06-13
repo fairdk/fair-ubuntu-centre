@@ -1,6 +1,8 @@
 fair-ubuntu-centre
 ==================
 
+**This is the Trusty / Ubuntu 14.04 edition**
+
 This project is an attempt to structure and open source the efforts of [FAIR](http://www.fairinternational.org) in Malawi.
 The goal of the project is to distribute open source software and open access knowledge and media repositories to remote areas with no internet connectivity, rather than wasting efforts on expensive and/or badly-functioning mobile networks. More universally speaking, it could be said that the project attempts to do ICT4D but without any broadband internet connection in the actual deployments of the project.
 
@@ -10,6 +12,17 @@ network server, TFTP install server, and HTTP intranet server for a variety of o
 In order to use the scripts, a (possibly external) hard drive must be created with a number of optional resources.
 
 Everything is tested and in use at 10 school centres. The next big step is to start structuring the codebase and writing documentation to enable usage even outside the scope of FAIR projects.
+
+Requirements
+------------
+
+* Ubuntu repositories: 64+ GByte
+
+Obtaining data
+--------------
+
+FAIR has the data dumps of Wikipedia and images scaled down. They are not currently offered by
+online sources, please get in touch with us for any data exchange
 
 TODO
 ----
