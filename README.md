@@ -34,6 +34,14 @@ Documentation
 
 As of today, there is still a pending documentation project and a guide for system maintainers in the works.
 
+Philosophy
+----------
+
+Everything in here is implemented in flat-out BASH scripts. It's not as if we
+didn't feel like using a different language, however to a new system administrator
+wanting to know what's going on, the choice of a scripting language identical
+to the command line is quite a lot easier.
+
 Background
 ------------------
 
