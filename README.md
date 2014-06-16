@@ -6,7 +6,7 @@ fair-ubuntu-centre
 This project is an attempt to structure and open source the efforts of [FAIR](http://www.fairinternational.org) in Malawi.
 The goal of the project is to distribute open source software and open access knowledge and media repositories to remote areas with no internet connectivity, rather than wasting efforts on expensive and/or badly-functioning mobile networks. More universally speaking, it could be said that the project attempts to do ICT4D but without any broadband internet connection in the actual deployments of the project.
 
-The project provides the scripts necessary to configure a normal desktop installation of Ubuntu 12.04 to become a
+The project provides the scripts necessary to configure a normal desktop installation of Ubuntu 14.04 to become a
 network server, TFTP install server, and HTTP intranet server for a variety of offline resources (hereunder the full Ubuntu repositories!).
 
 In order to use the scripts, a (possibly external) hard drive must be created with a number of optional resources.
