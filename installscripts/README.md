@@ -39,6 +39,13 @@ Put all of `installscripts` folder on a USB flash and run ./install.sh
 
 # About this folder
 
+Please do not change files, because it breaks future updates! Put all local
+customization in:
+
+ - `config/custom_cfg.sh` - Global settings, executed before `install.sh` runs.
+ - `config/local/my_site/` - Possibility to add custom filesystem overlays for
+   both server and clients.
+
 ## The main installation
 
 The main script `install.sh` is the one to execute. Global default configurations
@@ -56,14 +63,16 @@ the client when booting for the first time.
 
 ### Order of execution in install.sh
 
-1. `default_config.sh` is loaded to setup the default environment.
-1. `custom_config.sh` is loaded and may overwrite any previously set variables.
+1. `config/default_cfg.sh` is loaded to setup the default environment.
 1. The install script looks for data sources
 1. Network configuration is done
 1. The Ubuntu source is loaded, presumably from a local data source
 1. Base system is installed
 1. Everything in `conf.d` is executed according to alphanumeric order.
 1. The `dist` overlay is put in place. *This is done after conf.d such that everything installed during this process can be overwritten with new files.*
+1. `config/local.sh` is executed, **this is where all individual configurations** should be kept, i.e. in directories in `config/local/`.
+
+## config/
 
 ## conf.d/
 

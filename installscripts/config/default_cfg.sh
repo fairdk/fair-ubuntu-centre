@@ -30,3 +30,9 @@ export WAIT_FOR_NETWORK_RESET=20
 # Put the IP address of your internet sevice provider's nameserver here.
 # PJD: NOT USED YET!!
 # export ISP_NAMESERVER_IP=89.150.129.22
+
+# Overwrite everything with a local config
+if [ -f "${SCRIPT_ROOT}/custom_cfg.sh" ]
+then
+	. ${SCRIPT_ROOT}/custom_cfg.sh
+fi

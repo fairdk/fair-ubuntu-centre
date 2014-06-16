@@ -1,5 +1,9 @@
 #/bin/bash
 
+# This script interactively prompts about available local overlays and
+# their install scripts.
+
+# Ensure that this file can be executed stand-alone
 if [ -n "${SCRIPT_ROOT}" ]; then
 	""
 else
