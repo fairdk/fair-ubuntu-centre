@@ -1,6 +1,0 @@
-deb file:///var/www/ubuntu precise main restricted universe multiverse
-deb file:///var/www/ubuntu precise-security main restricted universe multiverse
-deb file:///var/www/ubuntu precise-updates main restricted universe multiverse
-
-# For testing
-#deb http://dk.archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse 

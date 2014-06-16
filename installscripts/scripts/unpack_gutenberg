@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd /media/FAIR/data
+cd /var/FAIR/data
 mkdir tmp
 mount -o loop -t iso9660 pgdvd042010.iso tmp
 mkdir project_gutenberg

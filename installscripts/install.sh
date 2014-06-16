@@ -21,36 +21,28 @@ fi
 
 if [ ! -d $FAIR_ARCHIVE_PATH ]
 then
-	echo "FAIR USB drive not detected"
+	echo "FAIR USB drive not detected in $FAIR_ARCHIVE_PATH"
 	exit 1
 fi
-
 
 echo "---------------------------------------"
 echo "Installing config files"
 echo "---------------------------------------"
-./software/install.sh
 
-
-echo "---------------------------------------"
-echo "Copying TFTP root directory            "
-echo "---------------------------------------"
-
-echo "Copying tftp root directory... can take up to a couple of minutes..."
-rm -Rf /var/tftp
-cp -R tftp /var/tftp
-
-
-echo "---------------------------------------"
-echo "Setting up web sever"
-echo "---------------------------------------"
-./www/install.sh
-
-
-echo "---------------------------------------"
-echo "Setting up NFS sever"
-echo "---------------------------------------"
-./nfs/install.sh
+if [ ! "$1" = "" ]
+then
+	echo "Running $1"
+	. "$FAIR_INSTALL_CONF_D/$1"
+else
+	for file in `ls "$FAIR_INSTALL_CONF_D" --hide *.disabled`
+	do
+		if [ -f "$FAIR_INSTALL_CONF_D/$file" ]; then
+			skip=no
+			case "${FAIR_CONF_D_SKIP[@]}" in  *"$file"*) skip=yes ;; esac
+			[ skip=no ] && . "$FAIR_INSTALL_CONF_D/$file"
+		fi
+	done
+fi
 
 
 apt-get -y -q upgrade
