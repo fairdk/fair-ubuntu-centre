@@ -1,5 +1,7 @@
 installscripts/config/custom_cfg.sh
 installscripts/config/local/*
+installscripts/postinstall/filesystem/server_id_rsa.pub
+installscripts/postinstall/postinstall.tar.gz
 
 *.py[cod]
 
