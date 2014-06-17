@@ -21,6 +21,13 @@ then
 	echo 192.168.10.1 intranet intranet.fair fair repo.fair wikipedia.fair repo dvd.fair khan.fair khan >> /etc/hosts
 fi
 
+if ! grep "archive.canonical.com" /etc/hosts -q
+then
+	echo 192.168.10.1 archive.canonical.com >> /etc/hosts
+fi
+
+
+
 echo "$FAIR_SERVER_HOSTNAME" > /etc/hostname
 hostname "$FAIR_SERVER_HOSTNAME"
 
