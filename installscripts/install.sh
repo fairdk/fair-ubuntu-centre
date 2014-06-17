@@ -2,6 +2,8 @@
 
 # PJD: Important design consideration:  This script should be able to upgrade an existing server, therefore all operations must start by removing and old crap and ensuring a complete overwrite of the contents.  This feature can be especially handy when developing too :).  Could consider starting script with a warning WILL ERASE EXISTING INSTALLATION, ARE YOU SURE...
 
+set -o errexit
+
 # Include variables defined externally
 . ./config/default_cfg.sh
 
@@ -34,12 +36,12 @@ then
 	echo "Running $1"
 	. "$FAIR_INSTALL_CONF_D/$1"
 else
-	for file in `ls "$FAIR_INSTALL_CONF_D" --hide *.disabled`
+	for file in `ls --hide *.disabled "$FAIR_INSTALL_CONF_D"`
 	do
 		if [ -f "$FAIR_INSTALL_CONF_D/$file" ]; then
 			skip=no
-			case "${FAIR_CONF_D_SKIP[@]}" in  *"$file"*) skip=yes ;; esac
 			[ skip=no ] && . "$FAIR_INSTALL_CONF_D/$file"
+			[ skip=yes ] && echo "Skipping $file"
 		fi
 	done
 fi

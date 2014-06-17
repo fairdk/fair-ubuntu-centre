@@ -37,7 +37,8 @@ echo mysql-server-5.5 mysql-server/root_password password "$FAIR_MYSQL_PASSWORD"
 echo mysql-server-5.5 mysql-server/root_password_again password "$FAIR_MYSQL_PASSWORD" | debconf-set-selections
 apt-get install -y -q mysql-server php5 php5-mysql
 
-if [ -d ${FAIR_ARCHIVE_PATH}/data/mysql ]
+if [ -d "${FAIR_ARCHIVE_PATH}/data/mysql" ]
+then
 	# Move mysql
 	# This is in case MySQL was already installed..
 	# so we backup the old database
@@ -47,8 +48,6 @@ if [ -d ${FAIR_ARCHIVE_PATH}/data/mysql ]
 	else
 		rm /var/lib/mysql
 	fi
-
-	then
 	echo "Linking MySQL data dir to /var/lib/mysql"
 	ln -s ${FAIR_ARCHIVE_PATH}/data/mysql /var/lib/mysql
 	echo "Setting owner to mysql"
@@ -63,7 +62,7 @@ echo "Creating new /etc/mysql/my.cnf"
 cp ${FAIR_INSTALL_DATA}/etc.mysql.my.cnf /etc/mysql/my.cnf
 
 echo "Restarting MySQL"
-restart mysql
+service mysql restart
 
 # Reinstall database for phpmyadmin?
 echo phpmyadmin phpmyadmin/dbconfig-install boolean true | debconf-set-selections
