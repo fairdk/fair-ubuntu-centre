@@ -24,7 +24,7 @@ echo "---------------------------------------"
 echo "Setting up local web server"
 echo "---------------------------------------"
 
-if [ ! -f /var/www/ubuntu/ubuntu ]
+if [ ! -f /var/www/ubuntu/ubuntu ] && [ ! -d /var/www/ubuntu/ubuntu ]
 then
 	ln -s /var/www/ubuntu/ /var/www/ubuntu/ubuntu
 fi
@@ -64,7 +64,7 @@ echo "---------------------------------------"
 echo "Movies"
 echo "---------------------------------------"
 
-if [ ! -d /var/www/movies ]
+if [ ! -d /var/www/movies ] && [ -d ${FAIR_ARCHIVE_PATH}/data/movies ]
 then
         echo "Creating links for Movies"
 	chmod -R o+r ${FAIR_ARCHIVE_PATH}/data/movies
@@ -79,7 +79,7 @@ echo "Camara"
 echo "---------------------------------------"
 
 
-if [ ! -d /var/www/camara ]
+if [ ! -d /var/www/camara ] && [ -d ${FAIR_ARCHIVE_PATH}/data/camara ]
 then
         echo "Creating links for Camara"
 	chmod -R o+r ${FAIR_ARCHIVE_PATH}/data/camara
@@ -94,7 +94,7 @@ echo "Distro folder (iso images of other linux)"
 echo "---------------------------------------"
 
 
-if [ ! -d /var/www/distros ]
+if [ ! -d /var/www/distros ] && [ -d ${FAIR_ARCHIVE_PATH}/data/distros ]
 then
         echo "Creating links for linux distros"
 	chmod -R o+r ${FAIR_ARCHIVE_PATH}/data/distros

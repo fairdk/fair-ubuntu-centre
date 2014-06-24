@@ -3,16 +3,6 @@
 # This script interactively prompts about available local overlays and
 # their install scripts.
 
-# Ensure that this file can be executed stand-alone
-if [ -n "${SCRIPT_ROOT}" ]; then
-
-else
-        SCRIPT="`readlink -e $0`"
-        SCRIPTPATH="`dirname $SCRIPT`"
-        export SCRIPT_ROOT=$SCRIPTPATH/..
-        . $SCRIPTPATH/../config/default_cfg.sh
-fi
-
 postinstall_local="$SCRIPT_ROOT/postinstall/filesystem/local/"
 
 echo "---------------------------------------"

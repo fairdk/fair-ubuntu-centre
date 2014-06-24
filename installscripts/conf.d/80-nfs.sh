@@ -16,8 +16,6 @@ else
         . $SCRIPTPATH/../config/default_cfg.sh
 fi
 
-NFS_SCRIPT_ROOT=$SCRIPT_ROOT/nfs_config
-
 
 echo "---------------------------------------"
 echo "Installing NFS server                  "
@@ -31,12 +29,14 @@ echo "Switching off IPv6"
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 
 
-echo "Creating a teacher account and a shared NFS folder"
-useradd -m -U -s /bin/bash teacher
-echo "teacher:${TEACHER_PASSWORD}" | chpasswd
-mkdir -p /home/teacher/materials
-chown teacher.teacher /home/teacher/materials
-
+if [ ! /home/teacher ]
+then
+	echo "Creating a teacher account and a shared NFS folder"
+	useradd -m -U -s /bin/bash teacher
+	echo "teacher:${TEACHER_PASSWORD}" | chpasswd
+	mkdir -p /home/teacher/materials
+	chown teacher.teacher /home/teacher/materials
+fi
 
 # The server should be installed BEFORE modifying /etc/exports, otherwise a prompt appears with no automatic way to circumvent it...
 apt-get install -y -q nfs-kernel-server

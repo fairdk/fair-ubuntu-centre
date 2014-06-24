@@ -81,5 +81,3 @@ apt-get install -y -q imagemagick
 
 
 apt-get install -y -q openssh-server
-# Done
-exit 0

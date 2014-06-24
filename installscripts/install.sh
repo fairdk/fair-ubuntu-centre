@@ -36,12 +36,15 @@ then
 	echo "Running $1"
 	. "$FAIR_INSTALL_CONF_D/$1"
 else
-	for file in `ls --hide *.disabled "$FAIR_INSTALL_CONF_D"`
+	for file in `ls "$FAIR_INSTALL_CONF_D"`
 	do
 		if [ -f "$FAIR_INSTALL_CONF_D/$file" ]; then
-			skip=no
-			[ skip=no ] && . "$FAIR_INSTALL_CONF_D/$file"
-			[ skip=yes ] && echo "Skipping $file"
+			skip="no"
+			if [ $skip = "no" ] ; then
+				. $FAIR_INSTALL_CONF_D/$file
+			else
+				echo "Skipping $file"
+			fi
 		fi
 	done
 fi

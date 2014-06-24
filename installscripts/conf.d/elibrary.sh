@@ -3,7 +3,7 @@ echo "Ebooks"
 echo "---------------------------------------"
 
 
-if [ ! -d /var/www/ebooks ]
+if [ ! -d /var/www/ebooks ] && [ -d ${FAIR_ARCHIVE_PATH}/data/ebooks ]
 then
         echo "Creating links for ebooks"
 	chmod -R o+r ${FAIR_ARCHIVE_PATH}/data/ebooks
