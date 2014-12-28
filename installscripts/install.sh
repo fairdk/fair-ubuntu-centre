@@ -31,15 +31,26 @@ echo "---------------------------------------"
 echo "Installing config files"
 echo "---------------------------------------"
 
+# If the script was called with a command line parameter, the parameter must be the name of a script in Conf.d.  Only that script is excuted
 if [ ! "$1" = "" ]
 then
 	echo "Running $1"
 	. "$FAIR_INSTALL_CONF_D/$1"
 else
+	# If no parameters were used when calling this script, all files in conf.d are executed.
 	for file in `ls "$FAIR_INSTALL_CONF_D"`
 	do
 		if [ -f "$FAIR_INSTALL_CONF_D/$file" ]; then
 			skip="no"
+
+			# Check the list of files to skip...
+			for fskip in "${FAIR_CONF_D_SKIP[@]}"
+			do
+				if [ "$fskip" == "$file" ]; then
+					skip="yes"
+				fi
+			done
+
 			if [ $skip = "no" ] ; then
 				. $FAIR_INSTALL_CONF_D/$file
 			else

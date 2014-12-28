@@ -4,7 +4,7 @@ echo "---------------------------------------"
 echo "Putting external drive in /etc/fstab"
 echo "---------------------------------------"
 
-if (($USE_USB_DISK==1))
+if (($USE_FAIR_DISK==1))
 then
 
 	if ! grep "${FAIR_ARCHIVE_PATH}" /etc/fstab -q
@@ -24,6 +24,6 @@ then
 		echo "Already present!"
 	fi
 else
-	echo "USB disk NOT added to FSTAB" 
+	echo "FAIR disk NOT added to FSTAB" 
 fi
 

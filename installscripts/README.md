@@ -8,7 +8,7 @@ The choice of user can be customized, however if it's a FAIR project, call the u
 
 ## Making data accessible
 
-All of the data should recide on a partition mounted in `/media/FAIR` or `/media/fair/FAIR`
+All of the data should reside on a partition mounted in `/media/FAIR` or `/media/fair/FAIR`
 
 The easiest way to make this happen, is by adding a label on a partition and 
 calling it `FAIR`. That way, the mount point will be predictable and
