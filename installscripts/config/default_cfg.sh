@@ -3,7 +3,8 @@
 
 # This file contains variables that can be customized for your installation.
 
-export USE_USB_DISK=1
+# If this variable is set to 1, the disk with the FAIR archive will be added to FSTAB, making it available at startup.  If the server only has one disk, this variable should be 0.
+export USE_FAIR_DISK=1
 
 if [ ! -n "${SCRIPT_ROOT}" ]
 then
@@ -26,7 +27,8 @@ export FAIR_INSTALL_DATA=${SCRIPT_ROOT}/data/
 export FAIR_SERVER_HOSTNAME="fair-server"
 
 # Terminate each entry with a ;
-export FAIR_CONF_D_SKIP=("ping_clients.sh")
+# The PING_Clients script is not wanted under development
+# export FAIR_CONF_D_SKIP=("ping_clients.sh")
 
 # TO customize the distribution installed on the client, add files here...
 export POSTINSTALL_LOCAL=${SCRIPT_ROOT}/config/custom_postinstall/
@@ -37,7 +39,7 @@ export CONFIG_LOCAL=${SCRIPT_ROOT}/config/local/
 # The conf.d directory
 export FAIR_INSTALL_CONF_D=${SCRIPT_ROOT}/conf.d/
 
-# Password for the teacher account, which is by default installed on all
+# Password for the teacher account, in plain text, which is by default installed on all
 # clients and has sudo access.
 export TEACHER_PASSWORD=ilovestudents
 
@@ -47,9 +49,6 @@ export DEBIAN_FRONTEND=noninteractive
 # Not so important
 export FAIR_MYSQL_PASSWORD="fair"
 
-# What's this!?
-export INSTALL_OPTIONAL_SW=0
-# The PING_Clients script is not wanted under development
 
 # After the network is reconfigured, the network manager needs time to reconncet to the internet.  If you don't wait, and want to install new programs from the internet (instead of a local repository) it will fail.
 export WAIT_FOR_NETWORK_RESET=20
