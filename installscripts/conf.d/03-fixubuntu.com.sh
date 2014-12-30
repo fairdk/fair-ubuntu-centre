@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#PDO: This script is similar to one found at http://fixubuntu.com
+
 GS="/usr/bin/gsettings"
 CCUL="com.canonical.Unity.lenses"
 
