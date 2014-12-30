@@ -13,7 +13,7 @@ else
 fi
 
 echo "---------------------------------------"
-echo "Remove unecessary software"
+echo "Remove unecessary software (that comes with Ubuntu by default)"
 echo "---------------------------------------"
 
 # Remove avahi-daemon, not needed and causes problems on different networking setups
@@ -52,13 +52,17 @@ then
 	ln -s ${FAIR_ARCHIVE_PATH}/data/mysql /var/lib/mysql
 	echo "Setting owner to mysql"
 	chown -R mysql.mysql ${FAIR_ARCHIVE_PATH}/data/mysql
+else
+	echo "No mysql directory found in the FAIR archive."
 fi
 
+# PDO: Insert some comment here about why we want apparmor; I can't say for sure...
 echo "Installing apparmor configuration"
 cat ${FAIR_INSTALL_DATA}/etc.apparmor.d.usr.sbin.mysqld > /etc/apparmor.d/disable/usr.sbin.mysqld
 /etc/init.d/apparmor reload
 
 echo "Creating new /etc/mysql/my.cnf"
+# PDO: What is different in the new config, compared to the default? (comments could be added in the cnf file itself, instead of here...)
 cp ${FAIR_INSTALL_DATA}/etc.mysql.my.cnf /etc/mysql/my.cnf
 
 echo "Restarting MySQL"
@@ -74,10 +78,8 @@ echo phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2 | debconf-s
 apt-get install -y -q phpmyadmin
 
 echo "---------------------------------------"
-echo "Installing ImageMagick                 "
+echo "Installing more usefull utilities (such as ImageMagick and an SSH Server)"
 echo "---------------------------------------"
 
 apt-get install -y -q imagemagick
-
-
 apt-get install -y -q openssh-server
