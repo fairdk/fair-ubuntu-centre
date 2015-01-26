@@ -76,7 +76,7 @@ echo "---------------------------------------"
 echo "Installing NTP time server             "
 echo "---------------------------------------"
 # Deleting old config prevents prompt when installing ntp.
-rm /etc/ntp.conf
+rm -f /etc/ntp.conf
 
 apt-get install -y -q ntp
 echo "Copying NTP configuration..."
