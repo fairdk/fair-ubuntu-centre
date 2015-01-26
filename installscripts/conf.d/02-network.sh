@@ -19,6 +19,7 @@ ifup -a
 
 
 echo "Blacklisting IPv6 modules due to a bug"
+#PDO: The bug in qustion apparently has something to do with NFS
 
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash ipv6.disable=1"/g' /etc/default/grub
 
