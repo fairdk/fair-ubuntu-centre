@@ -25,8 +25,10 @@ echo "Setting up local web server"
 echo "---------------------------------------"
 
 # Note: Creating the link to the Ubuntu directory is done in repository.sh as well
-echo "stop and die"
-exit
+
+# PDO: Don't know why the script at one time terminated here?
+# echo "stop and die"
+# exit
 
 if [ ! -L /var/www/ubuntu ]
 then
@@ -35,7 +37,7 @@ then
 	ln -s /var/www/ubuntu/pool /var/www/pool
 fi
 
-if [ ! -f /var/www/ubuntu/ubuntu ] && [ ! -d /var/www/ubuntu/ubuntu ]
+if [ ! -f /var/www/ubuntu/ubuntu ] && [ ! -d /var/www/ubuntu/ubuntu ] 
 then
 	ln -s /var/www/ubuntu/ /var/www/ubuntu/ubuntu
 fi
@@ -49,7 +51,7 @@ echo "Installing default index.html"
 cp ${FAIR_INSTALL_DATA}/index.html /var/www
 
 echo "Copying intranet"
-if [ -f /var/www/intranet ]; then rm /var/www/intranet; fi
+if [ -f /var/www/intranet ]; then rm /var/wwwintranet; fi
 mkdir -p /var/www/intranet
 cp -rf ${FAIR_INSTALL_DATA}/intranet/* /var/www/intranet
 chown -R root.root /var/www/intranet
@@ -77,7 +79,7 @@ then
 	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/movies
         ln -s ${FAIR_ARCHIVE_PATH}/data/movies /var/www/movies
 else
-	echo "Movies directory already symlinked"
+	echo "Movies directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
 
 echo "---------------------------------------"
@@ -92,7 +94,7 @@ then
 	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/camara
         ln -s ${FAIR_ARCHIVE_PATH}/data/camara /var/www/camara
 else
-	echo "Camara directory already symlinked"
+	echo "Camara directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
 
 echo "---------------------------------------"
@@ -107,6 +109,6 @@ then
 	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/distros
         ln -s ${FAIR_ARCHIVE_PATH}/data/distros /var/www/distros
 else
-	echo "Linux distros directory already symlinked"
+	echo "Linux distros directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
 
