@@ -24,19 +24,24 @@ echo "---------------------------------------"
 echo "Setting up local web server"
 echo "---------------------------------------"
 
-if [ ! -f /var/www/ubuntu/ubuntu ] && [ ! -d /var/www/ubuntu/ubuntu ]
-then
-	ln -s /var/www/ubuntu/ /var/www/ubuntu/ubuntu
-fi
+# Note: Creating the link to the Ubuntu directory is done in repository.sh as well
+echo "stop and die"
+exit
 
-if [ ! -d /var/www/ubuntu ]
+if [ ! -L /var/www/ubuntu ]
 then
 	echo "Creating links for our repository"
 	ln -s ${FAIR_ARCHIVE_PATH}/ubuntu /var/www/ubuntu
 	ln -s /var/www/ubuntu/pool /var/www/pool
 fi
 
+if [ ! -f /var/www/ubuntu/ubuntu ] && [ ! -d /var/www/ubuntu/ubuntu ]
+then
+	ln -s /var/www/ubuntu/ /var/www/ubuntu/ubuntu
+fi
+
 echo "Copying Kickstart configuration file"
+# These files automate the Ubuntu installation process by selecting which packages to install, and by running our custom 'post-install' script. 
 cp ${FAIR_INSTALL_DATA}/ks*.cfg /var/www/
 cp ${FAIR_INSTALL_DATA}/edubuntu.seed /var/www/
 
@@ -52,6 +57,7 @@ chmod -R o+r /var/www/intranet
 chmod -R o+X /var/www/intranet
 
 echo "Creating virtual hosts for the repository and the intranet..."
+# PDO: We have several sub-domains on the server because it helps us ....??
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.000-default.conf > /etc/apache2/sites-available/000-default.conf
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.repo.conf > /etc/apache2/sites-available/repo.conf
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.intranet.conf > /etc/apache2/sites-available/intranet.conf
