@@ -24,19 +24,26 @@ echo "---------------------------------------"
 echo "Setting up local web server"
 echo "---------------------------------------"
 
-if [ ! -f /var/www/ubuntu/ubuntu ] && [ ! -d /var/www/ubuntu/ubuntu ]
-then
-	ln -s /var/www/ubuntu/ /var/www/ubuntu/ubuntu
-fi
+# Note: Creating the link to the Ubuntu directory is done in repository.sh as well
 
-if [ ! -d /var/www/ubuntu ]
+# PDO: Don't know why the script at one time terminated here?
+# echo "stop and die"
+# exit
+
+if [ ! -L /var/www/ubuntu ]
 then
 	echo "Creating links for our repository"
 	ln -s ${FAIR_ARCHIVE_PATH}/ubuntu /var/www/ubuntu
 	ln -s /var/www/ubuntu/pool /var/www/pool
 fi
 
+if [ ! -f /var/www/ubuntu/ubuntu ] && [ ! -d /var/www/ubuntu/ubuntu ] 
+then
+	ln -s /var/www/ubuntu/ /var/www/ubuntu/ubuntu
+fi
+
 echo "Copying Kickstart configuration file"
+# These files automate the Ubuntu installation process by selecting which packages to install, and by running our custom 'post-install' script. 
 cp ${FAIR_INSTALL_DATA}/ks*.cfg /var/www/
 cp ${FAIR_INSTALL_DATA}/edubuntu.seed /var/www/
 
@@ -44,7 +51,7 @@ echo "Installing default index.html"
 cp ${FAIR_INSTALL_DATA}/index.html /var/www
 
 echo "Copying intranet"
-if [ -f /var/www/intranet ]; then rm /var/www/intranet; fi
+if [ -f /var/www/intranet ]; then rm /var/wwwintranet; fi
 mkdir -p /var/www/intranet
 cp -rf ${FAIR_INSTALL_DATA}/intranet/* /var/www/intranet
 chown -R root.root /var/www/intranet
@@ -52,6 +59,7 @@ chmod -R o+r /var/www/intranet
 chmod -R o+X /var/www/intranet
 
 echo "Creating virtual hosts for the repository and the intranet..."
+# PDO: We have several sub-domains on the server because it helps us ....??
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.000-default.conf > /etc/apache2/sites-available/000-default.conf
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.repo.conf > /etc/apache2/sites-available/repo.conf
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.intranet.conf > /etc/apache2/sites-available/intranet.conf
@@ -71,7 +79,7 @@ then
 	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/movies
         ln -s ${FAIR_ARCHIVE_PATH}/data/movies /var/www/movies
 else
-	echo "Movies directory already symlinked"
+	echo "Movies directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
 
 echo "---------------------------------------"
@@ -86,7 +94,7 @@ then
 	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/camara
         ln -s ${FAIR_ARCHIVE_PATH}/data/camara /var/www/camara
 else
-	echo "Camara directory already symlinked"
+	echo "Camara directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
 
 echo "---------------------------------------"
@@ -101,6 +109,6 @@ then
 	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/distros
         ln -s ${FAIR_ARCHIVE_PATH}/data/distros /var/www/distros
 else
-	echo "Linux distros directory already symlinked"
+	echo "Linux distros directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
 
