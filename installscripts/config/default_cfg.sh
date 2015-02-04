@@ -17,7 +17,7 @@ fi
 # after installing, but if it's a removable drive, the installer will add it
 # to /etc/fstab
 # NO TRAILING SLASH
-if [ ! -n  "${SUDO_USER}" ] && [ -d "/media/${SUDO_USER}/FAIR" ]
+if [ -n  "${SUDO_USER}" ] && [ -d "/media/${SUDO_USER}/FAIR" ]
 then
     export FAIR_ARCHIVE_PATH=/media/$SUDO_USER/FAIR
 else
