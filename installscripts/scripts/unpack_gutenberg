@@ -1,9 +1,0 @@
-#!/bin/sh
-
-cd /var/FAIR/data
-mkdir tmp
-mount -o loop -t iso9660 pgdvd042010.iso tmp
-mkdir project_gutenberg
-rsync -a tmp/ project_gutenberg
-umount tmp
-rm pgdvd042010.iso
