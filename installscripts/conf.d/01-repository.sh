@@ -2,14 +2,14 @@ echo "---------------------------------------"
 echo "Configuring apt repository             "
 echo "---------------------------------------"
 
-mkdir -p /var/www/
+mkdir -p /var/www/html/
 
 # Create the links to our Ubuntu repository if they don't already exist
-if [ ! -L /var/www/ubuntu ]
+if [ ! -L /var/www/html/ubuntu ]
 then
         echo "Creating links for our repository"
-        ln -s ${FAIR_DRIVE_MOUNTPOINT}/ubuntu /var/www/ubuntu
-        ln -s /var/www/ubuntu/pool /var/www/pool
+        ln -s ${FAIR_DRIVE_MOUNTPOINT}/ubuntu /var/www/html/ubuntu
+        ln -s /var/www/html/ubuntu/pool /var/www/html/pool
 fi
 
 # Configure the server to find software on the local Ubuntu repository
