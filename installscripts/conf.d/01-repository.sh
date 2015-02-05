@@ -8,7 +8,7 @@ mkdir -p /var/www/
 if [ ! -L /var/www/ubuntu ]
 then
         echo "Creating links for our repository"
-        ln -s ${FAIR_ARCHIVE_PATH}/ubuntu /var/www/ubuntu
+        ln -s ${FAIR_DRIVE_MOUNTPOINT}/ubuntu /var/www/ubuntu
         ln -s /var/www/ubuntu/pool /var/www/pool
 fi
 

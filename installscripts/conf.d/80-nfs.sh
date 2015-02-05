@@ -44,8 +44,8 @@ apt-get install -y -q nfs-kernel-server
 # Define which folders to share
 #cat etc.exports > /etc/exports
 
-echo "${FAIR_ARCHIVE_PATH}/ubuntu/ *(ro,no_subtree_check,no_root_squash)
-${FAIR_ARCHIVE_PATH}/data/movies/ *(ro,no_subtree_check,no_root_squash)
+echo "${FAIR_DRIVE_MOUNTPOINT}/ubuntu/ *(ro,no_subtree_check,no_root_squash)
+${FAIR_DRIVE_MOUNTPOINT}/data/movies/ *(ro,no_subtree_check,no_root_squash)
 /home/teacher/materials/ *(rw,no_subtree_check,no_root_squash)" > /etc/exports
 
 /etc/init.d/nfs-kernel-server restart

@@ -12,7 +12,7 @@ echo mysql-server-5.5 mysql-server/root_password password "$FAIR_MYSQL_PASSWORD"
 echo mysql-server-5.5 mysql-server/root_password_again password "$FAIR_MYSQL_PASSWORD" | debconf-set-selections
 apt-get install -y -q mysql-server php5 php5-mysql
 
-if [ -d "${FAIR_ARCHIVE_PATH}/data/mysql" ]
+if [ -d "${FAIR_DRIVE_MOUNTPOINT}/data/mysql" ]
 then
     # Move mysql
     # This is in case MySQL was already installed..
@@ -24,9 +24,9 @@ then
         rm /var/lib/mysql
     fi
     echo "Linking MySQL data dir to /var/lib/mysql"
-    ln -s ${FAIR_ARCHIVE_PATH}/data/mysql /var/lib/mysql
+    ln -s ${FAIR_DRIVE_MOUNTPOINT}/data/mysql /var/lib/mysql
     echo "Setting owner to mysql"
-    chown -R mysql.mysql ${FAIR_ARCHIVE_PATH}/data/mysql
+    chown -R mysql.mysql ${FAIR_DRIVE_MOUNTPOINT}/data/mysql
 else
     echo "No mysql directory found in the FAIR archive."
 fi

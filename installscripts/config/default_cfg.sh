@@ -6,6 +6,10 @@
 # If this variable is set to 1, the disk with the FAIR archive will be added to FSTAB, making it available at startup.  If the server only has one disk, this variable should be 0.
 export USE_FAIR_DISK=1
 
+# This is where the drive will be available after installation. The installer
+# will make sure that it is also available right after setting up fstab
+export FAIR_DRIVE_MOUNTPOINT=/media/FAIR
+
 if [ ! -n "${SCRIPT_ROOT}" ]
 then
 	SCRIPT="`readlink -e $0`"
@@ -13,11 +17,11 @@ then
 	export SCRIPT_ROOT=$SCRIPTPATH
 fi
 
-# Where data from the FAIR project is located, should be a path that's available
-# after installing, but if it's a removable drive, the installer will add it
-# to /etc/fstab
+# Where data from the FAIR project is located during the installation, if it's a
+# removable drive, the installer will add its drive UUID it to /etc/fstab and
+# mount it where FAIR_DRIVE_MOUNTPOINT is configured
 # NO TRAILING SLASH
-if [ ! -n  "${SUDO_USER}" ] && [ -d "/media/${SUDO_USER}/FAIR" ]
+if [ -n "${SUDO_USER}" ] && [ -d "/media/${SUDO_USER}/FAIR" ]
 then
     export FAIR_ARCHIVE_PATH=/media/$SUDO_USER/FAIR
 else

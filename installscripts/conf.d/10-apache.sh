@@ -33,7 +33,7 @@ echo "---------------------------------------"
 if [ ! -L /var/www/ubuntu ]
 then
 	echo "Creating links for our repository"
-	ln -s ${FAIR_ARCHIVE_PATH}/ubuntu /var/www/ubuntu
+	ln -s ${FAIR_DRIVE_MOUNTPOINT}/ubuntu /var/www/ubuntu
 	ln -s /var/www/ubuntu/pool /var/www/pool
 fi
 
@@ -72,12 +72,12 @@ echo "---------------------------------------"
 echo "Movies"
 echo "---------------------------------------"
 
-if [ ! -d /var/www/movies ] && [ -d ${FAIR_ARCHIVE_PATH}/data/movies ]
+if [ ! -d /var/www/movies ] && [ -d ${FAIR_DRIVE_MOUNTPOINT}/data/movies ]
 then
         echo "Creating links for Movies"
-	chmod -R o+r ${FAIR_ARCHIVE_PATH}/data/movies
-	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/movies
-        ln -s ${FAIR_ARCHIVE_PATH}/data/movies /var/www/movies
+	chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/movies
+	chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/movies
+        ln -s ${FAIR_DRIVE_MOUNTPOINT}/data/movies /var/www/movies
 else
 	echo "Movies directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
@@ -87,12 +87,12 @@ echo "Camara"
 echo "---------------------------------------"
 
 
-if [ ! -d /var/www/camara ] && [ -d ${FAIR_ARCHIVE_PATH}/data/camara ]
+if [ ! -d /var/www/camara ] && [ -d ${FAIR_DRIVE_MOUNTPOINT}/data/camara ]
 then
         echo "Creating links for Camara"
-	chmod -R o+r ${FAIR_ARCHIVE_PATH}/data/camara
-	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/camara
-        ln -s ${FAIR_ARCHIVE_PATH}/data/camara /var/www/camara
+	chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/camara
+	chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/camara
+        ln -s ${FAIR_DRIVE_MOUNTPOINT}/data/camara /var/www/camara
 else
 	echo "Camara directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi
@@ -102,12 +102,12 @@ echo "Distro folder (iso images of other linux)"
 echo "---------------------------------------"
 
 
-if [ ! -d /var/www/distros ] && [ -d ${FAIR_ARCHIVE_PATH}/data/distros ]
+if [ ! -d /var/www/distros ] && [ -d ${FAIR_DRIVE_MOUNTPOINT}/data/distros ]
 then
         echo "Creating links for linux distros"
-	chmod -R o+r ${FAIR_ARCHIVE_PATH}/data/distros
-	chmod -R o+X ${FAIR_ARCHIVE_PATH}/data/distros
-        ln -s ${FAIR_ARCHIVE_PATH}/data/distros /var/www/distros
+	chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/distros
+	chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/distros
+        ln -s ${FAIR_DRIVE_MOUNTPOINT}/data/distros /var/www/distros
 else
 	echo "Linux distros directory already symlinked (or the directory does not exist in the FAIR archive)"
 fi

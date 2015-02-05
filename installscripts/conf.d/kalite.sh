@@ -12,11 +12,11 @@ echo "---------------------------------------"
 
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.kalite.conf > /etc/apache2/sites-available/kalite.conf
 
-sedeasy "{{ FAIR_ARCHIVE_PATH }}" "$FAIR_ARCHIVE_PATH" /etc/apache2/sites-available/kalite.conf
+sedeasy "{{ FAIR_ARCHIVE_PATH }}" "$FAIR_DRIVE_MOUNTPOINT" /etc/apache2/sites-available/kalite.conf
 
 a2ensite kalite
 
-chmod -R 777 $FAIR_ARCHIVE_PATH/data/ka-lite/kalite/database
+chmod -R 777 $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/kalite/database
 
 service apache2 reload
 
