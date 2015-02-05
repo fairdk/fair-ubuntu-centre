@@ -14,14 +14,6 @@
 #
 
 
-echo "PJD: WARNING: rc.local is changes but NOT TESTED yet!!"
-
-# Clean up wikipedia cache to conserve disk space
-echo "TRUNCATE TABLE objectcache;" | mysql -u root -p fair wikidb
-rm -Rf /var/www/wiki/images/thumb/*
-rm -Rf /var/www/wiki/images/tmp/*
-rm -Rf /var/www/wiki/images/temp/*
-
 # Change ownership of materials in the digital library from teacher to library so the students can read everything
 cd /home/teacher/materials
 chown teacher.teacher .digital_library
