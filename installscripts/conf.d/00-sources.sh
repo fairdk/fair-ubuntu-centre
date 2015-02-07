@@ -1,12 +1,17 @@
 #!/bin/bash
 
+# Delete a line containing $1 in file $2
+function sedeasy_delete {
+  sed -i "/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/d" $2
+}
+
 echo "---------------------------------------"
 echo "Putting external drive in /etc/fstab"
 echo "---------------------------------------"
 
-if (($USE_FAIR_DISK==1))
+if (("$USE_FAIR_DISK"==1))
 then
-
+	sedeasy_delete "${FAIR_DRIVE_MOUNTPOINT}" /etc/fstab
 	if ! grep "${FAIR_DRIVE_MOUNTPOINT}" /etc/fstab -q
 	then
 		FAIR_MOUNT_PARTITION=`mount |grep FAIR|sed 's/\/dev\/\(....\)\ .*/\1/'`
