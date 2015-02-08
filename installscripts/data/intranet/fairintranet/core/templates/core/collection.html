@@ -16,7 +16,7 @@
     <table>
     {% for child in self.get_movies %}
       <tr>
-      <td style="width: 1px; text-align: center; padding-right: 20px;">
+      <td style="vertical-align: top; width: 1px; text-align: center; padding-right: 20px;">
         {% if child.thumbnail %}
           {% image child.thumbnail fill-200x200 as icon_img %}
           <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
@@ -24,11 +24,12 @@
           <span class="fa fa-video-camera" style="font-size: 100px"></span>
         {% endif %}
       </td>
-      <td>
-        <h2>{{ child.title }}</h2>
+      <td style="vertical-align: top;">
+        <h3>{{ child.title }}</h3>
+        <p>Directed by: {{ child.author|default:"Unknown"}}, Duration: {{ child.duration|default:"Unknown" }}</p>
         <p>{{ child.short_description }}</p>
         <p>
-          <a href="{{ child.url }}">Read more</a>
+          <a href="{{ child.url }}">Read more and watch</a>
         </p>
       </td>
     {% endfor %}

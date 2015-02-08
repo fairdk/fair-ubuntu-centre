@@ -18,7 +18,7 @@
       <div>{{ child.title }}</div>
       <div class="caption">
         {% if child.icon %}
-        {% image child.icon height-100 as icon_img %}
+        {% image child.icon width-120 as icon_img %}
         <img src="{{ icon_img.url }}" class="img-rounded pull-right" style="margin-left: 10px;">
         {% else %}
         <div class="pull-right" style="margin-left: 10px;"><span class="fa fa-{{ child.icon_predefined }}"></span></div>
