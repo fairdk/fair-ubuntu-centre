@@ -1,13 +1,36 @@
 {% extends "base.html" %}
 
 {% load static core_tags %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
 
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-    <h1>Welcome to your new Wagtail site!</h1>
 
-    <p>You can access the admin interface <a href="{% url 'wagtailadmin_home' %}">here</a> (make sure you have run "./manage.py createsuperuser" in the console first).
+  {% for child in self.child_collections.live.in_menu %}
+    {% if forloop.counter0|divisibleby:"3" %}
+    {% if not forloop.first %}</div>{% endif %}
+    <div class="row">
+    {% endif %}
+    <div class="col-md-4" style="margin-bottom: 30px;">
+    <a href="{{ child.url }}" class="collection-button">
+      <div>{{ child.title }}</div>
+      <div class="caption">
+        {% if child.icon %}
+        {% image child.icon height-100 as icon_img %}
+        <img src="{{ icon_img.url }}" class="img-rounded pull-right" style="margin-left: 10px;">
+        {% else %}
+        <div class="pull-right" style="margin-left: 10px;"><span class="fa fa-{{ child.icon_predefined }}"></span></div>
+        {% endif %}
+        {{ child.button_caption }}
+        <div style="clear: both"></div>
+      </div>
+    </a>
+    </div>
+  {% endfor %}
+  </div>
+  
+  {{ self.body|default:""|richtext }}
 
-    <p>If you haven't already given the documentation a read, head over to <a href="http://wagtail.readthedocs.org/">http://wagtail.readthedocs.org</a> to start building on Wagtail</p>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends "core/collection.html" %}
+
+{% block collection_sidebar %}
+<p>
+  <a href="{{ child.url }}" class="collection-button">
+    Start {{ self.title }}
+    <span class="fa fa-play-circle" aria-hidden="true"></span>
+  </a>
+</p>
+{% endblock %}
+

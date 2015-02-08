@@ -1,0 +1,65 @@
+{% extends "core/home_page.html" %}
+
+{% load static core_tags %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+  <div class="col-md-9">
+    <h1>{{ self.title }}</h1>
+    {{ self.body|default:""|richtext }}
+    
+    <table>
+    {% for child in self.get_movies %}
+      <tr>
+      <td style="width: 1px; text-align: center; padding-right: 20px;">
+        {% if child.thumbnail %}
+          {% image child.thumbnail fill-200x200 as icon_img %}
+          <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
+        {% else %}
+          <span class="fa fa-video-camera" style="font-size: 100px"></span>
+        {% endif %}
+      </td>
+      <td>
+        <h2>{{ child.title }}</h2>
+        <p>{{ child.short_description }}</p>
+        <p>
+          <a href="{{ child.url }}">Read more</a>
+        </p>
+      </td>
+    {% endfor %}
+    </table>
+    
+  </div>
+  <div class="col-md-3">
+    {% block collection_sidebar %}
+    {% endblock %}
+    {% if self.icon %}
+    {% image self.icon width-300 as icon_img %}
+    <div class="big-icon">
+      <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">Info</div>
+      <div class="panel-body">
+        {% if self.source_link %}
+        <p>
+          Location: {{ self.source_link|default:"Not installed" }}
+        </p>
+        {% endif %}
+        {% if self.retrieved %}
+          <p>Retrieved: {{ self.retrieved.year }}</p>
+        {% endif %}
+        {% if self.license %}
+          <p>License: {{ self.license }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}

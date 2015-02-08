@@ -3,8 +3,6 @@
 /.venv/
 /*/settings/local.py
 /static/
-/media/
 /.vagrant/
 Vagrantfile.local
 /docs/_build/
-/db.sqlite3
