@@ -10,6 +10,7 @@
 
   <div class="row">
   <div class="col-md-9">
+    {% block collection_content %}
     <h1>{{ self.title }}</h1>
     {{ self.body|default:""|richtext }}
     
@@ -29,11 +30,12 @@
         <p>Directed by: {{ child.author|default:"Unknown"}}, Duration: {{ child.duration|default:"Unknown" }}</p>
         <p>{{ child.short_description }}</p>
         <p>
-          <a href="{{ child.url }}">Read more and watch</a>
+          <a href="{{ child.url }}">Go to movie page <span class="fa fa-arrow-right"></span></a>
         </p>
       </td>
     {% endfor %}
     </table>
+    {% endblock %}
     
   </div>
   <div class="col-md-3">
@@ -48,9 +50,19 @@
     <div class="panel panel-default">
       <div class="panel-heading">Info</div>
       <div class="panel-body">
-        {% if self.source_link %}
+        {% if self.duration %}
         <p>
-          Location: {{ self.source_link|default:"Not installed" }}
+          Duration: {{ self.duration }}
+        </p>
+        {% endif %}
+        {% if self.author %}
+        <p>
+          Director: {{ self.author }}
+        </p>
+        {% endif %}
+        {% if self.resource_link %}
+        <p>
+          Location: <a href="{{ self.resource_link }}">{{ self.resource_link }}</a>
         </p>
         {% endif %}
         {% if self.retrieved %}
