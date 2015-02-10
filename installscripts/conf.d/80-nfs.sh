@@ -3,20 +3,6 @@
 # Here we set up the NFS server, and the directories that it depends on.
 # We also create the teacher account here.
 
-# Include variables defined externally
-
-if [ -n "${SCRIPT_ROOT}" ]; then
-
-        : # Do nothing
-else
-        SCRIPT="`readlink -e $0`"
-        SCRIPTPATH="`dirname $SCRIPT`"
-        echo "Including global variables"
-        export SCRIPT_ROOT=$SCRIPTPATH/..
-        . $SCRIPTPATH/../config/default_cfg.sh
-fi
-
-
 echo "---------------------------------------"
 echo "Installing NFS server                  "
 echo "---------------------------------------"

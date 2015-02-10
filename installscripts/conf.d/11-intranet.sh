@@ -1,17 +1,7 @@
 #!/bin/bash
-if [ -n "${SCRIPT_ROOT}" ]; then
-
-        : # Do nothing
-else
-        SCRIPT="`readlink -e $0`"
-        SCRIPTPATH="`dirname $SCRIPT`"
-        echo "Including global variables"
-        export SCRIPT_ROOT=$SCRIPTPATH/..
-        . $SCRIPTPATH/../config/default_cfg.sh
-fi
 
 echo "---------------------------------------"
 echo "Installing intranet                    "
 echo "---------------------------------------"
 
-apt-get install python-virtualenv libapache2-mod-wsgi
+apt-get install python-virtualenv libapache2-mod-wsgi -q -y

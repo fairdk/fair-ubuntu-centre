@@ -2,10 +2,6 @@
 
 sudo apt-get -q -y install python-m2crypto
 
-function sedeasy {
-  sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
-}
-
 echo "---------------------------------------"
 echo "Khan Academy"
 echo "---------------------------------------"

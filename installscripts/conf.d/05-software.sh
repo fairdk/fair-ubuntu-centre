@@ -2,16 +2,6 @@
 
 # Install config files in the ETC dir
 
-if [ -n "${SCRIPT_ROOT}" ]; then
-        : # Do nothing
-else
-        SCRIPT="`readlink -e $0`"
-        SCRIPTPATH="`dirname $SCRIPT`"
-        echo "Including global variables"
-        export SCRIPT_ROOT=$SCRIPTPATH/..
-        . $SCRIPTPATH/../config/default_cfg.sh
-fi
-
 echo "---------------------------------------"
 echo "Remove unecessary software (that comes with Ubuntu by default)"
 echo "---------------------------------------"

@@ -1,7 +1,7 @@
 # Disable temporarily because it was only used for Wikipedia wich is replace
 # by Kiwix
 
-exit 0
+return
 
 echo "---------------------------------------"
 echo "Installing MySQL and PHP               "
