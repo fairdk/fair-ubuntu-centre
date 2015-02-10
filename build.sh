@@ -26,6 +26,10 @@ fi
 echo "Installing requirements.txt..."
 source virtualenv/bin/activate
 pip install -r fairintranet/requirements.txt
+cd fairintranet
+python manage.py collectstatic
+cd ../
+
 cd ../../../
 
 echo "Creating tarball..."
