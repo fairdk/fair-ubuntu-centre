@@ -1,0 +1,25 @@
+{% extends "core/collection.html" %}
+{% load static core_tags %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block collection_sidebar %}
+<p>
+  <a href="{{ child.url }}" class="collection-button">
+    Start {{ self.title }}
+    <span class="fa fa-play-circle" aria-hidden="true"></span>
+  </a>
+</p>
+{% if self.thumbnail %}
+{% image self.thumbnail width-300 as thumbnail_img %}
+<img src="{{ thumbnail_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
+{% endif %}
+{% endblock %}
+
+{% block collection_content %}
+
+  <h1>{{ self.title }}</h1>  
+  {{ self.body|default:""|richtext }}
+  
+
+{% endblock %}

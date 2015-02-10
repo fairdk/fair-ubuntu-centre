@@ -16,7 +16,8 @@ COMMON_CONTENT_PANELS = [
 ]
 
 RESOURCE_PANELS = [
-    FieldPanel('source_link'),
+    ImageChooserPanel('thumbnail'),
+    FieldPanel('resource_link'),
     FieldPanel('author'),
     FieldPanel('year'),
     FieldPanel('country'),
@@ -52,9 +53,12 @@ class Resource(models.Model):
         null=True,
         blank=True,
     )
-    resource_link = models.URLField(
+    # This is not a URLField, because it doesn't validate non-domain
+    # http://server/path/
+    resource_link = models.CharField(
         verbose_name=_("resource link"),
         help_text=_("Find a book or movie file available on the intranet and copy the link here, e.g. http://localserver/path/to/book.pdf",),
+        max_length=512,
     )
     thumbnail = models.ForeignKey(
         'wagtailimages.Image',
