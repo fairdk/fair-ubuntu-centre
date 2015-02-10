@@ -39,14 +39,6 @@ cp ${FAIR_INSTALL_DATA}/edubuntu.seed /var/www/html/
 echo "Installing default index.html"
 cp ${FAIR_INSTALL_DATA}/index.html /var/www/html
 
-echo "Copying intranet"
-if [ -f /var/www/html/intranet ]; then rm /var/www/html/intranet; fi
-mkdir -p /var/www/html/intranet
-cp -rf ${FAIR_INSTALL_DATA}/intranet/* /var/www/html/intranet
-chown -R root.root /var/www/html/intranet
-chmod -R o+r /var/www/html/intranet
-chmod -R o+X /var/www/html/intranet
-
 echo "Creating virtual hosts for the repository and the intranet..."
 # PDO: We have several sub-domains on the server because it helps us ....??
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.000-default.conf > /etc/apache2/sites-available/000-default.conf

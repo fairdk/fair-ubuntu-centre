@@ -10,8 +10,10 @@ TEMPLATE_DEBUG = False
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
 
-COMPRESS_OFFLINE = True
+# This causes an error
+# COMPRESS_OFFLINE = True
 
+ALLOWED_HOSTS = ["intranet", "intranet.fair"]
 
 # Send notification emails as a background task using Celery,
 # to prevent this from blocking web server threads
