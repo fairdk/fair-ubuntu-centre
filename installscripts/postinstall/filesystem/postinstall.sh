@@ -113,6 +113,9 @@ rm -f /etc/xdg/autostart/gnome-keyring-pkcs11.desktop
 rm -f /etc/xdg/autostart/evolution-alarm-notify.desktop
 rm -f /etc/xdg/autostart/ubuntuone-launch.desktop
 
+# Disable annoying and useless HUD service
+chmod -x /usr/lib/i386-linux-gnu/hud/hud-service
+
 cat etc.gnome.defaults.list > /etc/gnome/defaults.list
 
 ./install_create_homes.sh

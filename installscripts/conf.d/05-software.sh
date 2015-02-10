@@ -24,3 +24,4 @@ echo "---------------------------------------"
 
 apt-get install -y -q imagemagick
 apt-get install -y -q openssh-server
+apt-get install -y -q gdebi
