@@ -1,7 +1,11 @@
+fbreader
+scratch
+ubuntu-restricted-extras
+gdebi
+nfs-common
 openssh-server
 edubuntu-desktop
 vlc
-openoffice.org-base
 nfs-common
 flashplugin-nonfree
 vncviewer
@@ -32,7 +36,6 @@ poppler-data
 gimp-help-en
 language-pack-kde-en
 thunderbird-locale-en-gb
-openoffice.org-hyphenation
 hunspell-en-ca
 mythes-en-au
 hyphen-en-us

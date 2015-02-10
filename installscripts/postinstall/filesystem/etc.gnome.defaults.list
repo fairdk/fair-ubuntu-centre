@@ -227,3 +227,4 @@ x-content/audio-player=rhythmbox.desktop
 x-content/image-dcf=f-spot-import.desktop
 x-content/image-picturecd=f-spot-import.desktop
 zz-application/zz-winassoc-xls=openoffice.org-calc.desktop
+application/epub+zip=FBReader.desktop

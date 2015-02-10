@@ -1,16 +1,5 @@
 #!/bin/bash
 
-if [ -n "${SCRIPT_ROOT}" ]; then
-
-        echo "Globals already defined"
-else
-        SCRIPT="`readlink -e $0`"
-        SCRIPTPATH="`dirname $SCRIPT`"
-        echo "Including global variables"
-        export SCRIPT_ROOT=$SCRIPTPATH/..
-        . $SCRIPTPATH/../config/default_cfg.sh
-fi
-
 echo "---------------------------------------"
 echo "Installing apache2 http server         "
 echo "---------------------------------------"
@@ -48,10 +37,10 @@ cp ${FAIR_INSTALL_DATA}/ks*.cfg /var/www/html/
 cp ${FAIR_INSTALL_DATA}/edubuntu.seed /var/www/html/
 
 echo "Installing default index.html"
-cp ${FAIR_INSTALL_DATA}/index.html /var/www
+cp ${FAIR_INSTALL_DATA}/index.html /var/www/html
 
 echo "Copying intranet"
-if [ -f /var/www/html/intranet ]; then rm /var/wwwintranet; fi
+if [ -f /var/www/html/intranet ]; then rm /var/www/html/intranet; fi
 mkdir -p /var/www/html/intranet
 cp -rf ${FAIR_INSTALL_DATA}/intranet/* /var/www/html/intranet
 chown -R root.root /var/www/html/intranet

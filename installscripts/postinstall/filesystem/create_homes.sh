@@ -25,12 +25,6 @@ do_start() {
 	rm -Rf /home/student/.gconf
 	rm -Rf /home/student/.gconfd
 
-	# Gconf options for student
-	su student -c "sh ~/.reset_gconf.sh"
-
-	# Gconf options for teacher
-	su teacher -c "sh ~/.reset_gconf.sh"
-
 	rm -Rf /home/student/.config
 	rm -Rf /home/student/.adobe
 	rm -Rf /home/student/.gtk-bookmarks
@@ -41,6 +35,11 @@ do_start() {
 	cd /root/postinstall
 	cp -Rf student /home
 	cp -Rf teacher /home
+
+	# Gconf options for student
+	su student -c "sh ~/.reset_gconf.sh"
+	# Gconf options for teacher
+	su teacher -c "sh ~/.reset_gconf.sh"
 
 	rm -Rf /home/student/.mozilla
 	rm -Rf /home/student/.openoffice.org
