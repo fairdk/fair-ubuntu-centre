@@ -22,9 +22,6 @@ export DEBCONF_FRONTEND=noninteractive
 # Stop lightdm
 /etc/init.d/lightdm stop
 
-# Use Danish keyboard
-echo 'XKBLAYOUT="dk"' > /etc/keyboard
-
 # Fix old fstab
 #sed -i 's/^.*nfs.*$//g' /etc/fstab
 
@@ -154,6 +151,11 @@ fi
 cp -rf etc/* /etc/
 mkdir -p /opt
 cp -rf opt/* /opt/
+
+# After copying in the /etc structure, a new keyboard layout may have been set
+# and because of a weird bug, we need to re-run this configuration to
+# regenerate some init image for kernel and then it will work after reboot
+dpkg-reconfigure -phigh keyboard-configuration
 
 # Execute final local configuration script
 cd local

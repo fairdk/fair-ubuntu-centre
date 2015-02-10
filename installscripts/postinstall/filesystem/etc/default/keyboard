@@ -6,7 +6,7 @@
 # in /etc/X11/xorg.conf.
 
 XKBMODEL="pc105"
-XKBLAYOUT="dk"
+XKBLAYOUT="dk,gb"
 XKBVARIANT=""
 XKBOPTIONS=""
 
