@@ -37,10 +37,10 @@ cp ${FAIR_INSTALL_DATA}/ks*.cfg /var/www/html/
 cp ${FAIR_INSTALL_DATA}/edubuntu.seed /var/www/html/
 
 echo "Installing default index.html"
-cp ${FAIR_INSTALL_DATA}/index.html /var/www
+cp ${FAIR_INSTALL_DATA}/index.html /var/www/html
 
 echo "Copying intranet"
-if [ -f /var/www/html/intranet ]; then rm /var/wwwintranet; fi
+if [ -f /var/www/html/intranet ]; then rm /var/www/html/intranet; fi
 mkdir -p /var/www/html/intranet
 cp -rf ${FAIR_INSTALL_DATA}/intranet/* /var/www/html/intranet
 chown -R root.root /var/www/html/intranet
