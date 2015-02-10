@@ -1,27 +1,20 @@
 fbreader
 scratch
-ubuntu-restricted-extras
 gdebi
 nfs-common
 openssh-server
 edubuntu-desktop
 vlc
 nfs-common
-flashplugin-nonfree
-vncviewer
+flashplugin-installer
+xtightvncviewer
 x11vnc
 ca-certificates-java
 cabextract
-flashplugin-installer
 freepats
-gstreamer0.10-ffmpeg 
-gstreamer0.10-plugins-bad 
-gstreamer0.10-plugins-ugly 
 icedtea-6-jre-cacao 
-icedtea6-plugin 
+icedtea-6-plugin 
 java-common
-libaccess-bridge-java 
-libaccess-bridge-java-jni 
 openjdk-6-jre 
 openjdk-6-jre-headless 
 openjdk-6-jre-lib 
@@ -51,4 +44,27 @@ wbritish
 libreoffice-help-en-gb
 mythes-en-us
 wamerican
+  cabextract chromium-codecs-ffmpeg-extra flashplugin-installer freepats
+  gstreamer0.10-fluendo-mp3 gstreamer0.10-plugins-bad
+  gstreamer0.10-plugins-bad-multiverse gstreamer0.10-plugins-ugly
+  gstreamer1.0-fluendo-mp3 gstreamer1.0-libav gstreamer1.0-plugins-bad
+  gstreamer1.0-plugins-bad-faad gstreamer1.0-plugins-bad-videoparsers
+  gstreamer1.0-plugins-ugly liba52-0.7.4 libass4 libavcodec54 libavformat54
+  libavutil52 libcdaudio1 libchromaprint0 libdc1394-22 libdca0
+  libdirac-encoder0 libdirectfb-1.2-9 libdvdnav4 libdvdread4 libenca0 libfaac0
+  libfaad2 libflite1 libfluidsynth1 libgme0 libgsm1
+  libgstreamer-plugins-bad0.10-0 libgstreamer-plugins-bad1.0-0 libgtkglext1
+  libkate1 libmad0 libmimic0 libmjpegutils-2.1-0 libmms0 libmodplug1
+  libmp3lame0 libmpcdec6 libmpeg2-4 libmpeg2encpp-2.1-0 libmpg123-0
+  libmplex2-2.1-0 libofa0 liboil0.3 libopenal-data libopenal1
+  libopencore-amrnb0 libopencore-amrwb0 libopencv-calib3d2.4
+  libopencv-contrib2.4 libopencv-core2.4 libopencv-features2d2.4
+  libopencv-flann2.4 libopencv-highgui2.4 libopencv-imgproc2.4
+  libopencv-legacy2.4 libopencv-ml2.4 libopencv-objdetect2.4
+  libopencv-video2.4 libopenjpeg2 libopus0 libschroedinger-1.0-0 libsidplay1
+  libslv2-9 libsoundtouch0 libspandsp2 libsrtp0 libswscale2 libtbb2
+  libts-0.0-0 libtwolame0 libva1 libvo-aacenc0 libvo-amrwbenc0
+  libwildmidi-config libwildmidi1 libx264-142 libxvidcore4 libzbar0
+  libzvbi-common libzvbi0 oxideqt-codecs-extra tsconf
+  ubuntu-restricted-addons unrar
 
