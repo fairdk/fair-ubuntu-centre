@@ -3,7 +3,7 @@
 # Install config files in the ETC dir
 
 if [ -n "${SCRIPT_ROOT}" ]; then
-        echo "Globals already defined"
+        : # Do nothing
 else
         SCRIPT="`readlink -e $0`"
         SCRIPTPATH="`dirname $SCRIPT`"

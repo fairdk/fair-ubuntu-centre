@@ -24,3 +24,6 @@ apt-get update
 dpkg --configure -a
 
 apt-get autoremove -y -q
+
+# Make sure the server is fully upgraded
+apt-get upgrade -y -q
