@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+
+if [ "$1" == '--no-reboot' ]
+then
+	NO_REBOOT="yes"
+else
+	NO_REBOOT="no"
+fi
 
 # Create a utility script that will re-download the postinstall
 echo "#!/bin/sh" > "/root/rerun-postinstall.sh"
@@ -164,4 +171,7 @@ sleep 1s
 
 echo "exit 0" > /etc/rc.local
 
-reboot
+if [ ! $NO_REBOOT = "yes" ]
+then
+	reboot
+fi
