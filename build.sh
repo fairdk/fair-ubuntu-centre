@@ -2,20 +2,31 @@
 
 BRANCH=${1:-"master"}
 
-if [ -d build ]
+if [ "$1" = "clean" ]
 then
-    rm -rf buid
+	if [ -d build ]
+	then
+	    rm -rf build
+	fi
 fi
 
-mkdir build
+mkdir -p build
 
 git archive $BRANCH installscripts/ | tar x -C build/
 
 cd build/installscripts/data/intranet/
-virtualenv virtualenv
-virtualenv --relocatable virtualenv
+if [ ! -d virtualenv ]
+then
+	echo "Getting wagtail build dependencies"
+	sudo apt-get install python-dev python-pip g++ libjpeg62-dev zlib1g-dev
+	virtualenv virtualenv
+	virtualenv --relocatable virtualenv
+fi
+
+echo "Installing requirements.txt..."
 source virtualenv/bin/activate
 pip install -r fairintranet/requirements.txt
-
 cd ../../../
-tar xvfz installscripts.tar.gz installscripts
+
+echo "Creating tarball..."
+tar cfz installscripts.tar.gz installscripts
