@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. utils.sh
 
 # This file contains variables that can be customized for your installation.
 
