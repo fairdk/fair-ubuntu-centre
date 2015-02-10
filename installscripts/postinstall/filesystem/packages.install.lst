@@ -6,7 +6,7 @@ openssh-server
 edubuntu-desktop
 vlc
 nfs-common
-flashplugin-installer
+#flashplugin-installer
 xtightvncviewer
 x11vnc
 ca-certificates-java
@@ -44,7 +44,7 @@ wbritish
 libreoffice-help-en-gb
 mythes-en-us
 wamerican
-  cabextract chromium-codecs-ffmpeg-extra flashplugin-installer freepats
+  cabextract chromium-codecs-ffmpeg-extra freepats
   gstreamer0.10-fluendo-mp3 gstreamer0.10-plugins-bad
   gstreamer0.10-plugins-bad-multiverse gstreamer0.10-plugins-ugly
   gstreamer1.0-fluendo-mp3 gstreamer1.0-libav gstreamer1.0-plugins-bad
