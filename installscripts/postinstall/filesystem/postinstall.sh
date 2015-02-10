@@ -25,6 +25,10 @@ export DEBCONF_FRONTEND=noninteractive
 # Fix old fstab
 #sed -i 's/^.*nfs.*$//g' /etc/fstab
 
+# TODO: Possibly remove this when figured out that it's not a bug anymore
+# Ensure correct permissions on /root
+chown -R root.root /root
+
 cd /root/postinstall
 
 echo "fair-client" > /etc/hostname
@@ -56,11 +60,8 @@ adduser teacher lpadmin
 adduser teacher sambashare
 adduser teacher epoptes
 
-if [ ! -d /root/.ssh ]
-then
-	mkdir /root/.ssh
-	chmod 700 /root/.ssh
-fi
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
 cat server_id_rsa.pub > /root/.ssh/authorized_keys
 cat teacher/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
