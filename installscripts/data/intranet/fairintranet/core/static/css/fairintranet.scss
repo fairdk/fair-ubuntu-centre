@@ -28,7 +28,7 @@ $font-size-base:  16px;
 $headings-font-family:  Purisa;
 
 $icon-font-path: '/static/bootstrap/fonts/bootstrap/';
-$fa-font-path: '../../font-awesome/fonts/font-awesome/';
+$fa-font-path: '../font-awesome/fonts/font-awesome/';
 
 @import '../bootstrap/stylesheets/bootstrap';
 @import '../font-awesome/stylesheets/font-awesome';
