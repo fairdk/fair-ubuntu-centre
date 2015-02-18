@@ -21,12 +21,24 @@ from django.core.files.base import File
 logger = logging.getLogger('fairintranet.core')
 
 
+# These extensions will create a Movie object instead of the
+# default EBook
+MOVIE_EXTENSIONS = ('avi', 'mp4', 'iso', 'xvid', 'mkv', 'pls', 'm3u', 'ogv')
+
+EBOOK_EXTENSIONS = (
+    'pdf', 'odt', 'doc', 'docx', 'ods', 'xls', 'xslx',
+    'ps', 'odp', 'ppt', 'pptx', 'epub', 'txt'
+)
+
+
 class Command(BaseCommand):
     help = (
         'Import a resource folder recursively. Adds all found and non-existing '
         'resources to a collection. For every filename.ext, you can place a '
-        'special .filename.ext.description (text) and .filename.ext.image '
-        'to import as description and thumbnail (JPEG format)'
+        'special .filename.ext.description (text) and .filename.ext.thumbnail '
+        'to import as description and thumbnail (JPEG format). You can '
+        'use the create_thumbnails management command to automatically create '
+        'thumbnails.'
     )
     args = '<folder_path> <collection_id>'
 
@@ -67,8 +79,8 @@ class Command(BaseCommand):
             else:
                 description = ""
             
-            title = os.path.basename(item)
-            title = ".".join(".".split(title)[:-1])
+            file_name = os.path.basename(item)
+            title = ".".join(file_name.split(".")[:-1])
             title = title.replace("_", " ")
             
             thumbnail_file = item + ".image"
@@ -81,7 +93,36 @@ class Command(BaseCommand):
                 image.save()
             else:
                 thumbnail = None
-        
+            
+            extension = file_name.split(".")[-1]
+            if extension in MOVIE_EXTENSIONS:
+                cls = models.Movie
+            elif extension in EBOOK_EXTENSIONS:
+                cls = models.EBook
+            else:
+                return
+            
+            slug = slugify(title)
+            
+            cls.objects.create(
+                numchild=0,
+                depth=collection.depth + 1,
+                show_in_menus=True,
+                path=collection.path + "{pos:s}".format(pos=str(collection.numchild + 1).zfill(4)),
+                url_path=os.path.join(collection.url_path, slug) + "/",
+                slug=slug,
+                title=title,
+                live=True,
+                short_description=description,
+                author="",
+                duration="",
+                resource_link=item,
+                thumbnail=thumbnail,
+            )
+    
+            collection.numchild += 1
+            collection.save()
+                    
         def scan_folder(arg, dirname, names):
             for name in names:
                 item = os.path.join(dirname, name)
