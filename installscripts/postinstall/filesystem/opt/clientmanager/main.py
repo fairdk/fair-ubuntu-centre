@@ -33,11 +33,18 @@ REMOTE_START_WARN = (
 )
 REMOTE_STOP_WARN = "pkill -f '/tmp/lightdm_warn'"
 
+# For looking up my IP
+INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0")
+
+
 def get_ips():
-    co = subprocess.Popen(['ifconfig', settings.ETH], stdout = subprocess.PIPE)
-    ifconfig = co.stdout.read()
-    ip_regex = re.compile('((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-4]|2[0-5][0-9]|[01]?[0-9][0-9]?))')
-    return [match[0] for match in ip_regex.findall(ifconfig, re.MULTILINE)]
+    for interface in INTERFACES_TO_SCAN:
+        co = subprocess.Popen(['ifconfig', interface], stdout = subprocess.PIPE)
+        ifconfig = co.stdout.read()
+        ip_regex = re.compile('((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-4]|2[0-5][0-9]|[01]?[0-9][0-9]?))')
+        ips = [match[0] for match in ip_regex.findall(ifconfig, re.MULTILINE)]
+        if ips and any(map(lambda x: x.startswith(settings.IP_STARTING_WITH), ips)):
+            yield ips[0]
 
 
 class MainWindow():
