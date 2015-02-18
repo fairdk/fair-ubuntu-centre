@@ -54,4 +54,3 @@ def download(request, resource_id):
     
     if not os.path.exists(resource.resource_link):
         raise Http404()
-    
