@@ -7,7 +7,7 @@ echo "Remove unecessary software (that comes with Ubuntu by default)"
 echo "---------------------------------------"
 
 # Remove avahi-daemon, not needed and causes problems on different networking setups
-apt-get -y -q remove apport gnome-orca gwibber zeitgeist unity-webapps-common
+apt-get -y -q remove apport gnome-orca gwibber zeitgeist unity-webapps-common deja-dup
 
 
 echo "---------------------------------------"

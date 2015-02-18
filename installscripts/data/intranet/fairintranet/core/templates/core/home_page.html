@@ -7,8 +7,14 @@
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
+  
+  {% if self.body %}
+  <h1 class="page-header">{{ self.title }}</h1>
+  {% endif %}
+  
+  {{ self.body|default:""|richtext }}
 
-  {% for child in self.child_collections.live.in_menu %}
+  {% for child in self.child_collections.live %}
     {% if forloop.counter0|divisibleby:"3" %}
     {% if not forloop.first %}</div>{% endif %}
     <div class="row">
@@ -29,8 +35,8 @@
     </a>
     </div>
   {% endfor %}
+  {% if self.child_collections %}
   </div>
-  
-  {{ self.body|default:""|richtext }}
+  {% endif %}
 
 {% endblock %}

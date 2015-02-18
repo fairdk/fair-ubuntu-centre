@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from wagtail.wagtailcore.models import Page
@@ -36,6 +37,10 @@ class HomePage(Page):
     
     def child_collections(self):
         return Collection.objects.descendant_of(self)
+    
+    class Meta:
+        verbose_name = _("Standard article")
+        verbose_name = _("Standard articles")
 
 
 HomePage.content_panels = COMMON_CONTENT_PANELS
@@ -135,3 +140,34 @@ class ExternalCollection(Collection):
 ExternalCollection.content_panels = Collection.content_panels + [
     FieldPanel('retrieved'),
 ]
+
+
+class ResourceUsage(models.Model):
+    
+    ebook = models.ForeignKey('EBook')
+    movie = models.ForeignKey('Movie')
+    clicks = models.PositiveIntegerField(default=0)
+    from_date = models.DateField()
+    to_date = models.DateField()
+    
+    class Meta:
+        verbose_name = _("resource usage")
+        verbose_name_plural = _("resource usages")
+        ordering = ('from_date', 'to_date')
+    
+    @classmethod
+    def count_click(cls, **kwargs):
+        """"""
+        if 'movie' not in kwargs and 'ebook' not in kwargs:
+            raise RuntimeError("You must specify either movie or ebook")
+        from_date = timezone.now().replace(day=1).date()
+        if from_date.month < 12:
+            to_date = from_date.replace(month=from_date.month + 1)
+        else:
+            to_date = from_date.replace(month=1, year=from_date.year + 1)
+        kwargs['from_date'] = from_date
+        kwargs['to_date'] = to_date
+        usage, _ = cls.get_or_create(**kwargs)
+        usage.clicks += 1
+        usage.save()
+        return usage

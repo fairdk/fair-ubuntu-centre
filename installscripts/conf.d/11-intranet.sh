@@ -16,6 +16,12 @@ chmod 777 /var/www/intranet/fairintranet/media/
 # Needed for populating CACHE
 chmod 777 /var/www/intranet/fairintranet/static/
 
+# Run Django management scripts
+source /var/www/intranet/virtualenv/bin/activate
+python /var/www/intranet/fairintranet/manage.py set_site_name
+python /var/www/intranet/fairintranet/manage.py collectstatic
+deactivate
+
 echo "Enabling intranet"
 a2ensite intranet
 
