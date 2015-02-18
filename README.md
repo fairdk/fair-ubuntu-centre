@@ -16,13 +16,13 @@ Everything is tested and in use at 10 school centres. The next big step is to st
 Requirements
 ------------
 
-* Ubuntu repositories: 64+ GByte
+* Ubuntu 32 bit repositories: 64+ GByte
 
 Obtaining data
 --------------
 
-FAIR has the data dumps of Wikipedia and images scaled down. They are not currently offered by
-online sources, please get in touch with us for any data exchange
+FAIR has the data dumps of Ubuntu, Kiwix, KA Lite, and various other content providers of free movies and e-boots. They are not currently offered by
+online sources, please get in touch with us for any data exchange.
 
 TODO
 ----
@@ -45,8 +45,16 @@ to the command line is quite a lot easier.
 Background
 ------------------
 
-### Choice of Linux OS
+## Choice of Linux OS
 
-The project will continue to be based on Ubuntu 12.04 until the release of 14.04 has been out for at least 6 months.
-Current experiences hint that school computers are better off with less machine intensive Linux desktop, hence Ubuntu 10.04
-is actually providing a better user experience regarding the responsiveness of older hardware (256 MB, <2 GHz CPU).
+The project is based on 14.04 LTS. The policy is to always use an LTS that has been out for at least 6 months.
+
+### Discussion
+
+However, we do ponder about providing backwards compatible setups. Experiences say that school
+computers are better off with less machine intensive Linux desktops, and that
+newer versions do not always provide better performance. For instance, we see that Ubuntu 10.04
+is actually providing better responsiveness on older hardware (256 MB, <2 GHz CPU).
+
+Another alternative would be to add installation configurations that gave the choice of Lubuntu
+or Xubuntu desktops.
