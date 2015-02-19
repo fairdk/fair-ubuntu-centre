@@ -85,7 +85,7 @@ class MainWindow():
         self.log("Starting client manager, {date:s}".format(date=str(datetime.now().date())))
         
         try:
-            self.external_ip = get_ips()[0]
+            self.external_ip = list(get_ips())[0]
             self.log("My IP address is: %s" % self.external_ip)
         except IndexError:
             self.log("Network is not running")
