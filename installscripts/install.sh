@@ -65,12 +65,6 @@ apt-get -y -q upgrade
 
 
 echo "---------------------------------------"
-echo "Adding local overlay                   "
-echo "---------------------------------------"
-
-./config/local.sh
-
-echo "---------------------------------------"
 echo "Creating client postinstall package    "
 echo "---------------------------------------"
 ./postinstall/make_postinstall.sh
