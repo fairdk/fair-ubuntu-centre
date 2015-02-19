@@ -6,6 +6,8 @@ settings_dir = os.path.expanduser("~/.clientmanager")
 if not os.path.exists(settings_dir):
     os.mkdir(settings_dir)
 
+IP_STARTING_WITH = "192.168.10"
+
 computers = [
     ("Computer 27", "192.168.10.215"),
     ("Computer 04", "192.168.10.89"),
