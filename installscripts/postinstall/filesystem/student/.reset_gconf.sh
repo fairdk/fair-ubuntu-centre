@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Tested on 14.04
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+
+# Not tested on 14.04
 gconftool --recursive-unset /desktop
 
 gconftool-2 --type boolean -s /apps/gnome-power-manager/lock/blank_screen false

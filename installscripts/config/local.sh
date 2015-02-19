@@ -5,18 +5,14 @@
 
 postinstall_local="$SCRIPT_ROOT/postinstall/filesystem/local/"
 
-echo "---------------------------------------"
-echo "Adding local overlay                   "
-echo "---------------------------------------"
-
 echo "Removing old local overlays"
 rm -rf $postinstall_local/*
 
 for dir in `ls "$CONFIG_LOCAL"`
 do
 	if [ -d "$CONFIG_LOCAL/$dir" ]; then
-		read -p "Do you want to use $dir ? [Y/n] " yn
-		if [ $yn == "n" ]; then echo "skipping"
+		read -p "Do you want to use $dir ? [y/N] " yn
+		if [[ ! $yn == "y" ]]; then echo "skipping"
 		else
 			if [ -d ${CONFIG_LOCAL}${dir}/filesystem ]
 			then

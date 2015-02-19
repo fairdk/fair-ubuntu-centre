@@ -168,8 +168,8 @@ cp -Rf filesystem/* /
 cd ..
 
 # Create home directories for teachers and students
-#/etc/init.d/create_homes start
-#/etc/init.d/mount_shares start
+/etc/init.d/create_homes start
+/etc/init.d/mount_shares start
 
 # DONE! --remove from rc.local
 
