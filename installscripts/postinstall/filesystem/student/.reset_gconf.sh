@@ -2,6 +2,7 @@
 
 # Tested on 14.04
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+xdg-settings set default-web-browser firefox.desktop
 
 # Not tested on 14.04
 gconftool --recursive-unset /desktop

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Tested on 14.04
+xdg-settings set default-web-browser firefox.desktop
+
 # Background
 gconftool --recursive-unset /desktop
 #gconftool -t string --set /desktop/gnome/background/picture_filename "file:///usr/share/backgrounds/edubuntu_default.png"
