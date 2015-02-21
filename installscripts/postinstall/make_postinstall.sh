@@ -3,12 +3,10 @@
 # Include variables defined externally
 
 if [ -n "${SCRIPT_ROOT}" ]; then
-
-	echo "Globals already defined"
+	:
 else
 	SCRIPT="`readlink -e $0`"
 	SCRIPTPATH="`dirname $SCRIPT`"
-	echo "Including global variables"
 	export SCRIPT_ROOT=$SCRIPTPATH/..
 	. $SCRIPTPATH/../config/default_cfg.sh
 fi
@@ -41,7 +39,10 @@ chmod +x ${PI_FILESYSTEM_ROOT}/local/final.sh
 rm -f ${POSTINSTALL_SCRIPT_ROOT}/postinstall.tar.gz
 
 # When we compress the postinstall scripts, make sure the archive discards the path (it in decompressed in the right place), and that it excludes the .svn directory.
+echo -n "Creating postinstall.tar.gz... "
 tar cfz ${POSTINSTALL_SCRIPT_ROOT}/postinstall.tar.gz -C ${PI_FILESYSTEM_ROOT} .
+echo "Done."
 
+echo -n "Copying postinstall.tar.gz to /var/www/html/... "
 cp ${POSTINSTALL_SCRIPT_ROOT}/postinstall.tar.gz /var/www/html
-
+echo "Done."
