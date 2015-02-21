@@ -1,18 +1,27 @@
+# For legacy nvidia cards, we install this by default, nvidia-current has to be
+# installed manually if other nvidia cards are to be used
+nvidia-173
+# Chromium browser for those who want that
 chromium-browser
+# Reader for epub
 fbreader
+# Nice programming educational
 scratch
+# For opening up .deb files manually
 gdebi
+# Needed for NFS shares
 nfs-common
+# SSH server for sending commands to machines
 openssh-server
-edubuntu-desktop
+# Uncommented, it's default in the ks.cfg
+#edubuntu-desktop
+# For playing .iso DVD images
 vlc
-nfs-common
+# Ucommented because it cause security warnings
 #flashplugin-installer
 xtightvncviewer
 x11vnc
 ca-certificates-java
-cabextract
-freepats
 icedtea-6-jre-cacao 
 icedtea-6-plugin 
 java-common
@@ -21,10 +30,10 @@ openjdk-6-jre-headless
 openjdk-6-jre-lib 
 ttf-dejavu-extra 
 tzdata-java 
-unrar
 gimp
 pitivi
 cheese
+# For removing incomplete language support warnings
 libreoffice-l10n-en-za
 poppler-data
 gimp-help-en
@@ -44,6 +53,7 @@ myspell-en-za
 wbritish
 libreoffice-help-en-gb
 mythes-en-us
+# Contents of ubuntu-restricted extras except for flash
 wamerican
   cabextract chromium-codecs-ffmpeg-extra freepats
   gstreamer0.10-fluendo-mp3 gstreamer0.10-plugins-bad
