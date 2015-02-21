@@ -9,12 +9,18 @@ apt-get install python-virtualenv libapache2-mod-wsgi -q -y
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.intranet.conf > /etc/apache2/sites-available/intranet.conf
 
 echo "Copying intranet files and virtualenv"
-cp -R ${FAIR_INSTALL_DATA}/intranet /var/www/
+mkdir -p /var/www/intranet
+cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet /var/www/intranet/
+cp -R ${FAIR_INSTALL_DATA}/intranet/virtualenv.tar.gz /var/www/intranet/
+
+echo "Unpacking virtualenv"
+cd /var/www/intranet
+tar xfz virtualenv.tar.gz
 
 # For file uploads
-chmod 777 /var/www/intranet/fairintranet/media/
+chmod -R 777 /var/www/intranet/fairintranet/media/
 # Needed for populating CACHE
-chmod 777 /var/www/intranet/fairintranet/static/
+chmod -R 777 /var/www/intranet/fairintranet/static/
 
 # Run Django management scripts
 source /var/www/intranet/virtualenv/bin/activate
