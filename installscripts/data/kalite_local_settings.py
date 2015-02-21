@@ -1,1 +1,1 @@
-SESSION_ENGINE = "django.crontrib.session.db"
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
