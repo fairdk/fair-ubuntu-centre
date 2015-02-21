@@ -157,8 +157,8 @@ mkdir -p /opt
 cp -rf opt/* /opt/
 
 # A utility script that adds a configuration to force X to use VESA
-cp force_vesa.sh /root/
-chmod +x /root/force_vesa.sh
+cp force_vesa*.sh /root/
+chmod +x /root/force_vesa*.sh
 
 # After copying in the /etc structure, a new keyboard layout may have been set
 # and because of a weird bug, we need to re-run this configuration to
