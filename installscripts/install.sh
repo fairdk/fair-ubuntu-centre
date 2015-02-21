@@ -7,6 +7,9 @@ set -o errexit
 # Include variables defined externally
 . ./config/default_cfg.sh
 
+# Save my own path
+INSTALL_SH_DIR=`pwd .`
+
 echo "---------------------------------------"
 echo "Starting FAIR install"
 echo "---------------------------------------"
@@ -61,10 +64,8 @@ else
 fi
 
 
-apt-get -y -q upgrade
-
-
 echo "---------------------------------------"
 echo "Creating client postinstall package    "
 echo "---------------------------------------"
+cd $INSTALL_SH_DIR
 ./postinstall/make_postinstall.sh
