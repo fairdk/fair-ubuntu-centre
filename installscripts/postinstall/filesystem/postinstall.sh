@@ -134,6 +134,9 @@ update-rc.d mount_shares defaults
 #sudo /usr/lib/lightdm/lightdm-set-defaults --autologin student
 gpasswd -a student nopasswdlogin
 
+echo "Updating grub"
+cp etc.defaults.grub /etc/defaults/grub
+update-grub
 
 #############################
 # local/ folder instructions
