@@ -11,7 +11,7 @@ TEMPLATE_DEBUG = False
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
 
 # This causes an error
-# COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE = False
 
 ALLOWED_HOSTS = ["intranet", "intranet.fair"]
 
