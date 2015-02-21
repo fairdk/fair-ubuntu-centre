@@ -9,6 +9,7 @@ dhcp-option=42,192.168.10.1 # NTP server
 
 address=/intranet/192.168.10.1
 address=/intranet.fair/192.168.10.1
+address=/static.fair/192.168.10.1
 address=/repository.fair/192.168.10.1
 address=/wikipedia/192.168.10.1
 

@@ -27,7 +27,7 @@ fi
 
 if ! grep "192.168.10.1" /etc/hosts -q
 then
-	echo 192.168.10.1 fair-server repository.fair intranet intranet.fair fair repository.fair wikipedia.fair repo dvd.fair khan.fair khan >> /etc/hosts
+	echo 192.168.10.1 fair-server repository.fair intranet intranet.fair fair repository.fair wikipedia.fair repo dvd.fair khan.fair static.fair khan >> /etc/hosts
 fi
 
 if ! grep "archive.canonical.com" /etc/hosts -q
