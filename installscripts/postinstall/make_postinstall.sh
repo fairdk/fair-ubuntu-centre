@@ -41,7 +41,7 @@ chmod +x ${PI_FILESYSTEM_ROOT}/local/final.sh
 rm -f ${POSTINSTALL_SCRIPT_ROOT}/postinstall.tar.gz
 
 # When we compress the postinstall scripts, make sure the archive discards the path (it in decompressed in the right place), and that it excludes the .svn directory.
-tar cvfz ${POSTINSTALL_SCRIPT_ROOT}/postinstall.tar.gz -C ${PI_FILESYSTEM_ROOT} --exclude='.svn' .
+tar cfz ${POSTINSTALL_SCRIPT_ROOT}/postinstall.tar.gz -C ${PI_FILESYSTEM_ROOT} .
 
 cp ${POSTINSTALL_SCRIPT_ROOT}/postinstall.tar.gz /var/www/html
 
