@@ -26,7 +26,7 @@ chown -R www-data.www-data /var/www/intranet/fairintranet/
 
 # Run Django management scripts
 source /var/www/intranet/virtualenv/bin/activate
-python /var/www/intranet/fairintranet/manage.py set_site_name
+python /var/www/intranet/fairintranet/manage.py install_site
 python /var/www/intranet/fairintranet/manage.py collectstatic --noinput
 deactivate
 
