@@ -27,6 +27,15 @@ echo "---------------------------------------"
 echo "Starting FAIR install"
 echo "---------------------------------------"
 
+# Stop the script that turns off the server in case it's installed
+if [ -f /etc/init.d/ping_clients ]
+then
+	set +o errexit
+	echo "Stopping ping_clients (so server does not automatically switch off)"
+	/etc/init.d/ping_clients stop
+	set -o errexit
+fi
+
 # Check dependancies- permissions, and access to media drive 
 if !(whoami | grep "root" -q)
 then
@@ -69,6 +78,7 @@ else
 
 			if [ $skip = "no" ] ; then
 				. $FAIR_INSTALL_CONF_D/$file
+				cd $INSTALL_SH_DIR
 			else
 				echo "Skipping $file"
 			fi
