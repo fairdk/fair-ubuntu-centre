@@ -73,6 +73,12 @@ $fa-font-path: '../font-awesome/fonts/font-awesome/';
         font-size: 100px;
     }
 }
+.collection-sidebar
+{
+    .collection-button {
+        font-size: 24px;
+    }
+}
 .collection-button:hover {
     color: #FFF;
     background: darken($brand-info, 10%);

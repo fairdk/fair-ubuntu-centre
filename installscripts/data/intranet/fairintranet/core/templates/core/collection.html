@@ -66,7 +66,7 @@
     {% endblock %}
     
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 collection-sidebar">
     {% block collection_sidebar %}
     {% endblock %}
     {% if self.icon %}
@@ -99,6 +99,11 @@
         {% endif %}
       </div>
     </div>
+    
+    <a href="{{ self.get_parent.url }}" class="btn btn-default btn-block">
+      Back to {{ self.get_parent.title }}
+    </a>
+    
   </div>
   </div>
 {% endblock %}
