@@ -50,20 +50,6 @@ a2ensite intranet
 service apache2 reload
 
 echo "---------------------------------------"
-echo "Movies"
-echo "---------------------------------------"
-
-if [ ! -d /var/www/html/movies ] && [ -d ${FAIR_DRIVE_MOUNTPOINT}/data/movies ]
-then
-        echo "Creating links for Movies"
-	chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/movies
-	chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/movies
-        ln -s ${FAIR_DRIVE_MOUNTPOINT}/data/movies /var/www/html/movies
-else
-	echo "Movies directory already symlinked (or the directory does not exist in the FAIR archive)"
-fi
-
-echo "---------------------------------------"
 echo "Camara"
 echo "---------------------------------------"
 
