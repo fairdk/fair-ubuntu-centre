@@ -1,7 +1,12 @@
 # TODO
 
-Updated 2014-06-14
+Updated 2015-02-22
 
  - Everything should be modular and dynamic such that data sources can be added and removed on the go and without any system administration.
  - Make passwords configurable
- - Make directory structure more intuitive
+ - The "postinstall" section has a "filesystem" part that is easily confused with the "filesystem" part in
+   configurations, which more intuitively refers to a folder structure that should be copied into '/' on
+   the target machine.
+ - Technicians log added to local servers
+ - Machine ID as part of installation (upstart prompt), ask only first time and save in file, see: http://askubuntu.com/a/172729/38291
+ - Log login/logout on local machine, server should rsync log files
