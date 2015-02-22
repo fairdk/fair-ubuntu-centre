@@ -8,11 +8,6 @@ if (("$USE_FAIR_DISK"==1))
 then
 	sedeasy_delete "${FAIR_DRIVE_MOUNTPOINT}" /etc/fstab
 	echo "Removed ${FAIR_DRIVE_MOUNTPOINT} from fstab"
-	if mount | grep "${FAIR_DRIVE_MOUNTPOINT}"
-	then
-		echo "Unmounting ${FAIR_DRIVE_MOUNTPOINT}"
-		umount "${FAIR_DRIVE_MOUNTPOINT}"
-	fi
 	# TODO: This should not be necessary anymore because above should delete
 	# drive in all cases.
 	if ! grep "${FAIR_DRIVE_MOUNTPOINT}" /etc/fstab -q
