@@ -10,6 +10,19 @@ set -o errexit
 # Save my own path
 INSTALL_SH_DIR=`pwd .`
 
+echo ""
+echo "This script will upgrade an Ubuntu installation to become a server"
+echo ""
+echo "You can abort the script at any time with CTRL+C but this will"
+echo "not undo any changes made to the system."
+echo ""
+echo "You can re-run the script and it will automatically resume any"
+echo "remaining operations"
+echo ""
+
+read -p "Press any key to continue or CTRL+C to abort..."
+echo ""
+
 echo "---------------------------------------"
 echo "Starting FAIR install"
 echo "---------------------------------------"
