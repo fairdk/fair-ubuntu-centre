@@ -8,7 +8,7 @@ import sys
 
 from django.core.management.base import BaseCommand
 
-from core import models
+from optparse import make_option
 
 
 logger = logging.getLogger('fairintranet.core')
@@ -20,6 +20,15 @@ class Command(BaseCommand):
     )
     args = '<target dir>'
 
+    option_list = BaseCommand.option_list + (
+        make_option(
+            '--overwrite-existing',
+            action='store_true',
+            dest='overwrite_existing',
+            default=False,
+            help='Recreates thumbnails even if they already exist'),
+    )
+
     def handle(self, *args, **options):
         
         if not len(args) == 1:
@@ -29,23 +38,29 @@ class Command(BaseCommand):
             logger.error("Target not found: {:s}".format(args[0]))
             sys.exit(-1)
         
-        try:
-            from anythumbnailer.thumbnail_ import create_thumbnail
-        except ImportError:
-            logger.error("You need anythumbnailer. Install with:")
-            logger.error("  sudo pip install -e git+git://github.com/FelixSchwarz/anythumbnailer.git#egg=anythumbnailer")
-            sys.exit(-1)
+        from .anythumbnailer.thumbnail_ import create_thumbnail
         
-        def scan_folder(arg, dirname, names):
+        thumbnails_created = []
+        
+        def scan_folder(thumbnails_created, dirname, names, ):
             for name in names:
                 item = os.path.join(dirname, name)
                 if os.path.isdir(item):
                     continue
                 if item.endswith(".thumbnail"):
                     continue
+                thumb_path = item + '.thumbnail'
+                if not options['overwrite_existing'] and os.path.isfile(thumb_path):
+                    continue
                 fp = create_thumbnail(item, output_format='jpg')
-                file(item + ".thumbnail", 'wb').write(thumbnail_fp.read())
+                if fp:
+                    contents = fp.read()
+                    if contents:
+                        file(thumb_path, 'wb').write(contents)
+                        thumbnails_created.append(thumb_path)
+                    else:
+                        logger.info("Skipping {:s}, cannot read".format(os.path.basename(item)))
         
-        os.path.walk(args[0], scan_folder, None)
+        os.path.walk(args[0], scan_folder, thumbnails_created)
         
-        logger.info("Moved all resources point at {:s} to {:s}".format(old_location, new_location))
+        logger.info("Created thumbnails for {:d} files".format(len(thumbnails_created)))

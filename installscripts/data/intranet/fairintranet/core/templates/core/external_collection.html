@@ -2,8 +2,8 @@
 
 {% block collection_sidebar %}
 <p>
-  <a href="{{ child.url }}" class="collection-button">
-    Start {{ self.title }}
+  <a href="{% url 'download' self.id %}" class="collection-button">
+    Go to {{ self.title }}
     <span class="fa fa-play-circle" aria-hidden="true"></span>
   </a>
 </p>

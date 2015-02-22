@@ -10,31 +10,59 @@
 
   <div class="row">
   <div class="col-md-9">
+
     {% block collection_content %}
-    <h1>{{ self.title }}</h1>
-    {{ self.body|default:""|richtext }}
-    
-    <table>
-    {% for child in self.get_movies %}
-      <tr>
-      <td style="vertical-align: top; width: 1px; text-align: center; padding-right: 20px;">
-        {% if child.thumbnail %}
-          {% image child.thumbnail fill-200x200 as icon_img %}
-          <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
-        {% else %}
-          <span class="fa fa-video-camera" style="font-size: 100px"></span>
-        {% endif %}
-      </td>
-      <td style="vertical-align: top;">
-        <h3>{{ child.title }}</h3>
-        <p>Directed by: {{ child.author|default:"Unknown"}}, Duration: {{ child.duration|default:"Unknown" }}</p>
-        <p>{{ child.short_description }}</p>
-        <p>
-          <a href="{{ child.url }}">Go to movie page <span class="fa fa-arrow-right"></span></a>
-        </p>
-      </td>
-    {% endfor %}
-    </table>
+
+      <h1>{{ self.title }}</h1>
+      {{ self.body|default:""|richtext }}
+      
+      <table class="table table-striped">
+      {% for child in self.get_ebooks %}
+        <tr>
+        <td style="vertical-align: middle; width: 1px; text-align: center; padding-right: 20px;">
+          {% if child.thumbnail %}
+            {% image child.thumbnail fill-200x200 as icon_img %}
+            <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
+          {% else %}
+          <div class="img-thumbnail">
+            <span class="fa fa-book" style="font-size: 200px; margin: 0 6px;"></span>
+          </div>
+          {% endif %}
+        </td>
+        <td style="vertical-align: top;">
+          <h3>{{ child.title }}</h3>
+          <p>Published/written by: {{ child.author|default:"Unknown"}}, Country: {{ child.country|default:"Unknown" }}</p>
+          <p>{{ child.short_description }}</p>
+          <p>
+            <a href="{{ child.url }}">Go to ebook page <span class="fa fa-arrow-right"></span></a>
+          </p>
+        </td>
+      {% endfor %}
+
+      {% for child in self.get_movies %}
+        <tr>
+        <td style="vertical-align: top; width: 1px; text-align: center; padding-right: 20px;">
+          {% if child.thumbnail %}
+            {% image child.thumbnail fill-200x200 as icon_img %}
+            <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
+          {% else %}
+            <div class="img-thumbnail">
+              <span class="fa fa-video-camera" style="font-size: 200px; margin: 0 6px;"></span>
+            </div>
+          {% endif %}
+        </td>
+        <td style="vertical-align: top;">
+          <h3>{{ child.title }}</h3>
+          <p>Directed by: {{ child.author|default:"Unknown"}}, Duration: {{ child.duration|default:"Unknown" }}</p>
+          <p>{{ child.short_description }}</p>
+          <p>
+            <a href="{{ child.url }}">Go to movie page <span class="fa fa-arrow-right"></span></a>
+          </p>
+        </td>
+      {% endfor %}
+
+
+      </table>
     {% endblock %}
     
   </div>
@@ -60,13 +88,11 @@
           Director: {{ self.author }}
         </p>
         {% endif %}
-        {% if self.resource_link %}
-        <p>
-          Location: <a href="{{ self.resource_link }}">{{ self.resource_link }}</a>
-        </p>
-        {% endif %}
         {% if self.retrieved %}
           <p>Retrieved: {{ self.retrieved.year }}</p>
+        {% endif %}
+        {% if self.country %}
+          <p>Country: {{ self.country }}</p>
         {% endif %}
         {% if self.license %}
           <p>License: {{ self.license }}</p>

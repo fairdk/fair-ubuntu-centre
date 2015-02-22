@@ -1,3 +1,6 @@
+from __future__ import unicode_literals
+from __future__ import absolute_import
+
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -22,6 +25,7 @@ RESOURCE_PANELS = [
     FieldPanel('author'),
     FieldPanel('year'),
     FieldPanel('country'),
+    FieldPanel('short_description'),
 ]
 
 
@@ -89,7 +93,7 @@ EBook.content_panels = COMMON_CONTENT_PANELS + RESOURCE_PANELS
 class Movie(HomePage, Resource):
     duration = models.CharField(max_length=64, null=True, blank=True)
 
-Movie.content_panels = COMMON_CONTENT_PANELS + RESOURCE_PANELS
+Movie.content_panels = COMMON_CONTENT_PANELS + RESOURCE_PANELS + [FieldPanel('duration')]
 
 
 class Collection(HomePage):
@@ -125,6 +129,9 @@ class Collection(HomePage):
     def get_movies(self):
         return Movie.objects.descendant_of(self)
 
+    def get_ebooks(self):
+        return EBook.objects.descendant_of(self)
+
 
 Collection.content_panels = COMMON_CONTENT_PANELS + [
     ImageChooserPanel('icon'),
@@ -144,8 +151,8 @@ ExternalCollection.content_panels = Collection.content_panels + [
 
 class ResourceUsage(models.Model):
     
-    ebook = models.ForeignKey('EBook')
-    movie = models.ForeignKey('Movie')
+    ebook = models.ForeignKey('EBook', null=True, blank=True)
+    movie = models.ForeignKey('Movie', null=True, blank=True)
     clicks = models.PositiveIntegerField(default=0)
     from_date = models.DateField()
     to_date = models.DateField()
@@ -167,7 +174,7 @@ class ResourceUsage(models.Model):
             to_date = from_date.replace(month=1, year=from_date.year + 1)
         kwargs['from_date'] = from_date
         kwargs['to_date'] = to_date
-        usage, _ = cls.get_or_create(**kwargs)
+        usage, _ = cls.objects.get_or_create(**kwargs)
         usage.clicks += 1
         usage.save()
         return usage
