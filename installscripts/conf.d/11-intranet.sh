@@ -39,8 +39,12 @@ service apache2 reload
 echo "Symlinking resources to the main server root"
 rm -f /var/www/html/movies
 rm -f /var/www/html/ebooks
-ln -s ${FAIR_INSTALL_DATA}/movies /var/www/html/movies
-ln -s ${FAIR_INSTALL_DATA}/ebooks /var/www/html/ebooks
+ln -s ${FAIR_DRIVE_MOUNTPOINT}/movies /var/www/html/movies
+ln -s ${FAIR_DRIVE_MOUNTPOINT}/ebooks /var/www/html/ebooks
+chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/movies
+chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/movies
+chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks
+chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks
 
 echo "Patching up why democracy .pls files"
-sed -i 's/var\/why\_democracy/var\/movies\/why_democracy/g' ${FAIR_INSTALL_DATA}/movies/why_democracy/*pls
+sed -i 's/var\/why\_democracy/var\/movies\/why_democracy/g' ${FAIR_DRIVE_MOUNTPOINT}/data/movies/why_democracy/*pls
