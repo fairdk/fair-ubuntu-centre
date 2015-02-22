@@ -4,31 +4,69 @@ echo "---------------------------------------"
 echo "Installing intranet                    "
 echo "---------------------------------------"
 
+INTRANET_ROOT=/var/www/intranet
+
 apt-get install python-virtualenv libapache2-mod-wsgi -q -y
 
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.intranet.conf > /etc/apache2/sites-available/intranet.conf
 
 echo "Copying intranet files and virtualenv"
-mkdir -p /var/www/intranet
-cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet /var/www/intranet/
-cp -R ${FAIR_INSTALL_DATA}/intranet/virtualenv.tar.gz /var/www/intranet/
+mkdir -p $INTRANET_ROOT
 
+# Leaving migration files behind can be dangerous so just delete everything
+# for now...
+rm -rf $INTRANET_ROOT/fairintranet
+
+cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet $INTRANET_ROOT/
+
+cp -R ${FAIR_INSTALL_DATA}/intranet/virtualenv.tar.gz $INTRANET_ROOT/
 echo "Unpacking virtualenv"
-cd /var/www/intranet
+cd $INTRANET_ROOT
 tar xfz virtualenv.tar.gz
 
-# For file uploads
-chmod -R 777 /var/www/intranet/fairintranet/media/
-# Needed for populating CACHE
-chmod -R 777 /var/www/intranet/fairintranet/static/
+# Activate virtualenv
+source $INTRANET_ROOT/virtualenv/bin/activate
 
-chown -R www-data.www-data /var/www/intranet/fairintranet/
+deploy_new=1
+
+if [ -f "$INTRANET_ROOT/db.sqlite3" ]
+then
+	echo "A database file for the intranet already exists"
+	read -p "Do you wish to keep it? [Y/n]" yn
+	if [ ! "$yn" ] || [ "$yn" == "Y" ] || [ "$yn" == "y" ]
+	then
+		deploy_new=0
+	else
+		deploy_new=1
+	fi
+fi
+
+# Remove old link, it will be recreated anyways
+rm -f $INTRANET_ROOT/fairintranet/db.sqlite3
+
+if [ $deploy_new -eq 1 ]
+then
+	echo "No database file, deploying a new one"
+	cp ${FAIR_INSTALL_DATA}/intranet/db.sqlite3 $INTRANET_ROOT/db.sqlite3
+        ln -s $INTRANET_ROOT/db.sqlite3 $INTRANET_ROOT/fairintranet/db.sqlite3
+	python $INTRANET_ROOT/fairintranet/manage.py install_site
+else
+	echo "Running possible migrations on the database..."
+        ln -s $INTRANET_ROOT/db.sqlite3 $INTRANET_ROOT/fairintranet/db.sqlite3
+	python $INTRANET_ROOT/fairintranet/manage.py migrate
+fi
 
 # Run Django management scripts
-source /var/www/intranet/virtualenv/bin/activate
-python /var/www/intranet/fairintranet/manage.py install_site
-python /var/www/intranet/fairintranet/manage.py collectstatic --noinput
+python $INTRANET_ROOT/fairintranet/manage.py collectstatic --noinput
+
 deactivate
+
+# For file uploads
+chmod -R 777 $INTRANET_ROOT/fairintranet/media/
+# Needed for populating CACHE
+chmod -R 777 $INTRANET_ROOT/fairintranet/static/
+
+chown -R www-data.www-data $INTRANET_ROOT/
 
 echo "Enabling intranet"
 a2ensite intranet
