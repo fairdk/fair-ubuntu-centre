@@ -17,7 +17,11 @@ mkdir -p $INTRANET_ROOT
 # for now...
 rm -rf $INTRANET_ROOT/fairintranet
 
+# Creating the intranet
 cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet $INTRANET_ROOT/
+
+# Copying media
+cp -Ru ${FAIR_INSTALL_DATA}/intranet/media $INTRANET_ROOT/
 
 cp -R ${FAIR_INSTALL_DATA}/intranet/virtualenv.tar.gz $INTRANET_ROOT/
 echo "Unpacking virtualenv"
@@ -51,8 +55,9 @@ then
         ln -s $INTRANET_ROOT/db.sqlite3 $INTRANET_ROOT/fairintranet/db.sqlite3
 	python $INTRANET_ROOT/fairintranet/manage.py install_site
 	echo "Creating thumbnails for EBook resources"
-	python $INTRANET_ROOT/fairintranet/manage.py create_thumbnails ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks/NICE
+	python $INTRANET_ROOT/fairintranet/manage.py create_thumbnails ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks/
 	echo "Automatically adding EBook resources"
+	python $INTRANET_ROOT/fairintranet/manage.py import_resource_folder ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks/Camara 5 --author="Camara"
 	python $INTRANET_ROOT/fairintranet/manage.py import_resource_folder ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks/NICE 94 --author="National Initiative for Civic Education"
 else
 	echo "Running possible migrations on the database..."
@@ -67,7 +72,7 @@ python $INTRANET_ROOT/fairintranet/manage.py collectstatic --noinput > /dev/null
 deactivate
 
 # For file uploads
-chmod -R 777 $INTRANET_ROOT/fairintranet/media/
+chmod -R 777 $INTRANET_ROOT/media/
 # Needed for populating CACHE
 chmod -R 777 $INTRANET_ROOT/fairintranet/static/
 
