@@ -3,8 +3,11 @@
 # Not tested on 14.04
 gconftool --recursive-unset /desktop
 
-
 # Tested on 14.04
+
+# Reset to defaults
+gsettings list-schemas | xargs -n 1 gsettings reset-recursively
+
 # List with:  gsettings list-recursively | grep screensaver
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 gsettings set org.gnome.desktop.lockdown disable-lock-screen true
