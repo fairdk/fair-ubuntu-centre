@@ -38,15 +38,12 @@ libreoffice-l10n-en-za
 poppler-data
 gimp-help-en
 language-pack-kde-en
-thunderbird-locale-en-gb
 hunspell-en-ca
 mythes-en-au
 hyphen-en-us
 myspell-en-au
 myspell-en-gb
-thunderbird-locale-en-us
-thunderbird-locale-en
-kde-l10n-engb
+#kde-l10n-engb
 firefox-locale-en
 libreoffice-l10n-en-gb
 myspell-en-za
