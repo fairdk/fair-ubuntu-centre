@@ -11,8 +11,11 @@ echo "Blacklisting IPv6 modules due to a bug"
 
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash ipv6.disable=1"/g' /etc/default/grub
 
-echo "Switching off IPv6"
-echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+if [ -f /proc/sys/net/ipv6/conf/all/disable_ipv6 ]
+then
+	echo "Switching off IPv6"
+	echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+fi
 
 # Ensure there's a teacher account
 if [ ! -d /home/teacher ]
