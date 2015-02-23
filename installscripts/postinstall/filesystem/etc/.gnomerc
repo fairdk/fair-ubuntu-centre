@@ -1,0 +1,30 @@
+xdg-mime default vlc.desktop audio/x-scpls
+xdg-settings set default-web-browser firefox.desktop
+gsettings reset-recursively org.gnome.desktop.interface
+
+# Switch off sounds
+amixer sset Master off
+
+if [[ "$USER" == "student" ]]
+then
+	gsettings list-schemas | xargs -n 1 gsettings reset-recursively
+
+	# List with:  gsettings list-recursively | grep screensaver
+	gsettings set org.gnome.desktop.screensaver lock-enabled false
+	gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+	gsettings set org.gnome.desktop.lockdown disable-print-setup true
+	gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+	gsettings set org.gnome.gnome-panel.lockdown locked-down true
+
+        rm -Rf ~/.gconf
+        rm -Rf ~/.gconfd
+
+        rm -Rf ~/.config
+        rm -Rf ~/.adobe
+        rm -Rf ~/.gtk-bookmarks
+        rm -Rf ~/.mozilla
+        rm -Rf ~/.openoffice.org
+        rm -Rf ~/.nautilus
+        rm -Rf ~/.gstreamer-0.10
+
+fi
