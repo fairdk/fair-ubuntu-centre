@@ -26,6 +26,7 @@ fi
 if [ ! -d /home/teacher/materials ]
 then
 	mkdir -p /home/teacher/materials
+	echo "Put documents here, and students will be able to access them from their Desktop" > /home/teacher/materials/README.txt
 	chown teacher.teacher /home/teacher/materials
 fi
 
