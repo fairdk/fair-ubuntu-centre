@@ -77,8 +77,8 @@ service apache2 reload
 echo "Symlinking resources to the main server root"
 rm -f /var/www/html/movies
 rm -f /var/www/html/ebooks
-ln -s ${FAIR_DRIVE_MOUNTPOINT}/movies /var/www/html/movies
-ln -s ${FAIR_DRIVE_MOUNTPOINT}/ebooks /var/www/html/ebooks
+ln -s ${FAIR_DRIVE_MOUNTPOINT}/data/movies /var/www/html/movies
+ln -s ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks /var/www/html/ebooks
 chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/movies
 chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/movies
 chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks
