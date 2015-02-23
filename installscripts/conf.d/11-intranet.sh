@@ -50,6 +50,10 @@ then
 	cp ${FAIR_INSTALL_DATA}/intranet/db.sqlite3 $INTRANET_ROOT/db.sqlite3
         ln -s $INTRANET_ROOT/db.sqlite3 $INTRANET_ROOT/fairintranet/db.sqlite3
 	python $INTRANET_ROOT/fairintranet/manage.py install_site
+	echo "Creating thumbnails for EBook resources"
+	python $INTRANET_ROOT/fairintranet/manage.py create_thumbnails ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks/NICE
+	echo "Automatically adding EBook resources"
+	python $INTRANET_ROOT/fairintranet/manage.py import_resource_folder ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks/NICE 94 --author="National Initiative for Civic Education"
 else
 	echo "Running possible migrations on the database..."
         ln -s $INTRANET_ROOT/db.sqlite3 $INTRANET_ROOT/fairintranet/db.sqlite3
