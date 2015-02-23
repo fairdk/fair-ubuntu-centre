@@ -57,7 +57,8 @@ else
 fi
 
 # Run Django management scripts
-python $INTRANET_ROOT/fairintranet/manage.py collectstatic --noinput
+echo "Populating static files for intranet"
+python $INTRANET_ROOT/fairintranet/manage.py collectstatic --noinput > /dev/null
 
 deactivate
 
