@@ -187,11 +187,7 @@ sleep 1s
 
 apt-get remove -y -q plymouth-theme-edubuntu
 
-echo "#!/bin/bash" > /root/register_computer
-echo "set -o errexit" >> /root/register_computer
-echo "label=cat /etc/computer_label_id" >> /root/register_computer
-echo "wget -q -O /dev/null http://intranet.fair/technicians/register-computer/\$label/" >> /root/register_computer
-echo 'echo "exit 0" > /etc/rc.local' >> /root/register_computer
+cp register_computer /root/register_computer
 
 echo ". /root/register_computer" > /etc/rc.local
 

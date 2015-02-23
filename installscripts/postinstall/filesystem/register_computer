@@ -1,0 +1,6 @@
+#!/bin/bash
+set -o errexit
+label=`cat /etc/computer_label_id`
+wget -q -O /dev/null http://intranet.fair/technicians/register-computer/$label/
+echo "exit 0" > /etc/rc.local
+
