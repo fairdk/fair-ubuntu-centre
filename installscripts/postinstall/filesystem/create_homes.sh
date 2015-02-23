@@ -17,37 +17,14 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 do_start() {
 
-	# Disable locks in gsettings
-	gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
-	gsettings set org.gnome.desktop.screensaver lock-enabled 'false'
-	
-	# Switch off sounds
-	amixer sset Master off
+	# Re-add stuff from the skel
+	cp -R /etc/skel/* /home/teacher/
+	cp -R /etc/skel/* /home/student/
 
-	# Remove all gconf stuff
-	rm -Rf /home/student/.gconf
-	rm -Rf /home/student/.gconfd
-
-	rm -Rf /home/student/.config
-	rm -Rf /home/student/.adobe
-	rm -Rf /home/student/.gtk-bookmarks
-
-	# Do not delete student Desktop in case of blackout
-        #rm -rf /home/student/Desktop/*
-
+	# Re-deploy whatever is here
 	cd /root/postinstall
 	cp -Rf student /home
 	cp -Rf teacher /home
-
-	# Gconf options for student
-	su student -c "sh ~/.reset_gconf.sh"
-	# Gconf options for teacher
-	su teacher -c "sh ~/.reset_gconf.sh"
-
-	rm -Rf /home/student/.mozilla
-	rm -Rf /home/student/.openoffice.org
-	rm -Rf /home/student/.nautilus
-	rm -Rf /home/student/.gstreamer-0.10
 
 	chmod 755 /home/student
 	chown -R student.student /home/student
@@ -55,8 +32,6 @@ do_start() {
 	cp -Rf teacher /home
 	chmod 700 /home/teacher
 	chown -R teacher.teacher /home/teacher
-
-	rm -Rf /home/teacher/.mozilla
 
 }
 
