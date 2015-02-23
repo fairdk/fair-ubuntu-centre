@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import absolute_import
 from __future__ import unicode_literals
 
 import logging
@@ -12,9 +11,6 @@ from optparse import make_option
 from django.template.defaultfilters import slugify
 from django.template.defaultfilters import striptags
 
-from wagtailimages.models import Image
-
-from core import models
 from django.core.files.base import File
 
 
@@ -35,7 +31,7 @@ class Command(BaseCommand):
     help = (
         'Import a resource folder recursively. Adds all found and non-existing '
         'resources to a collection. For every filename.ext, you can place a '
-        'special .filename.ext.description (text) and .filename.ext.thumbnail '
+        'special .filename.ext.description.txt (text) and .filename.ext.thumbnail.jpeg '
         'to import as description and thumbnail (JPEG format). You can '
         'use the create_thumbnails management command to automatically create '
         'thumbnails.'
@@ -44,20 +40,18 @@ class Command(BaseCommand):
 
     option_list = BaseCommand.option_list + (
         make_option(
-            '--replace_existing',
-            action='store_true',
-            dest='replace_existing',
-            default=False,
-            help='Replace existing resources'),
-        make_option(
-            '--delete_existing',
-            action='store_true',
-            dest='delete_existing',
-            default=False,
-            help='Delete non-existing existing resources'),
+            '--author',
+            action='store',
+            dest='author',
+            default="",
+            help='Sets the author fixed on everything imported'),
     )
 
     def handle(self, *args, **options):
+
+        from wagtail.wagtailimages.models import Image
+        from core import models
+
         try:
             collection = models.Collection.objects.get(id=args[1])
         except models.Collection.DoesNotExist:
@@ -71,9 +65,9 @@ class Command(BaseCommand):
             logger.error('Path not found: {:s}'.format(args[0]))
             sys.exit(-1)
         
-        def add_to_collection(item):
+        def add_to_collection(item, collection):
             
-            description_file = item + ".description"
+            description_file = item + ".description.txt"
             if os.path.isfile(description_file):
                 description = open(description_file, 'r').read()
             else:
@@ -83,14 +77,13 @@ class Command(BaseCommand):
             title = ".".join(file_name.split(".")[:-1])
             title = title.replace("_", " ")
             
-            thumbnail_file = item + ".image"
-            if os.path.isfile(description_file):
-                thumbnail_path = open(thumbnail_file, 'r').read()
-                f = open(thumbnail_path, 'r')
-                image = Image()
-                image.file.save(os.path.basename(item) + ".jpeg", File(f))
-                image.title = "Thumbnail for " + title
-                image.save()
+            thumbnail_file = item + ".thumbnail.jpeg"
+            if os.path.isfile(thumbnail_file):
+                f = open(thumbnail_file, 'r')
+                thumbnail = Image()
+                thumbnail.file.save(os.path.basename(item) + ".jpeg", File(f))
+                thumbnail.title = "Thumbnail for " + title
+                thumbnail.save()
             else:
                 thumbnail = None
             
@@ -103,32 +96,61 @@ class Command(BaseCommand):
                 return
             
             slug = slugify(title)
-            
-            cls.objects.create(
-                numchild=0,
-                depth=collection.depth + 1,
-                show_in_menus=True,
-                path=collection.path + "{pos:s}".format(pos=str(collection.numchild + 1).zfill(4)),
-                url_path=os.path.join(collection.url_path, slug) + "/",
-                slug=slug,
-                title=title,
-                live=True,
-                short_description=description,
-                author="",
-                duration="",
-                resource_link=item,
-                thumbnail=thumbnail,
-            )
+            path = collection.path + "{pos:s}".format(pos=str(collection.numchild + 1).zfill(4))
+            try:
+                 obj = collection.get_children().filter(slug=slug)[0]
+                 # Ensure that other objects with same slug and path are deleted
+                 others = collection.get_children().filter(slug=slug).exclude(id=obj.id)
+                 if others.exists():
+                     logger.warn("Other objects with same path existed and were deleted. File: " + item)
+                     others.delete()
+            except IndexError:
+                 obj = cls(path=path)
+            obj.numchild=0
+            obj.depth=collection.depth + 1
+            obj.show_in_menus=False
+            obj.resource_link=item
+            obj.url_path=os.path.join(collection.url_path, slug) + "/"
+            obj.slug=slug
+            obj.title=title
+            obj.live=True
+            obj.short_description=description
+            obj.author=options["author"]
+            obj.duration=""
+            obj.thumbnail=thumbnail 
+            obj.save()
     
             collection.numchild += 1
             collection.save()
                     
-        def scan_folder(arg, dirname, names):
-            for name in names:
+        def scan_folder(collection, dirname):
+            for name in os.listdir(dirname):
+                if name.endswith(".thumbnail.jpeg") or name.endswith(".description.txt"):
+                    continue
                 item = os.path.join(dirname, name)
                 if os.path.isdir(item):
-                    continue
+                    title = name
+                    slug = slugify(title)
+                    path = collection.path + "{pos:s}".format(pos=str(collection.numchild + 1).zfill(4))
+                    try:
+                         obj = models.Collection.objects.get(path=path)
+                    except models.Collection.DoesNotExist:
+                         obj = models.Collection(path=path)
+                    obj.numchild=0 
+                    obj.depth=collection.depth + 1 
+                    obj.show_in_menus=False 
+                    obj.url_path=os.path.join(collection.url_path, slug) + "/" 
+                    obj.slug=slug 
+                    obj.title=title 
+                    obj.live=True 
+                    obj.short_description=""
+                    obj.duration="" 
+                    obj.save()
+
+                    collection.numchild += 1
+                    collection.save()
+                    scan_folder(obj, item)
                 else:
-                    add_to_collection(item)
-        
-        os.path.walk(args[0], scan_folder, None)
+                    add_to_collection(item, collection)
+
+        scan_folder(collection, args[0])

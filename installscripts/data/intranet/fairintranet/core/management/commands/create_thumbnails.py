@@ -47,9 +47,9 @@ class Command(BaseCommand):
                 item = os.path.join(dirname, name)
                 if os.path.isdir(item):
                     continue
-                if item.endswith(".thumbnail"):
+                if item.endswith(".thumbnail.jpeg"):
                     continue
-                thumb_path = item + '.thumbnail'
+                thumb_path = item + '.thumbnail.jpeg'
                 if not options['overwrite_existing'] and os.path.isfile(thumb_path):
                     continue
                 fp = create_thumbnail(item, output_format='jpg')
