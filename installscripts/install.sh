@@ -20,7 +20,7 @@ echo "You can re-run the script and it will automatically resume any"
 echo "remaining operations"
 echo ""
 
-read -p "Press any key to continue or CTRL+C to abort..."
+read -p "Press ENTER to continue or CTRL+C to abort..."
 echo ""
 
 echo "---------------------------------------"
