@@ -7,15 +7,15 @@ from . import models
 
 
 class ComputerAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("label", "last_installed", "created")
 
 
 class ScreenAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("label",)
 
 
 class PrinterAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("label",)
 
 
 admin.site.register(models.Computer, ComputerAdmin)
