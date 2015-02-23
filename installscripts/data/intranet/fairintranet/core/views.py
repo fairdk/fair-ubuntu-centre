@@ -58,6 +58,13 @@ def download_ebook(request, ebook_id, cls=models.Movie):
     return download(ebook)
 
 
+def download_external_collection(request, external_collection_id, cls=models.Movie):
+    """Simple view for serving a file or redirect and conting stats"""
+    external_collection = get_object_or_404(models.ExternalCollection, id=external_collection_id)
+    models.ResourceUsage.count_click(external_collection=external_collection)
+    return download(external_collection)
+
+
 def download(resource):
     if resource.resource_link.startswith("http:"):
         return redirect(resource.resource_link)

@@ -153,6 +153,7 @@ class ResourceUsage(models.Model):
     
     ebook = models.ForeignKey('EBook', null=True, blank=True)
     movie = models.ForeignKey('Movie', null=True, blank=True)
+    external_collection = models.ForeignKey('ExternalCollection', null=True, blank=True)
     clicks = models.PositiveIntegerField(default=0)
     from_date = models.DateField()
     to_date = models.DateField()
@@ -165,8 +166,8 @@ class ResourceUsage(models.Model):
     @classmethod
     def count_click(cls, **kwargs):
         """"""
-        if 'movie' not in kwargs and 'ebook' not in kwargs:
-            raise RuntimeError("You must specify either movie or ebook")
+        if 'movie' not in kwargs and 'ebook' not in kwargs and 'external_collection' not in kwargs:
+            raise RuntimeError("You must specify either movie or ebook or external_collection")
         from_date = timezone.now().replace(day=1).date()
         if from_date.month < 12:
             to_date = from_date.replace(month=from_date.month + 1)

@@ -2,7 +2,7 @@
 
 {% block collection_sidebar %}
 <p>
-  <a href="{% url 'download' self.id %}" class="collection-button">
+  <a href="{% url 'download_external_collection' self.id %}" class="collection-button">
     Go to {{ self.title }}
     <span class="fa fa-play-circle" aria-hidden="true"></span>
   </a>
