@@ -182,7 +182,18 @@ cd ..
 
 sleep 1s
 
-echo "exit 0" > /etc/rc.local
+# Remove edubuntu theme because it doesn't work fully
+# with plymouth
+
+apt-get remove -y -q plymouth-theme-edubuntu
+
+echo "#!/bin/bash" > /root/register_computer
+echo "set -o errexit" >> /root/register_computer
+echo "label=cat /etc/computer_label_id" >> /root/register_computer
+echo "wget -q -O /dev/null http://intranet.fair/technicians/register-computer/\$label/" >> /root/register_computer
+echo 'echo "exit 0" > /etc/rc.local' >> /root/register_computer
+
+echo ". /root/register_computer" > /etc/rc.local
 
 if [ ! $NO_REBOOT = "yes" ]
 then
