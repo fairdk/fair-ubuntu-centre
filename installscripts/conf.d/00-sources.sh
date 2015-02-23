@@ -12,7 +12,7 @@ then
 	# drive in all cases.
 	if ! grep "${FAIR_DRIVE_MOUNTPOINT}" /etc/fstab -q
 	then
-		FAIR_MOUNT_PARTITION=`mount | grep FAIR | sed 's/\/dev\/\(....\)\ .*/\1/g'`
+		FAIR_MOUNT_PARTITION=`mount | grep -m 1 FAIR | sed 's/\/dev\/\(....\)\ .*/\1/g'`
 		FAIR_PARTITION_UUID=`ls -l /dev/disk/by-uuid/ | grep $FAIR_MOUNT_PARTITION | sed 's/.* \([^ ]*\) -> .*/\1/'`
 		if [[ "$FAIR_PARTITION_UUID" == "" ]]
 		then
