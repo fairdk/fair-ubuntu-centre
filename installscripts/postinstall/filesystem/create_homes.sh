@@ -20,6 +20,9 @@ do_start() {
 	# Disable locks in gsettings
 	gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
 	gsettings set org.gnome.desktop.screensaver lock-enabled 'false'
+	
+	# Switch off sounds
+	amixer sset Master off
 
 	# Remove all gconf stuff
 	rm -Rf /home/student/.gconf
