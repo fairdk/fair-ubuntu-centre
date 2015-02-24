@@ -69,11 +69,13 @@ if [ -f local/interfaces ]
 then
 	cp local/interfaces /etc/network/interfaces
 else
+	# Detect main ethernet device, it is not always eth0
+	main_ethernet_device=`ifconfig -a | grep ":Ethernet" | egrep -m 1 -o "^\w+"`
 	echo "auto lo" > /etc/network/interfaces
 	echo "iface lo inet loopback" >> /etc/network/interfaces
 	echo "" >> /etc/network/interfaces
-	echo "auto eth0" >> /etc/network/interfaces
-	echo "iface eth0 inet dhcp" >> /etc/network/interfaces
+	echo "auto $main_ethernet_device" >> /etc/network/interfaces
+	echo "iface $main_ethernet_device inet dhcp" >> /etc/network/interfaces
 fi
 
 /etc/init.d/networking restart
@@ -83,7 +85,7 @@ cp sources.list /etc/apt/
 # Make sure previous abn. terminated instances of DPKG are fixed
 echo "Ensuring constency of package installation"
 dpkg --configure -a
-apt-get -f install
+apt-get -y -f install
 
 echo "Update repositories from server"
 apt-get update
