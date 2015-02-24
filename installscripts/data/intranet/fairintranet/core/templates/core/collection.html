@@ -34,7 +34,7 @@
           <p>License: {{ child.license|default:"Unknown"}}, Retrieved: {{ child.retrieved|default:"Unknown" }}</p>
           <p>{{ child.button_caption }}</p>
           <p>
-            <a href="{{ child.url }}">Go to collection <span class="fa fa-arrow-right"></span></a>
+            <a href="{% url 'download_external_collection' child.pk %}">Go to collection <span class="fa fa-arrow-right"></span></a>
           </p>
         </td>
       {% endfor %}
