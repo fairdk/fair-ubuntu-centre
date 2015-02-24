@@ -13,7 +13,7 @@ from . import models
 from django.http.response import Http404
 
 
-def send_file(request, filepath, last_modified=None, filename=None):
+def send_file(filepath, last_modified=None, filename=None):
     fullpath = filepath
     # Respect the If-Modified-Since header.
     statobj = os.stat(fullpath)
@@ -44,16 +44,16 @@ def send_file(request, filepath, last_modified=None, filename=None):
     return response
 
 
-def download_movie(request, movie_id, cls=models.Movie):
+def download_movie(request, movie_id):
     """Simple view for serving a file or redirect and conting stats"""
     movie = get_object_or_404(models.Movie, id=movie_id)
     models.ResourceUsage.count_click(movie=movie)
     return download(movie)
 
 
-def download_ebook(request, ebook_id, cls=models.Movie):
+def download_ebook(request, ebook_id):
     """Simple view for serving a file or redirect and conting stats"""
-    ebook = get_object_or_404(models.Movie, id=ebook_id)
+    ebook = get_object_or_404(models.EBook, id=ebook_id)
     models.ResourceUsage.count_click(ebook=ebook)
     return download(ebook)
 
@@ -71,3 +71,5 @@ def download(resource):
     
     if not os.path.exists(resource.resource_link):
         raise Http404()
+
+    return send_file(resource.resource_link)
