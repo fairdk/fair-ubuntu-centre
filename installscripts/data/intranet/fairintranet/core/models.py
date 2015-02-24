@@ -40,7 +40,7 @@ class HomePage(Page):
     )
     
     def child_collections(self):
-        return models.Collection.objects.child_of(self)
+        return Collection.objects.child_of(self)
     
     class Meta:
         verbose_name = _("Standard article")
@@ -120,6 +120,11 @@ class Collection(HomePage):
                 'road',
                 'question',
                 'graduation-cap',
+                'globe',
+                'money',
+                'desktop',
+                'microphone',
+                'code',
             ]
         ]
     )
@@ -131,6 +136,12 @@ class Collection(HomePage):
 
     def get_ebooks(self):
         return EBook.objects.child_of(self).order_by("title")
+
+    def get_external_collections(self):
+        return ExternalCollection.objects.child_of(self).order_by("title")
+
+    def get_non_external_collections(self):
+        return Collection.objects.filter(externalcollection=None).child_of(self).order_by("title")
 
 
 Collection.content_panels = COMMON_CONTENT_PANELS + [
@@ -144,8 +155,17 @@ Collection.content_panels = COMMON_CONTENT_PANELS + [
 class ExternalCollection(Collection):
     retrieved = models.DateField(null=True, blank=True, verbose_name=_("Retrieval date"), help_text=_("When this collection was copied from the internet"))
 
+    # This is not a URLField, because it doesn't validate non-domain
+    # http://server/path/
+    resource_link = models.CharField(
+        verbose_name=_("resource link"),
+        help_text=_("Find a book or movie file available on the intranet and copy the link here, e.g. http://localserver/path/to/book.pdf",),
+        max_length=512,
+    )
+
 ExternalCollection.content_panels = Collection.content_panels + [
     FieldPanel('retrieved'),
+    FieldPanel('resource_link'),
 ]
 
 

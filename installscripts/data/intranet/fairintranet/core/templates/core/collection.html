@@ -17,6 +17,50 @@
       {{ self.body|default:""|richtext }}
       
       <table class="table table-striped">
+      {% for child in self.get_external_collections %}
+        <tr>
+        <td style="vertical-align: top; width: 1px; text-align: center; padding-right: 20px;">
+          {% if child.icon %}
+            {% image child.icon fill-200x200 as icon_img %}
+            <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
+          {% else %}
+            <div class="img-thumbnail">
+              <span class="fa fa-{{ child.icon_predefined }}" style="font-size: 150px; margin: 0 6px; width: 188px;"></span>
+            </div>
+          {% endif %}
+        </td>
+        <td style="vertical-align: top;">
+          <h3>{{ child.title }}</h3>
+          <p>License: {{ child.license|default:"Unknown"}}, Retrieved: {{ child.retrieved|default:"Unknown" }}</p>
+          <p>{{ child.button_caption }}</p>
+          <p>
+            <a href="{{ child.url }}">Go to collection <span class="fa fa-arrow-right"></span></a>
+          </p>
+        </td>
+      {% endfor %}
+
+      {% for child in self.get_non_external_collections %}
+        <tr>
+        <td style="vertical-align: top; width: 1px; text-align: center; padding-right: 20px;">
+          {% if child.icon %}
+            {% image child.icon fill-200x200 as icon_img %}
+            <img src="{{ icon_img.url }}" class="img-responsive img-thumbnail" alt="Icon" />
+          {% else %}
+            <div class="img-thumbnail">
+              <span class="fa fa-folder-open" style="font-size: 200px; margin: 0 6px;"></span>
+            </div>
+          {% endif %}
+        </td>
+        <td style="vertical-align: top;">
+          <h3>{{ child.title }}</h3>
+          <p>License: {{ child.license|default:"Unknown"}}</p>
+          <p>{{ child.button_caption }}</p>
+          <p>
+            <a href="{{ child.url }}">Open <span class="fa fa-arrow-right"></span></a>
+          </p>
+        </td>
+      {% endfor %}
+
       {% for child in self.get_ebooks %}
         <tr>
         <td style="vertical-align: middle; width: 1px; text-align: center; padding-right: 20px;">
