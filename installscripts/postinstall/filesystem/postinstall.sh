@@ -118,8 +118,6 @@ rm -f /etc/xdg/autostart/ubuntuone-launch.desktop
 # Disable annoying and useless HUD service
 chmod -x /usr/lib/i386-linux-gnu/hud/hud-service
 
-cat etc.gnome.defaults.list > /etc/gnome/defaults.list
-
 ./install_create_homes.sh
 
 mkdir -p /var/movies/
@@ -135,10 +133,6 @@ update-rc.d mount_shares defaults
 # Make student the default login
 #sudo /usr/lib/lightdm/lightdm-set-defaults --autologin student
 gpasswd -a student nopasswdlogin
-
-echo "Updating grub"
-cp etc.defaults.grub /etc/defaults/grub
-update-grub
 
 #############################
 # local/ folder instructions
@@ -162,7 +156,7 @@ mkdir -p /opt
 cp -rf opt/* /opt/
 
 # A utility script that adds a configuration to force X to use VESA
-cp force_vesa*.sh /root/
+cp force_vesa* /root/
 chmod +x /root/force_vesa*.sh
 
 # After copying in the /etc structure, a new keyboard layout may have been set
