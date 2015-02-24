@@ -127,6 +127,8 @@ class Collection(HomePage):
                 'desktop',
                 'microphone',
                 'code',
+                'book',
+                'comment',
             ]
         ]
     )
