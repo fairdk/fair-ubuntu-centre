@@ -3,7 +3,7 @@ from .base import *
 
 # Disable debug mode
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 
 

@@ -127,10 +127,10 @@ class Collection(HomePage):
     button_caption = models.CharField(max_length=64, null=True, blank=True, verbose_name=_("button caption"))
     
     def get_movies(self):
-        return Movie.objects.descendant_of(self).order_by("parent_title", "title")
+        return Movie.objects.descendant_of(self).order_by("title")
 
     def get_ebooks(self):
-        return EBook.objects.descendant_of(self).order_by("parent__title", "title")
+        return EBook.objects.descendant_of(self).order_by("title")
 
 
 Collection.content_panels = COMMON_CONTENT_PANELS + [
