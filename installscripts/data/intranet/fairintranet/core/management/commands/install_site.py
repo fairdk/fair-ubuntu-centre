@@ -35,11 +35,7 @@ class Command(BaseCommand):
         page.save()
         
         if models.ResourceUsage.objects.exists():
-            reset_stats = raw_input("Usage statistics exist. Do you want to reset? Say 'y' if this is a new deployment and the data has been copied from an existing deployment [y/N]: ")
-            if reset_stats.lower().strip() == 'y':
-                logger.info("Resetting statistics...")
-                models.ResourceUsage.objects.all().delete()
-            else:
-                logger.info("Keeping statistics")
+            logger.info("Resetting statistics...")
+            models.ResourceUsage.objects.all().delete()
         
         logger.info("New site name set: {:s}".format(site_name))

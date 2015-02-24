@@ -20,15 +20,25 @@ class Inventory(models.Model):
         )]
     )
     created = models.DateTimeField(
-        verbose_name=_("last installed"),
+        verbose_name=_("created"),
         blank=True,
         null=True,
+        auto_now_add=True,
     )
     modified = models.DateTimeField(
-        verbose_name=_("last installed"),
+        verbose_name=_("modified"),
         blank=True,
         null=True,
+        auto_now=True,
     )
+    former_inventory = models.BooleanField(
+        verbose_name=_("former inventory"),
+        help_text=_("Means that the item is no longer at the facility"),
+        default=False,
+    )
+    
+    def __str__(self):
+        return self.label
 
 
 class Computer(Inventory):
@@ -39,15 +49,34 @@ class Computer(Inventory):
         null=True,
     )
 
+    def __str__(self):
+        if not self.former_inventory:
+            return "Computer {}".format(self.label)
+        return "Computer {} (removed)".format(self.label)
+
 
 class Screen(Inventory):
     
-    pass
+    def __str__(self):
+        return "Screen {}".format(self.label)
 
 
 class Printer(Inventory):
     
-    pass
+    def __str__(self):
+        return "Printer {}".format(self.label)
+
+
+class ComputerSession(models.Model):
+    
+    computer = models.ForeignKey('Computer')
+    started = models.DateTimeField(auto_now_add=True)
+    ended = models.DateTimeField(null=True, blank=True)
+    username = models.CharField(blank=True, null=True, max_length=32)
+    
+    class Meta:
+        verbose_name = _("Computer session")
+        get_latest_by = "started"
 
 
 class LogMessage(models.Model):
@@ -59,7 +88,7 @@ class LogMessage(models.Model):
         null=True,
     )
     message = models.TextField(
-        verbose_name=_("last installed"),
+        verbose_name=_("message"),
     )
     technician = models.CharField(
         verbose_name=_("technician name"),
@@ -68,12 +97,34 @@ class LogMessage(models.Model):
         max_length=128,
     )
     created = models.DateTimeField(
-        verbose_name=_("last installed"),
+        verbose_name=_("created"),
         blank=True,
         null=True,
+        auto_now_add=True,
     )
     modified = models.DateTimeField(
-        verbose_name=_("last installed"),
+        verbose_name=_("modified"),
         blank=True,
         null=True,
+        auto_now=True,
     )
+    resolved = models.BooleanField(
+        verbose_name=_("has been resolved"),
+        default=False,
+    )
+    removed = models.BooleanField(
+        verbose_name=_("removed this inventory"),
+        default=False,
+    )
+    
+    class Meta:
+        verbose_name = _("Log message")
+        get_latest_by = "created"
+    
+    def save(self, force_insert=False, force_update=False, using=None, 
+        update_fields=None):
+        if self.removed:
+            self.inventory.former_inventory = True
+            self.inventory.save()
+        return models.Model.save(self, force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+    

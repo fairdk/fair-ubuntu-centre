@@ -1,0 +1,21 @@
+{% extends "technicians/base.html" %}
+
+{% block technicians_content %}
+
+  <h1 class="page-header">Add Log Message</h1>
+  
+  <form method="POST">
+  {% csrf_token %}
+  <table class="table table-striped table-bordered">
+  
+    {{ form.as_table }}
+  
+  </table>
+  
+  <p>
+    <button type="submit">Save</button>
+  </p>
+  
+  </form>
+
+{% endblock %}
