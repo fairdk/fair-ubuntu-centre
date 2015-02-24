@@ -37,8 +37,11 @@ class Inventory(models.Model):
         default=False,
     )
     
+    class Meta:
+        ordering = ("label",)
+
     def __str__(self):
-        return self.label
+        return self.label.upper()
 
 
 class Computer(Inventory):
@@ -51,20 +54,20 @@ class Computer(Inventory):
 
     def __str__(self):
         if not self.former_inventory:
-            return "Computer {}".format(self.label)
-        return "Computer {} (removed)".format(self.label)
+            return "Computer {}".format(self.label.upper())
+        return "Computer {} (removed)".format(self.label.upper())
 
 
 class Screen(Inventory):
     
     def __str__(self):
-        return "Screen {}".format(self.label)
+        return "Screen {}".format(self.label.upper())
 
 
 class Printer(Inventory):
     
     def __str__(self):
-        return "Printer {}".format(self.label)
+        return "Printer {}".format(self.label.upper())
 
 
 class ComputerSession(models.Model):

@@ -19,7 +19,7 @@
   
     <tr>
       <td>{{ log.message }}</td>
-      <td>{{ log.message.technician|default:"Anonymous" }}</td>
+      <td>{{ log.technician|default:"Anonymous" }}</td>
       <td>{{ log.created }}</td>
       <td>{{ log.modified }}</td>
       <td>{{ log.resolved|yesno }}</td>

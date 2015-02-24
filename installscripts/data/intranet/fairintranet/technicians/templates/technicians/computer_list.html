@@ -18,10 +18,10 @@
   {% for computer in computers %}
   
     <tr>
-      <td>{{ computer.label }}</td>
+      <td>{{ computer.label|upper }}</td>
       <td>{{ computer.last_installed|default:"Not installed yet" }}</td>
-      <td>{{ computer.computersession_set.latest.username|default:"No one registered" }}</td>
-      <td>{{ computer.logmessage_set.latest.username|default:"No log" }}</td>
+      <td>{{ computer.computersession_set.all.latest.username|default:"No one registered" }}</td>
+      <td>{{ computer.logmessage_set.all.latest.technician|default:"No log" }}</td>
       <td style="width: 1px; white-space: nowrap; text-align: right">
         <a href="{% url 'technicians:computer_log' pk=computer.pk %}" class="btn btn-default">Go to log</a>
       </td>
