@@ -9,6 +9,8 @@ chromium-browser
 fbreader
 # Nice programming educational
 scratch
+# Part of Malawian curriculum
+libreoffice-base
 # For opening up .deb files manually
 gdebi
 # Needed for NFS shares
