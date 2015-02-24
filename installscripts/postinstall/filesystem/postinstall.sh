@@ -155,6 +155,9 @@ cp -rf etc/* /etc/
 mkdir -p /opt
 cp -rf opt/* /opt/
 
+# Make LightDM scripts executalbe
+chmod +x /etc/lightdm/*sh
+
 # A utility script that adds a configuration to force X to use VESA
 cp force_vesa* /root/
 chmod +x /root/force_vesa*.sh
