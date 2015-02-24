@@ -1,21 +1,9 @@
-xdg-mime default vlc.desktop audio/x-scpls
-xdg-settings set default-web-browser firefox.desktop
-gsettings reset-recursively org.gnome.desktop.interface
-
 # Switch off sounds
 amixer sset Master off
 
-if [[ "$USER" == "student" ]]
+# Before installing
+if test "$USER" = "student" | test "$USER" = "online"
 then
-	gsettings list-schemas | xargs -n 1 gsettings reset-recursively
-
-	# List with:  gsettings list-recursively | grep screensaver
-	gsettings set org.gnome.desktop.screensaver lock-enabled false
-	gsettings set org.gnome.desktop.lockdown disable-lock-screen true
-	gsettings set org.gnome.desktop.lockdown disable-print-setup true
-	gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
-	gsettings set org.gnome.gnome-panel.lockdown locked-down true
-
         rm -Rf ~/.gconf
         rm -Rf ~/.gconfd
 
@@ -27,4 +15,20 @@ then
         rm -Rf ~/.nautilus
         rm -Rf ~/.gstreamer-0.10
 
+	gsettings list-schemas | xargs -n 1 gsettings reset-recursively
+
+	# List with:  gsettings list-recursively | grep screensaver
+	gsettings set org.gnome.desktop.screensaver lock-enabled false
+	gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+	gsettings set org.gnome.desktop.lockdown disable-print-setup true
+	gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+	gsettings set org.gnome.gnome-panel.lockdown locked-down true
+
 fi
+
+xdg-mime default vlc.desktop audio/x-scpls
+
+# This does not work because stupid XDG will complain about
+# unknown DM
+# xdg-settings set default-web-browser firefox.desktop
+

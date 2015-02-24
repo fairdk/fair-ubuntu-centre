@@ -20,6 +20,9 @@ do_start() {
 	# Re-add stuff from the skel
 	cp -R /etc/skel/* /home/teacher/
 	cp -R /etc/skel/* /home/student/
+	# Hidden files, too, it will say some useless stuff about . and ..
+	cp /etc/skel/.* /home/teacher/ 2>&1
+	cp /etc/skel/.* /home/student/ 2>&1
 
 	# Re-deploy whatever is here
 	cd /root/postinstall
