@@ -1,8 +1,5 @@
 # Use as ntp client
 ntp
-# For legacy nvidia cards, we install this by default, nvidia-current has to be
-# installed manually if other nvidia cards are to be used
-nvidia-173
 # Chromium browser for those who want that
 chromium-browser
 # Reader for epub
