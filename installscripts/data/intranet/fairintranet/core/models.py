@@ -38,9 +38,10 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    menu_order = models.PositiveSmallIntegerField(default=100)
     
     def child_collections(self):
-        return Collection.objects.child_of(self)
+        return Collection.objects.child_of(self).order_by('menu_order', 'title')
     
     class Meta:
         verbose_name = _("Standard article")
@@ -52,6 +53,7 @@ HomePage.content_panels = COMMON_CONTENT_PANELS
 HomePage.promote_panels = [
     FieldPanel('seo_title',),
     FieldPanel('search_description',),
+    FieldPanel('menu_order'),
 ]
 
 
