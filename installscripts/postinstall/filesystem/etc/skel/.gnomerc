@@ -2,7 +2,7 @@
 amixer sset Master off
 
 # Before installing
-if test "$USER" = "student" | test "$USER" = "online"
+if test "$USER" = "student" || test "$USER" = "online"
 then
         rm -Rf ~/.gconf
         rm -Rf ~/.gconfd
