@@ -31,7 +31,14 @@ chown -R root.root /root
 
 cd /root/postinstall
 
-echo "fair-client" > /etc/hostname
+# If we are running on a previous installation, the computer has an ID
+if [ -f /etc/computer_label_id ]
+then
+	label=`cat /etc/computer_label_id`
+	echo "$label-fair-client" > /etc/hostname
+else
+	echo "fair-client" > /etc/hostname
+fi
 
 # Remove student from admin group
 deluser student sudo
