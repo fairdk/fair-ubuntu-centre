@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ ! -d $FAIR_DRIVE_MOUNTPOINT/data/ka-lite ]
+then
+	echo 'Echo "KA Lite not found"'
+	return
+fi
+
 sudo apt-get -q -y install python-m2crypto
 
 echo "---------------------------------------"
