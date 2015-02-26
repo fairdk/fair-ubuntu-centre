@@ -38,10 +38,13 @@ Installation procedure
 1. At the end, the installation asks for a "Local overlay", that means that specific configurations for this centre is added. It will ask about each folder that it finds in "installationscripts/config/local". This should include the centre, that you are working on.
 
 
-Troubleshooting
----------------
+Common tasks
+------------
 
-**Creating a new local overlay:**
+
+Creating a new local overlay
+_____________________________
+
 
 1. Go to the installscripts/config/local folder:
        cd installscripts/config/local`
@@ -51,7 +54,9 @@ Troubleshooting
        cd ../../
        ./install.sh 98-local.sh
 
-**Changing the local configuration**
+Changing the local configuration
+________________________________
+
 
 If you need to change files in the local configurations, you should read the documentation for creating local configurations. But the overall idea is this:
 
@@ -60,7 +65,10 @@ If you need to change files in the local configurations, you should read the doc
        cd ../../
        ./install.sh 98-local.sh
 
-**Re-running the local configuration on all machines**
+
+Re-running the local configuration on all machines
+__________________________________________________
+
 
 If you have already installed all machines and have made ammendments (e.g. added a new standard program, user or printer driver), you can re-run the post-installion by running this command on the server:
 
@@ -69,6 +77,23 @@ If you have already installed all machines and have made ammendments (e.g. added
 
 
 **NB!!** Only machines that are switched on and correctly attached to the network will be affected.
+
+
+Machines that cannot boot from network
+______________________________________
+
+Create a CD / USB flash with gPXE. You can obtain the .iso file from:
+
+http://rom-o-matic.net/gpxe/gpxe-1.0.1/contrib/rom-o-matic/
+
+ - Copy the .iso image to a USB flash, this will overwrite everything of the USB:
+   - Insert flash, it may be automatically mounted so should be unmounted if it's mounted.
+     - To see what is mount: `mount`
+     - To unmount: `umount /dev/sdX1`
+     - To copy: `sudo dd bs=4M if=Downloads/gpxe.iso of=/dev/sdX`
+ - Now the flash us bootable
+
+Otherwise, burn the iso to a CDR, but remember that you should burn an *image* not a file.
 
 
 After installing
@@ -93,6 +118,7 @@ Prerequisits
 
  - A wireless access point (AP) with bridging enabled, i.e. not acting as a router
  - Server connected to AP.
+ - Server configured with a local overlay for wireless setups.
  - mini.iso prepared on a USB for booting clients before installing
    - Obtain from mini.iso:
      http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-i386/current/images/netboot/
@@ -100,7 +126,36 @@ Prerequisits
    - Insert flash, it may be automatically mounted so should be unmounted if it's mounted.
      - To see what is mount: `mount`
      - To unmount: `umount /dev/sdX1`
-   - 
-   
-   
-   
+     - To copy: `sudo dd bs=4M if=Downloads/mini.iso of=/dev/sdb`
+   - Now the flash is bootable
+
+Installing a client
+-------------------
+
+ - Turn on the machine, press for instance F12 and choose to boot from USB
+ - Press TAB to edit the first "Install" option for Ubuntu
+ - Delete the "quiet" part.
+ - Put: "ks=http://192.168.10.1/ks.cfg ksdevice=WLAN0"
+ - When installing, you should be able to choose the wireless network that you have configured
+
+Configuring DIR-635 access points:
+----------------------------------
+
+ 1. Reset the device
+ 1. Attach to a machine and obtain DHCP from the AP
+ 1. Connect to 192.168.0.1
+ 1. Setup an un-encrypted wireless, DO NOT REBOOT YET
+ 1. Go to Network
+    1. Disable DHCP
+    2. Disable DNS relay
+    3. Give the router a static IP, i.e. 192.168.10.2 (must be unique to your network!)
+ 1. Go to Advanced and disable features you know are useless.
+ 1. Reboot device
+ 1. Connect to server on one of the Switch ports, not the internet/WAN port
+
+Tips
+----
+
+Tip: Do not start too many machines, because the wireless network easily gets congested. 5-10 machines is often the limit.
+
+Tip: Use to access points and configure them on separate channels.
