@@ -94,5 +94,8 @@ chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/movies
 chmod -R o+r ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks
 chmod -R o+X ${FAIR_DRIVE_MOUNTPOINT}/data/ebooks
 
-echo "Patching up why democracy .pls files"
-sed -i 's/var\/why\_democracy/var\/movies\/why_democracy/g' ${FAIR_DRIVE_MOUNTPOINT}/data/movies/why_democracy/*pls
+if [ -d ${FAIR_DRIVE_MOUNTPOINT}/data/movies/why_democracy/ ]
+then
+	echo "Patching up why democracy .pls files"
+	sed -i 's/var\/why\_democracy/var\/movies\/why_democracy/g' ${FAIR_DRIVE_MOUNTPOINT}/data/movies/why_democracy/*pls
+fi

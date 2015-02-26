@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ ! -d $FAIR_DRIVE_MOUNTPOINT/data/kiwix ]
+then
+        echo 'Echo "Kiwix not found"'
+        return
+fi
+
 echo "---------------------------------------"
 echo "Kiwix (digital library)"
 echo "---------------------------------------"

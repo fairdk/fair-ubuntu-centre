@@ -9,8 +9,12 @@ echo "---------------------------------------"
 # The network manager conflicts with the dnsmasq package, so if we want to keep it (and I do for development) we have to reconfigure it
 # see also: http://sokratisg.net/2012/03/31/ubuntu-precise-12-04-get-rid-of-nms-dnsmasq-and-setup-your-own/
 cat ${FAIR_INSTALL_DATA}/etc.NetworkManager.conf > /etc/NetworkManager/NetworkManager.conf
+
+# Disregard failure
+set +o errexit
 stop network-manager
 sleep 5
+set -o errexit
 
 #PDO: The ifup command fails on my development system, maybe because I'm still using the network manager.
 cat ${FAIR_INSTALL_DATA}/etc.network.interfaces > /etc/network/interfaces
