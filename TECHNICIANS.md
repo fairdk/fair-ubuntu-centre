@@ -85,3 +85,22 @@ Make sure to also copy the configuration overlay, for instance:
     cp -R . /root/
 
 
+Setting up a Wireless center
+============================
+
+Prerequisits
+------------
+
+ - A wireless access point (AP) with bridging enabled, i.e. not acting as a router
+ - Server connected to AP.
+ - mini.iso prepared on a USB for booting clients before installing
+   - Obtain from mini.iso:
+     http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-i386/current/images/netboot/
+ - Copy the .iso image to a USB flash, this will overwrite everything of the USB:
+   - Insert flash, it may be automatically mounted so should be unmounted if it's mounted.
+     - To see what is mount: `mount`
+     - To unmount: `umount /dev/sdX1`
+   - 
+   
+   
+   
