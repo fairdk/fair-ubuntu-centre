@@ -1,3 +1,5 @@
+# Python / PyDev
+
 .settings
 installscripts/data/intranet/virtualenv/
 installscripts/config/custom_cfg.sh
@@ -7,6 +9,10 @@ installscripts/postinstall/postinstall.tar.gz
 installscripts/postinstall/filesystem/local/
 
 *.py[cod]
+
+# Sphinx stuff
+
+docs/build
 
 # C extensions
 *.so

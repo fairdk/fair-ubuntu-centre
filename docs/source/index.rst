@@ -7,7 +7,7 @@ Contents
 .. toctree::
    :maxdepth: 2
    
-   howtos
+   howtos/index
    technicians
    requirements
 

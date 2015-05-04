@@ -4,6 +4,6 @@ How-to
 .. toctree::
    :maxdepth: 2
    
-   howto/
+   internet_connection
 
 
