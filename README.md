@@ -3,7 +3,7 @@ fair-ubuntu-centre
 
 **This is the Trusty / Ubuntu 14.04 edition**
 
-![Docs](https://readthedocs.org/projects/fair-ubuntu-centre/badge/?version=latest)
+[![Docs](https://readthedocs.org/projects/fair-ubuntu-centre/badge/?version=latest)](http://fair-ubuntu-centre.readthedocs.org/)
 
 This project captures the efforts of [FAIR](http://www.fairinternational.org) in Malawi. As the number
 of ICT centres steadily grows, the project adds more efficiency and is improving its architecture to
