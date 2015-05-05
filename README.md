@@ -21,6 +21,41 @@ In addition to LAN-managed installations of Ubuntu, the server can also provide 
 offline projects, such as KA Lite and Kiwix, together with an Intranet-like service that collects the
 various resources for internet browser access.
 
+Deployments
+-----------
+
+The codebase is tested at a couple of centres and an upgrade from a 12.04-based deployment is
+taking place (March '15) on 8 other centres.
+
+Development efforts seek to take the project beyond FAIR's deployments and to modularize software features
+and server's resources at an individual centre level.
+
+Furthermore, we are adding functionalities and documentation to support the workflow of
+technicians working in the field.
+
+Requirements
+------------
+
+* Additional hard drive containing data, *Data Drive*, see Obtaining Data (TODO: Add drive layout specs)
+   * Ubuntu 32 bit repositories: 120+ GByte (fixed requirement)
+   * KA Lite (optional)
+   * Kiwix (optional)
+   * Various Ebooks and Documentary movies at unspecified locations
+     as referenced by Intranet pages.
+* Installscripts copied to a USB flash
+* Server hardware: SATA host recommended.
+* Server processor requirements: None really, storage is the main feature
+* Server memory: 1+ GB, more memory is recommended as it allows faster response times from HTTP servers,
+  WSGI applications, and Kiwix services accessing lots of disk data.
+
+
+Obtaining Data
+______________
+
+FAIR has the data dumps of Ubuntu, Kiwix, KA Lite, and various other content providers of free movies and e-boots. They are not currently offered by
+online sources, please get in touch with us for any data exchange.
+
+
 Background
 ----------
 
@@ -56,45 +91,6 @@ older hardware is becoming less supported as the test audience shrinks.
 Another alternative would be to add installation configurations that gave the choice of Lubuntu
 or Xubuntu desktops.
 
-Currently
----------
-
-The codebase is tested at a couple of centres and an upgrade from a 12.04-based deployment is
-taking place (March '15) on 8 other centres.
-
-Development efforts seek to take the project beyond FAIR's deployments and to modularize software features
-and server's resources at an individual centre level.
-
-Furthermore, we are adding functionalities and documentation to support the workflow of
-technicians working in the field.
-
-Requirements
-------------
-
-* Additional hard drive containing data, *Data Drive*, see Obtaining Data (TODO: Add drive layout specs)
-   * Ubuntu 32 bit repositories: 120+ GByte (fixed requirement)
-   * KA Lite (optional)
-   * Kiwix (optional)
-   * Various Ebooks and Documentary movies at unspecified locations
-     as referenced by Intranet pages.
-* Installscripts copied to a USB flash
-* Server hardware: SATA host recommended.
-* Server processor requirements: None really, storage is the main feature
-* Server memory: 1+ GB, more memory is recommended as it allows faster response times from HTTP servers,
-  WSGI applications, and Kiwix services accessing lots of disk data.
-
-
-Obtaining Data
---------------
-
-FAIR has the data dumps of Ubuntu, Kiwix, KA Lite, and various other content providers of free movies and e-boots. They are not currently offered by
-online sources, please get in touch with us for any data exchange.
-
-
-Documentation for technicians
------------------------------
-
-See [TECHNICIANS.md](TECHNICIANS.md).
 
 
 TODO
