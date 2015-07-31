@@ -5,5 +5,6 @@ How-to
    :maxdepth: 2
    
    internet_connection
+   checklist
 
 
