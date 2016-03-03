@@ -1,16 +1,13 @@
 #!/bin/bash
 
+set -e
+
 BRANCH=${1:-"master"}
 
-if [ "$1" = "clean" ]
+if ! [ -d build ]
 then
-	if [ -d build ]
-	then
-	    rm -rf build
-	fi
+	mkdir -p build
 fi
-
-mkdir -p build
 
 git archive $BRANCH installscripts/ | tar x -C build/
 
