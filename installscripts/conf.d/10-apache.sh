@@ -34,7 +34,6 @@ fi
 echo "Copying Kickstart configuration file"
 # These files automate the Ubuntu installation process by selecting which packages to install, and by running our custom 'post-install' script. 
 cp ${FAIR_INSTALL_DATA}/ks*.cfg /var/www/html/
-cp ${FAIR_INSTALL_DATA}/edubuntu.seed /var/www/html/
 
 echo "Installing default index.html"
 cp ${FAIR_INSTALL_DATA}/index.html /var/www/html
