@@ -1,4 +1,5 @@
 # Minimal requirements
+django-compressor<1.5
 Django>=1.7,<1.8
 wagtail==0.8.4
 
