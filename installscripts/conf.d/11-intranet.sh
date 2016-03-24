@@ -23,10 +23,13 @@ cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet $INTRANET_ROOT/
 # Copying media
 cp -Ru ${FAIR_INSTALL_DATA}/intranet/media $INTRANET_ROOT/
 
-cp -R ${FAIR_INSTALL_DATA}/intranet/virtualenv.tar.gz $INTRANET_ROOT/
-echo "Unpacking virtualenv"
-cd $INTRANET_ROOT
-tar xfz virtualenv.tar.gz
+echo "Copying virtualenv"
+$VIRTUAL_ENV=${FAIR_INSTALL_DATA}/intranet/virtualenv
+if [ -d "${VIRTUAL_ENV}" ]
+then
+	rm -rf $VIRTUAL_ENV
+fi
+cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/
 
 # Activate virtualenv
 source $INTRANET_ROOT/virtualenv/bin/activate
