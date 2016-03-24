@@ -1,14 +1,20 @@
 #!/bin/bash
 
-# PJD: Important design consideration:  This script should be able to upgrade an existing server, therefore all operations must start by removing and old crap and ensuring a complete overwrite of the contents.  This feature can be especially handy when developing too :).  Could consider starting script with a warning WILL ERASE EXISTING INSTALLATION, ARE YOU SURE...
+# PJD: Important design consideration:  This script should be able to upgrade an existing server,
+# therefore all operations must start by removing and old crap and ensuring a complete
+# overwrite of the contents.  This feature can be especially handy when developing too :).
+# Could consider starting script with a warning WILL ERASE EXISTING INSTALLATION, ARE YOU SURE...
 
-set -o errexit
+# Enable tracebacks
+# Save my own path
+INSTALL_SH_DIR=`pwd .`
+
+set -eu
+
+bash $INSTALL_SH_DIR/traceback.sh
 
 # Include variables defined externally
 . ./config/default_cfg.sh
-
-# Save my own path
-INSTALL_SH_DIR=`pwd .`
 
 echo ""
 echo "This script will upgrade an Ubuntu installation to become a server"

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Enable tracebacks
+set -eu
+
 # Include variables defined externally
 
 if [ -n "${SCRIPT_ROOT}" ]; then
@@ -10,6 +13,9 @@ else
 	export SCRIPT_ROOT=$SCRIPTPATH/..
 	. $SCRIPTPATH/../config/default_cfg.sh
 fi
+
+
+. $SCRIPT_ROOT/traceback.sh
 
 POSTINSTALL_SCRIPT_ROOT=$SCRIPT_ROOT/postinstall
 PI_FILESYSTEM_ROOT=${POSTINSTALL_SCRIPT_ROOT}/filesystem

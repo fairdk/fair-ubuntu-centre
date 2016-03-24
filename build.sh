@@ -1,6 +1,11 @@
 #!/bin/bash
 
-set -e
+# Enable tracebacks
+# Save my own path
+MY_DIR=`pwd .`
+
+set -eu
+bash $MY_DIR/installscripts/traceback.sh
 
 BRANCH=${1:-"master"}
 
