@@ -8,7 +8,7 @@ if (("$USE_FAIR_DISK"==1))
 then
 	echo "Resetting fstab"
 	sedeasy_delete "${FAIR_DRIVE_MOUNTPOINT}" /etc/fstab
-	FAIR_MOUNT_PARTITION=`mount | grep -m 1 FAIR | sed 's/\/dev\/\(....\)\ .*/\1/g'`
+	FAIR_MOUNT_PARTITION=`mount | grep -m 1 FAIR | sed 's/\/dev\/\(....\?\)\ .*/\1/g'`
 	FAIR_PARTITION_UUID=`ls -l /dev/disk/by-uuid/ | grep $FAIR_MOUNT_PARTITION | sed 's/.* \([^ ]*\) -> .*/\1/'`
 	if [[ "$FAIR_PARTITION_UUID" == "" ]]
 	then
