@@ -5,7 +5,7 @@ Requirements
    * Ubuntu 32 bit repositories: 120+ GByte (fixed requirement)
    * KA Lite (optional)
    * Kiwix (optional)
-   * Various Ebooks and Documentary movies at unspecified locations
+   * Various e-books and Documentary movies at unspecified locations
      as referenced by Intranet pages.
 * Installscripts copied to a USB flash
 * Server hardware: SATA host recommended.
@@ -16,9 +16,7 @@ Requirements
 
 Obtaining Data
 --------------
-
-FAIR has the data dumps of Ubuntu, Kiwix, KA Lite, and various other content providers of free movies and e-boots. They are not currently offered by
-online sources, please get in touch with us for any data exchange.
+FAIR has the data dumps of Ubuntu, Kiwix, KA Lite, and various other content providers of free movies and e-books. They are not currently offered by online sources, please get in touch with us for any data exchange.
 
 
 
