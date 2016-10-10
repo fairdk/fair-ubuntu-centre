@@ -40,7 +40,7 @@ computers.
 Computers
 ---------
 
- * Teacher computer (+ screen if not laptoo)
+ * Teacher computer (+ screen & keboard if not using a laptop)
  * Server (+ screen if not laptop)
  * Clients (+ screens if not laptop). Bring a couple of extras in case you experience problems.
  * Keyboards + Mice (remember to note USB & PS-2 ports on computers!)
