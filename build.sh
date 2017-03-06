@@ -2,10 +2,11 @@
 
 # Enable tracebacks
 # Save my own path
-MY_DIR=`pwd .`
+SCRIPT="`readlink -e $0`"
+SCRIPTPATH="`dirname $SCRIPT`"
 
 set -eu
-bash $MY_DIR/installscripts/traceback.sh
+bash "$SCRIPTPATH/installscripts/traceback.sh"
 
 BRANCH=${1:-"master"}
 
