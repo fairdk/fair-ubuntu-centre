@@ -14,6 +14,7 @@ def deploy(cmds, ips=None):
     processes = []
     for ip in (ips or REMOTE_IPS):
         for cmd in cmds:
+            subprocess.Popen(shlex.split('ssh-keygen -f "/root/.ssh/known_hosts" -R {ip:s}'.format(ip=ip)))
             processes.append(
                 subprocess.Popen(shlex.split(REMOTE_SSH_EXEC % (ip, cmd)),
                     stdout=subprocess.PIPE)
