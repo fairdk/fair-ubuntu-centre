@@ -27,7 +27,9 @@ echo "Copying virtualenv"
 cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/
 
 # Activate virtualenv
+set +o nounset
 source $INTRANET_ROOT/virtualenv/bin/activate
+set -o nounset
 
 deploy_new=1
 

@@ -24,7 +24,9 @@ cd build/installscripts/data/intranet/
 if [ ! -d virtualenv ]
 then
 	echo "Getting wagtail build dependencies"
-	sudo apt-get install python-dev python-pip g++ libjpeg62-dev zlib1g-dev python-virtualenv
+	sudo apt-get install python-dev python-pip g++ libjpeg62-dev zlib1g-dev
+	# We need the version from pip!
+	pip install virtualenv==15.1.0
 	virtualenv virtualenv
 	virtualenv --relocatable virtualenv
 fi
