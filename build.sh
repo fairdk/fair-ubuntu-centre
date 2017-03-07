@@ -28,9 +28,8 @@ then
 	echo "Getting wagtail build dependencies"
 	sudo apt-get install python-dev python-pip g++ libjpeg62-dev zlib1g-dev python-pil
 	# We need the version from pip!
-	pip install virtualenv==15.1.0
+	sudo pip install virtualenv==15.1.0
 	virtualenv virtualenv
-	virtualenv --relocatable virtualenv
 
 	echo "Installing requirements.txt..."
 	set +o nounset
@@ -41,6 +40,8 @@ then
 	cd fairintranet
 	python manage.py collectstatic --noinput
 	cd ../
+	deactivate
+	virtualenv --relocatable virtualenv
 fi
 
 cd ../../../

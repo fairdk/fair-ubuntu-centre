@@ -6,7 +6,7 @@ echo "---------------------------------------"
 
 INTRANET_ROOT=/var/www/intranet
 
-apt-get install python-virtualenv libapache2-mod-wsgi -q -y
+apt-get install python-virtualenv libapache2-mod-wsgi python-pil python-bs4 -q -y
 
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.intranet.conf > /etc/apache2/sites-available/intranet.conf
 
@@ -24,7 +24,19 @@ cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet $INTRANET_ROOT/
 cp -Ru ${FAIR_INSTALL_DATA}/intranet/media $INTRANET_ROOT/
 
 echo "Copying virtualenv"
-cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/
+cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/virtualenv_dist
+
+echo "Creating a new dummy virtualenv for this system"
+virtualenv --system-site-packages $INTRANET_ROOT/virtualenv
+
+echo "Patching broken non-relocatable virtualenv with a clean dummy"
+cp --archive $INTRANET_ROOT/virtualenv/* $INTRANET_ROOT/virtualenv_dist/
+
+echo "Removing dummy virtualenv"
+rm -rf $INTRANET_ROOT/virtualenv
+
+echo "Move virtualenv into its correct location"
+mv $INTRANET_ROOT/virtualenv_dist $INTRANET_ROOT/virtualenv/
 
 # Activate virtualenv
 set +o nounset
