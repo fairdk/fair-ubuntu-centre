@@ -11,12 +11,9 @@ export USE_FAIR_DISK=1
 # will make sure that it is also available right after setting up fstab
 export FAIR_DRIVE_MOUNTPOINT=/media/FAIR
 
-if [ ! -n "${SCRIPT_ROOT}" ]
-then
-	SCRIPT="`readlink -e $0`"
-	SCRIPTPATH="`dirname $SCRIPT`"
-	export SCRIPT_ROOT=$SCRIPTPATH
-fi
+# This sets $SCRIPT_ROOT to a default if unset
+SCRIPT="`readlink -e $0`"
+: ${SCRIPT_ROOT:="`dirname $SCRIPT`"}
 
 # Where data from the FAIR project is located during the installation, if it's a
 # removable drive, the installer will add its drive UUID it to /etc/fstab and
