@@ -87,7 +87,9 @@ fi
 echo "Populating static files for intranet"
 python $INTRANET_ROOT/fairintranet/manage.py collectstatic --noinput > /dev/null
 
+set +o nounset
 deactivate
+set -o nounset
 
 # For file uploads
 chmod -R 777 $INTRANET_ROOT/media/
