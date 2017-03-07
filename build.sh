@@ -40,6 +40,7 @@ then
 	cd fairintranet
 	python manage.py collectstatic --noinput
 	cd ../
+	pip uninstall -y Pillow # has to be on host system
 	deactivate
 	virtualenv --relocatable virtualenv
 fi
