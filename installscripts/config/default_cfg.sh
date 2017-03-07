@@ -1,6 +1,10 @@
 #!/bin/bash
 
-. utils.sh
+# This sets $SCRIPT_ROOT to a default if unset
+SCRIPT="`readlink -e $0`"
+: ${SCRIPT_ROOT:="`dirname $SCRIPT`"}
+
+. "${SCRIPT_ROOT}/../utils.sh"
 
 # This file contains variables that can be customized for your installation.
 
@@ -10,10 +14,6 @@ export USE_FAIR_DISK=1
 # This is where the drive will be available after installation. The installer
 # will make sure that it is also available right after setting up fstab
 export FAIR_DRIVE_MOUNTPOINT=/media/FAIR
-
-# This sets $SCRIPT_ROOT to a default if unset
-SCRIPT="`readlink -e $0`"
-: ${SCRIPT_ROOT:="`dirname $SCRIPT`"}
 
 # Where data from the FAIR project is located during the installation, if it's a
 # removable drive, the installer will add its drive UUID it to /etc/fstab and
