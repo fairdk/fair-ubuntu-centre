@@ -21,24 +21,27 @@ fi
 git archive $BRANCH installscripts/ | tar x -C build/
 
 cd build/installscripts/data/intranet/
+
+# Build virtualenv - only works on 32bit
 if [ ! -d virtualenv ]
 then
 	echo "Getting wagtail build dependencies"
-	sudo apt-get install python-dev python-pip g++ libjpeg62-dev zlib1g-dev
+	sudo apt-get install python-dev python-pip g++ libjpeg62-dev zlib1g-dev python-pil
 	# We need the version from pip!
 	pip install virtualenv==15.1.0
 	virtualenv virtualenv
 	virtualenv --relocatable virtualenv
-fi
 
-echo "Installing requirements.txt..."
-set +o nounset
-source virtualenv/bin/activate
-set -o nounset
-pip install -r fairintranet/requirements.txt
-cd fairintranet
-python manage.py collectstatic --noinput
-cd ../
+	echo "Installing requirements.txt..."
+	set +o nounset
+	source virtualenv/bin/activate
+	set -o nounset
+	# This is where things can break: We may be building on 64 bit but destined for 32 bit!
+	pip install -r fairintranet/requirements.txt --no-use-wheel
+	cd fairintranet
+	python manage.py collectstatic --noinput
+	cd ../
+fi
 
 cd ../../../
 
