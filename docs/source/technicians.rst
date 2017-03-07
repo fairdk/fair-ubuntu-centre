@@ -1,15 +1,16 @@
 Technician's documentation
 ==========================
 
-Prerequisites
--------------
+Server requirements
+-------------------
+
+The following items are necessary for setting up a server:
 
  * 2TB Data drive preloaded with all of the data (make sure to note that there is a number on the hard drive)
  * A server, should be a machine with a decent memory, CPU, and stable fans
  * A USB flash containing default Ubuntu Desktop (14.04 32-bit)
  * A USB flash containing the FAIR installscripts (can be obtained from http://github.com/fairdk/fair-ubuntu-centre)
  * If previously installed, copy the old configuration of the centre to installscripts/config/local/name-of-site
-
 
 Installation procedure
 ----------------------

@@ -15,17 +15,31 @@ Tools
 Accessories
 -----------
 
- * LAN cable, LAN plugs
- * Power cables + power splitters
+Make sure that you know something in advance about the room, how many electrical outlets you have etc. You need to know how many metres of network cable that you need, and how many power extension cables.
+
+ * LAN cables
+ * Ethernet plugs for DIY cables
+   * 2 for each computer
+   * 2 for each switch connection
+   * 2 for the server
+   * 2 for printer
+   * 10-20% extra for errors
+ * Power cables for desktop computers and screens
+ * Power supplies for laptops
  * VGA cables
  * Extension cables
- * UPS + UPS power cable
  * Good mood
  * Projector + long VGA cable and power cable
  * Speakers
  * Switch + Serial port (room for computers + server + printer + connection between switches)
  * Cable clips
+ * Lots of plastic strips to fixate loose cables
  * Labels and pen
+
+Optional
+~~~~~~~~
+
+ * UPS + UPS power cable
 
 Spare parts
 -----------
