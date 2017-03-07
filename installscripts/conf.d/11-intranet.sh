@@ -23,20 +23,26 @@ cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet $INTRANET_ROOT/
 # Copying media
 cp -Ru ${FAIR_INSTALL_DATA}/intranet/media $INTRANET_ROOT/
 
-echo "Copying virtualenv"
-cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/virtualenv_dist
+#echo "Copying virtualenv"
+#cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/virtualenv_dist
 
-echo "Creating a new dummy virtualenv for this system"
-virtualenv --system-site-packages $INTRANET_ROOT/virtualenv
+#echo "Creating a new dummy virtualenv for this system"
+#virtualenv --system-site-packages $INTRANET_ROOT/virtualenv
 
-echo "Patching broken non-relocatable virtualenv with a clean dummy"
-cp --archive $INTRANET_ROOT/virtualenv/* $INTRANET_ROOT/virtualenv_dist/
+#echo "Patching broken non-relocatable virtualenv with a clean dummy"
+#cp --archive $INTRANET_ROOT/virtualenv/* $INTRANET_ROOT/virtualenv_dist/
 
-echo "Removing dummy virtualenv"
-rm -rf $INTRANET_ROOT/virtualenv
+#echo "Removing dummy virtualenv"
+#rm -rf $INTRANET_ROOT/virtualenv
 
-echo "Move virtualenv into its correct location"
-mv $INTRANET_ROOT/virtualenv_dist $INTRANET_ROOT/virtualenv/
+#echo "Move virtualenv into its correct location"
+#mv $INTRANET_ROOT/virtualenv_dist $INTRANET_ROOT/virtualenv/
+
+cp -R ${FAIR_INSTALL_DATA}/intranet/virtualenv.tar.gz $INTRANET_ROOT/
+echo "Unpacking virtualenv"
+cd $INTRANET_ROOT
+tar xfz virtualenv.tar.gz
+cd -
 
 # Activate virtualenv
 set +o nounset
