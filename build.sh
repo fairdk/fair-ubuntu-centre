@@ -8,7 +8,10 @@ SCRIPTPATH="`dirname $SCRIPT`"
 set -eu
 bash "$SCRIPTPATH/installscripts/traceback.sh"
 
-BRANCH=${1:-"master"}
+BRANCH=${1:-$(git symbolic-ref HEAD | sed 's/refs\/heads\///')}
+
+echo "Building on current branch '$BRANCH'..."
+echo ""
 
 if ! [ -d build ]
 then
