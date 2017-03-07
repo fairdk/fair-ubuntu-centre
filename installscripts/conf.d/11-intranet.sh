@@ -24,11 +24,6 @@ cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet $INTRANET_ROOT/
 cp -Ru ${FAIR_INSTALL_DATA}/intranet/media $INTRANET_ROOT/
 
 echo "Copying virtualenv"
-$VIRTUAL_ENV=${FAIR_INSTALL_DATA}/intranet/virtualenv
-if [ -d "${VIRTUAL_ENV}" ]
-then
-	rm -rf $VIRTUAL_ENV
-fi
 cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/
 
 # Activate virtualenv
