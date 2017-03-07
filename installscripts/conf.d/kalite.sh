@@ -23,6 +23,7 @@ echo "ka-lite ka-lite/init select false" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive dpkg -i $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/ka-lite_0.17.0-0ubuntu1_all.deb
 
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.kalite.conf > /etc/apache2/sites-available/kalite.conf
+cat ${FAIR_INSTALL_DATA}/ka-lite.wsgi > $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/ka-lite.wsgi
 
 # Patch errors in ka lite imports
 echo "" > $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/kalite/testing/__init__.py
