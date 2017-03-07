@@ -63,7 +63,8 @@ echo "Installing config files"
 echo "---------------------------------------"
 
 # If the script was called with a command line parameter, the parameter must be the name of a script in Conf.d.  Only that script is excuted
-if [ ! "$1" = "" ]
+command_arg1=${1:-""}
+if [ ! "$command_arg1" = "" ]
 then
 	echo "Running $1"
 	. "$FAIR_INSTALL_CONF_D/$1"

@@ -36,6 +36,8 @@ export FAIR_SERVER_HOSTNAME="fair-server"
 # Terminate each entry with a ;
 # The PING_Clients script is not wanted under development
 # export FAIR_CONF_D_SKIP=("ping_clients.sh")
+# export FAIR_CONF_D_SKIP=("ping_clients.sh" "some_other_script.sh")
+export FAIR_CONF_D_SKIP=""
 
 # TO customize the distribution installed on the client, add files here...
 export POSTINSTALL_LOCAL=${SCRIPT_ROOT}/config/custom_postinstall/
