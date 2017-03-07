@@ -103,13 +103,17 @@ After installing
 
 Make sure that you have copied the contents of the installscripts to "/root/" so another technician can know what was used for the installation:
 
-    cd /media/fair/usb-flash/path/to/installscripts/
-    cp -R . /root/
+```
+cd /media/fair/usb-flash/path/to/installscripts/
+cp -R . /root/
+```
 
 Make sure to also copy the configuration overlay, for instance:
 
-    cd /media/fair/usb-flash/path/to/installscripts/config/local
-    cp -R . /root/
+```
+cd /media/fair/usb-flash/path/to/installscripts/config/local
+cp -R . /root/
+```
 
 
 Setting up a Wireless center
