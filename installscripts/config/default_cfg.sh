@@ -4,7 +4,7 @@
 SCRIPT="`readlink -e $0`"
 : ${SCRIPT_ROOT:="`dirname $SCRIPT`"}
 
-. "${SCRIPT_ROOT}/../utils.sh"
+. "${SCRIPT_ROOT}/utils.sh"
 
 # This file contains variables that can be customized for your installation.
 
