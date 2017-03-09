@@ -33,7 +33,7 @@ Installation procedure
 Common tasks
 ------------
 
-See :doc:`Howtos <howtos>`
+See :doc:`Howtos <howtos/index>`
 
 
 Creating a new local overlay
