@@ -34,7 +34,7 @@ REMOTE_START_WARN = (
 REMOTE_STOP_WARN = "pkill -f '/tmp/lightdm_warn'"
 
 # For looking up my IP
-INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0")
+INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0", "em1")
 
 
 def get_ips():
