@@ -5,16 +5,11 @@ set -eu
 
 # Include variables defined externally
 
-if [ -n "${SCRIPT_ROOT}" ]; then
-	:
-else
-	SCRIPT="`readlink -e $0`"
-	SCRIPTPATH="`dirname $SCRIPT`"
-	export SCRIPT_ROOT=$SCRIPTPATH/..
-	. $SCRIPTPATH/../config/default_cfg.sh
-fi
+# This sets $SCRIPT_ROOT to a default if unset
+SCRIPT="`readlink -e $0`"
+: ${SCRIPT_ROOT:="`dirname $SCRIPT`/.."}
 
-
+. $SCRIPT_ROOT/config/default_cfg.sh
 . $SCRIPT_ROOT/traceback.sh
 
 POSTINSTALL_SCRIPT_ROOT=$SCRIPT_ROOT/postinstall

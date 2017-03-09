@@ -141,6 +141,11 @@ update-rc.d mount_shares defaults
 #sudo /usr/lib/lightdm/lightdm-set-defaults --autologin student
 gpasswd -a student nopasswdlogin
 
+# Do not require any further permissions for mounting and unmounting
+# filesystems, affects USB fash
+cp -f org.freedesktop.udisks2.policy /usr/share/polkit-1/actions/org.freedesktop.udisks2.policy
+
+
 #############################
 # local/ folder instructions
 #############################

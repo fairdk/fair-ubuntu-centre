@@ -1,6 +1,10 @@
 #!/bin/bash
 
-. utils.sh
+# This sets $SCRIPT_ROOT to a default if unset
+SCRIPT="`readlink -e $0`"
+: ${SCRIPT_ROOT:="`dirname $SCRIPT`"}
+
+. "${SCRIPT_ROOT}/utils.sh"
 
 # This file contains variables that can be customized for your installation.
 
@@ -10,13 +14,6 @@ export USE_FAIR_DISK=1
 # This is where the drive will be available after installation. The installer
 # will make sure that it is also available right after setting up fstab
 export FAIR_DRIVE_MOUNTPOINT=/media/FAIR
-
-if [ ! -n "${SCRIPT_ROOT}" ]
-then
-	SCRIPT="`readlink -e $0`"
-	SCRIPTPATH="`dirname $SCRIPT`"
-	export SCRIPT_ROOT=$SCRIPTPATH
-fi
 
 # Where data from the FAIR project is located during the installation, if it's a
 # removable drive, the installer will add its drive UUID it to /etc/fstab and
@@ -39,6 +36,8 @@ export FAIR_SERVER_HOSTNAME="fair-server"
 # Terminate each entry with a ;
 # The PING_Clients script is not wanted under development
 # export FAIR_CONF_D_SKIP=("ping_clients.sh")
+# export FAIR_CONF_D_SKIP=("ping_clients.sh" "some_other_script.sh")
+export FAIR_CONF_D_SKIP=""
 
 # TO customize the distribution installed on the client, add files here...
 export POSTINSTALL_LOCAL=${SCRIPT_ROOT}/config/custom_postinstall/

@@ -34,7 +34,7 @@ REMOTE_START_WARN = (
 REMOTE_STOP_WARN = "pkill -f '/tmp/lightdm_warn'"
 
 # For looking up my IP
-INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0")
+INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0", "em1")
 
 
 def get_ips():
@@ -64,7 +64,9 @@ class MainWindow():
         
         self.glade.get_object("spinbuttonComputer").set_range(1,len(settings.computers))
         self.glade.get_object("buttonStart").set_sensitive(False)
-        
+        self.glade.get_object("buttonStartAll").set_sensitive(False)
+        self.glade.get_object("buttonStopAll").set_sensitive(False)
+	        
         cell = gtk.CellRendererText()
         combobox = self.glade.get_object("comboboxSession")
         combobox.pack_start(cell, True)
@@ -226,7 +228,42 @@ class MainWindow():
         if computer_no in self.started_clients:
             del self.started_clients[computer_no]
         time.sleep(2)
-    
+
+    def on_start_all(self, *args):
+        session_k = self.glade.get_object("comboboxSession").get_active_text()
+        session = self.sessions[session_k]
+        self.log("Starting all sessions")
+        self.kill_timeout(ip)
+        for computer_no in range(32):
+            computer = settings.computers[computer_no]
+            ip = computer[1]
+            name = computer[0]
+            if ip == self.external_ip:
+                continue
+            self.start_lightdm(ip, session)
+
+    def on_stop_all(self, *args):
+        session_k = self.glade.get_object("comboboxSession").get_active_text()
+        session = self.sessions[session_k]
+        self.log("Stopping all sessions")
+        for computer_no in range(32):
+            computer = settings.computers[computer_no]
+            ip = computer[1]
+            name = computer[0]
+            if ip == self.external_ip:
+                continue
+            self.log("Stopping session for {:s}".format(name))
+            self.kill_timeout(ip)
+            self.kill_lightdm(ip)
+            if computer_no in self.started_clients:
+                del self.started_clients[computer_no]
+            time.sleep(2)
+
+    def on_confirm_all_toggled(self, *args):
+        selected = self.glade.get_object("confirmAll").get_active()
+        self.glade.get_object("buttonStartAll").set_sensitive(selected)
+        self.glade.get_object("buttonStopAll").set_sensitive(selected)
+
     def on_student_id_change(self, *args):
         if self.glade.get_object("entryStudentID").get_text():
             self.glade.get_object("buttonStart").set_sensitive(True)
@@ -241,7 +278,7 @@ class MainWindow():
         settings.logfile.write(msg_formatted)
         settings.logfile.flush()
     
-    
+
 if __name__ == '__main__':
     
     mainwindow = MainWindow()

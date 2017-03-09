@@ -13,12 +13,19 @@ BASE_PATH = os.path.dirname(__file__)
 
 from settings import *
 
+# For looking up my IP
+INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0", "em1")
+
+
 def get_ips():
-    global ETH
-    co = subprocess.Popen(['ifconfig', ETH], stdout = subprocess.PIPE)
-    ifconfig = co.stdout.read()
-    ip_regex = re.compile('((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-4]|2[0-5][0-9]|[01]?[0-9][0-9]?))')
-    return [match[0] for match in ip_regex.findall(ifconfig, re.MULTILINE)]
+    for interface in INTERFACES_TO_SCAN:
+        co = subprocess.Popen(['ifconfig', interface], stdout = subprocess.PIPE)
+        ifconfig = co.stdout.read()
+        ip_regex = re.compile('((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-4]|2[0-5][0-9]|[01]?[0-9][0-9]?))')
+        ips = [match[0] for match in ip_regex.findall(ifconfig, re.MULTILINE)]
+        if ips and any(map(lambda x: x.startswith(settings.IP_STARTING_WITH), ips)):
+            yield ips[0]
+
 
 class MainWindow():
     
@@ -38,7 +45,7 @@ class MainWindow():
         self.processes = []
         
         try:
-            self.external_ip = get_ips()[0]
+            self.external_ip = list(get_ips())[0]
             self.log("My IP address is: %s" % self.external_ip)
         except IndexError:
             self.get_widget("button_shutdown").set_sensitive(False)

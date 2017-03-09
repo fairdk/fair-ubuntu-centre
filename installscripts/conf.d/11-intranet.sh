@@ -6,7 +6,7 @@ echo "---------------------------------------"
 
 INTRANET_ROOT=/var/www/intranet
 
-apt-get install python-virtualenv libapache2-mod-wsgi -q -y
+apt-get install python-virtualenv libapache2-mod-wsgi python-pil python-bs4 -q -y
 
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.intranet.conf > /etc/apache2/sites-available/intranet.conf
 
@@ -23,16 +23,31 @@ cp -R ${FAIR_INSTALL_DATA}/intranet/fairintranet $INTRANET_ROOT/
 # Copying media
 cp -Ru ${FAIR_INSTALL_DATA}/intranet/media $INTRANET_ROOT/
 
-echo "Copying virtualenv"
-$VIRTUAL_ENV=${FAIR_INSTALL_DATA}/intranet/virtualenv
-if [ -d "${VIRTUAL_ENV}" ]
-then
-	rm -rf $VIRTUAL_ENV
-fi
-cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/
+#echo "Copying virtualenv"
+#cp --archive ${FAIR_INSTALL_DATA}/intranet/virtualenv $INTRANET_ROOT/virtualenv_dist
+
+#echo "Creating a new dummy virtualenv for this system"
+#virtualenv --system-site-packages $INTRANET_ROOT/virtualenv
+
+#echo "Patching broken non-relocatable virtualenv with a clean dummy"
+#cp --archive $INTRANET_ROOT/virtualenv/* $INTRANET_ROOT/virtualenv_dist/
+
+#echo "Removing dummy virtualenv"
+#rm -rf $INTRANET_ROOT/virtualenv
+
+#echo "Move virtualenv into its correct location"
+#mv $INTRANET_ROOT/virtualenv_dist $INTRANET_ROOT/virtualenv/
+
+cp -R ${FAIR_INSTALL_DATA}/intranet/virtualenv.tar.gz $INTRANET_ROOT/
+echo "Unpacking virtualenv"
+cd $INTRANET_ROOT
+tar xfz virtualenv.tar.gz
+cd -
 
 # Activate virtualenv
+set +o nounset
 source $INTRANET_ROOT/virtualenv/bin/activate
+set -o nounset
 
 deploy_new=1
 
@@ -72,7 +87,9 @@ fi
 echo "Populating static files for intranet"
 python $INTRANET_ROOT/fairintranet/manage.py collectstatic --noinput > /dev/null
 
+set +o nounset
 deactivate
+set -o nounset
 
 # For file uploads
 chmod -R 777 $INTRANET_ROOT/media/

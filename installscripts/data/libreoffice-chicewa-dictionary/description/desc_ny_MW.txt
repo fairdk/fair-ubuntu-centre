@@ -1,0 +1,1 @@
+Prelimenary work for a Chichewa spell-checker. No hyphenation support yet.
