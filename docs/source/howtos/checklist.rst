@@ -19,11 +19,13 @@ Make sure that you know something in advance about the room, how many electrical
 
  * LAN cables
  * Ethernet plugs for DIY cables
-   * 2 for each computer
-   * 2 for each switch connection
-   * 2 for the server
-   * 2 for printer
-   * 10-20% extra for errors
+
+    * 2 for each computer
+    * 2 for each switch connection
+    * 2 for the server
+    * 2 for printer
+    * 10-20% extra for errors
+
  * Power cables for desktop computers and screens
  * Power supplies for laptops
  * VGA cables
