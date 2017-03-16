@@ -99,3 +99,10 @@ echo "Creating client postinstall package    "
 echo "---------------------------------------"
 cd $INSTALL_SH_DIR
 ./postinstall/make_postinstall.sh
+
+
+echo ""
+echo ""
+echo "All the installscripts have finished without errors!"
+echo ""
+echo "You may now start using the server :)"
