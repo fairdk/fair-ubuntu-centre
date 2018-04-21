@@ -30,7 +30,6 @@ Make sure that you know something in advance about the room, how many electrical
  * Extension cables
  * Good mood
  * Projector + long VGA cable and power cable
- * Speakers
  * Switch + Serial port (room for computers + server + printer + connection between switches)
  * Cable clips
  * Lots of plastic strips to fixate loose cables
@@ -40,9 +39,16 @@ Optional
 ~~~~~~~~
 
  * UPS + UPS power cable
+ * Speakers
 
 Spare parts
 -----------
+
+.. note:: It's best to setup and test the server before going. In case you are unable to test the server, make sure to bring an extra server or server data hard drive.
+
+.. warning:: Computers can be broken in transport. Typically, 1 or 2 machines may be dead on arrival. You should bring one or two extra computers.
+
+.. note:: Remember to update the inventory! When you are bringing spare parts out, and when you are bringing unused spare parts or broken computers back.
 
 Not everything may go as planned, and its lighter to carry spare parts than spare
 computers.
