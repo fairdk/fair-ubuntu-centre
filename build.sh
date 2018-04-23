@@ -18,7 +18,7 @@ then
 	mkdir -p build
 fi
 
-git archive $BRANCH installscripts/ | tar x -C build/
+git archive $BRANCH installscripts/ | tar x --ignore-command-error -C build/
 
 #cd build/installscripts/data/intranet/
 
@@ -48,4 +48,4 @@ git archive $BRANCH installscripts/ | tar x -C build/
 
 cd build
 echo "Creating tarball..."
-tar cfz installscripts.tar.gz installscripts
+tar cz --preserve -f installscripts.tar.gz installscripts
