@@ -17,5 +17,5 @@ sys.path = [
 from django.core.handlers.wsgi import WSGIHandler
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'kalite.project.settings.default'
-os.environ['KALITE_HOME'] = '/home/fair/.kalite'
+os.environ['KALITE_HOME'] = '/home/kalite/.kalite'
 application = WSGIHandler()

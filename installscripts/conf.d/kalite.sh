@@ -13,14 +13,19 @@ echo "Khan Academy"
 echo "---------------------------------------"
 
 echo "Copying in the .kalite data directory"
-cd /home/fair
-tar xvfz $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/kalite_home.tar.gz
-chown -R fair.fair .kalite
-cd -
+if [ ! -d /home/kalite ]
+then
+	echo "Creating a kalite user"
+	adduser kalite
+fi
+tar xvz -f $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/kalite_home.tar.gz -C /home/kalite
+chown -R kalite.kalite /home/kalite/.kalite
+chmod -R o+wX /home/kalite/.kalite
 
 echo "Installing KA Lite deb pkg"
 echo "ka-lite ka-lite/init select false" | debconf-set-selections
-DEBIAN_FRONTEND=noninteractive dpkg -i $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/ka-lite_0.17.0-0ubuntu1_all.deb
+# The * is because some drives may contain 0.17.0 and some 0.17.4
+DEBIAN_FRONTEND=noninteractive dpkg -i $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/ka-lite_0.17*.deb
 
 cat ${FAIR_INSTALL_DATA}/etc.apache2.sites-available.kalite.conf > /etc/apache2/sites-available/kalite.conf
 cat ${FAIR_INSTALL_DATA}/ka-lite.wsgi > $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/ka-lite.wsgi
