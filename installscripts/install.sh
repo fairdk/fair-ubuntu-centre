@@ -98,7 +98,7 @@ echo "---------------------------------------"
 echo "Creating client postinstall package    "
 echo "---------------------------------------"
 cd $INSTALL_SH_DIR
-./postinstall/make_postinstall.sh
+bash postinstall/make_postinstall.sh
 
 
 echo ""
