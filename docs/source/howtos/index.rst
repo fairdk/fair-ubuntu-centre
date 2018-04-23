@@ -6,5 +6,6 @@ How-to
    
    internet_connection
    checklist
+   wireless
 
 
