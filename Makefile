@@ -1,5 +1,5 @@
 dist:
-	./build.sh
+	bash build.sh
 clean:
 	rm -rf build
 
