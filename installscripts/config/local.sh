@@ -28,6 +28,3 @@ do
 		fi
 	fi
 done
-
-
-
