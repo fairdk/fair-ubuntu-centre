@@ -16,10 +16,10 @@ echo "Copying in the .kalite data directory"
 if [ ! -d /home/kalite ]
 then
 	echo "Creating a kalite user"
-	adduser kalite
+	useradd -m -U kalite
 fi
 tar xvz -f $FAIR_DRIVE_MOUNTPOINT/data/ka-lite/kalite_home.tar.gz -C /home/kalite
-chown -R kalite.kalite /home/kalite/.kalite
+chown -R kalite /home/kalite/.kalite
 chmod -R o+wX /home/kalite/.kalite
 
 echo "Installing KA Lite deb pkg"
