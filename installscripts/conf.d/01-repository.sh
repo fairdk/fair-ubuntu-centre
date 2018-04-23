@@ -13,7 +13,16 @@ then
 fi
 
 # Configure the server to find software on the local Ubuntu repository
-cat ${FAIR_INSTALL_DATA}/sources.list > /etc/apt/sources.list
+echo "deb file:///var/www/html/ubuntu trusty main restricted universe multiverse" > /etc/apt/sources.list
+
+if [ -d ${FAIR_DRIVE_MOUNTPOINT}/ubuntu/dists/trusty-security ]
+then
+	echo "deb file:///var/www/html/ubuntu trusty-security main restricted universe multiverse" >> /etc/apt/sources.list
+fi
+if [ -d ${FAIR_DRIVE_MOUNTPOINT}/ubuntu/dists/trusty-updates ]
+then
+	echo "deb file:///var/www/html/ubuntu trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list
+fi
 
 # We run "configure" to start with because half-installed packages can cause apt-get to fail, and this prevents that...
 dpkg --configure -a
