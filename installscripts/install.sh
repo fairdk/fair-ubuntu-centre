@@ -9,6 +9,16 @@
 # Save my own path
 INSTALL_SH_DIR=`pwd .`
 
+# Check dependancies- permissions, and access to media drive
+if !(whoami | grep "root" -q)
+then
+	echo "Only root can run this!"
+	echo ""
+	echo "Run the program as root, ie.:"
+	echo "sudo bash install.sh"
+	exit 1
+fi
+
 set -eu
 
 bash $INSTALL_SH_DIR/traceback.sh
@@ -40,16 +50,6 @@ then
 	echo "Stopping ping_clients (so server does not automatically switch off)"
 	/etc/init.d/ping_clients stop
 	set -o errexit
-fi
-
-# Check dependancies- permissions, and access to media drive 
-if !(whoami | grep "root" -q)
-then
-	echo "Only root can run this!"
-	echo ""
-	echo "Run the program as root, ie.:"
-	echo "sudo bash install.sh"
-	exit 1
 fi
 
 if [ ! -d $FAIR_ARCHIVE_PATH ]
@@ -98,7 +98,7 @@ echo "---------------------------------------"
 echo "Creating client postinstall package    "
 echo "---------------------------------------"
 cd $INSTALL_SH_DIR
-./postinstall/make_postinstall.sh
+bash postinstall/make_postinstall.sh
 
 
 echo ""

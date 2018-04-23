@@ -1,7 +1,9 @@
-ETH = "eth0"
 import os
 import pickle
 from datetime import datetime
+
+ETH = "eth0"
+IP_STARTING_WITH = "192.168.10"
 
 settings_dir = os.path.expanduser("~/.clientmanager")
 if not os.path.exists(settings_dir):

@@ -77,3 +77,9 @@ wamerican
   libzvbi-common libzvbi0 oxideqt-codecs-extra tsconf
   ubuntu-restricted-addons unrar
 
+# new syllabus 2017 computer studies packages
+gfortran
+netbeans
+gcc
+lazarus
+open-cobol
