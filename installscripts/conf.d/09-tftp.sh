@@ -11,6 +11,11 @@ mkdir /var/tftp
 # The TFTP server is used to boot the clients from the network.  The DHCP server tells the clients to fetch their operating system over TFTP.
 # The contents of the server are packaged in two parts, a compressed archive from http://cdimage.ubuntu.com/netboot/, and a (FAIR custom made) configuration file that is copied on top. 
 
-tar xvfz $FAIR_INSTALL_DATA/tftp/netboot.tar.gz --directory /var/tftp/
+if [ -f "${FAIR_ARCHIVE_PATH}/ubuntu/netboot.tar.gz" ]
+then
+	tar xvfz "${FAIR_ARCHIVE_PATH}/ubuntu/netboot.tar.gz" --directory /var/tftp/
+else
+	tar xvfz "$FAIR_INSTALL_DATA/tftp/netboot.tar.gz" --directory /var/tftp/
+fi
 cp $FAIR_INSTALL_DATA/tftp/txt.cfg /var/tftp/ubuntu-installer/i386/boot-screens/
 
