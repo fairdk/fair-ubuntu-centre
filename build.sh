@@ -48,4 +48,4 @@ git archive $BRANCH installscripts/ | tar x --ignore-command-error -C build/
 
 cd build
 echo "Creating tarball..."
-tar cz --preserve -f installscripts.tar.gz installscripts
+tar cz -f installscripts.tar.gz installscripts
