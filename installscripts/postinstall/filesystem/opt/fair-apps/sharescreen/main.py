@@ -18,7 +18,7 @@ LOCAL_START_VNC = "x11vnc -viewonly -shared -shared -forever"# % VNC_PORT
 #REMOTE_IPS = ["192.168.10.106"]
 REMOTE_IPS = ["192.168.10.%d" % x for x in xrange(10,256)]
 
-from settings import *
+import settings
 
 # For looking up my IP
 INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0", "em1")

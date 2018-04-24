@@ -11,7 +11,7 @@ gtk.gdk.threads_init() #@UndefinedVariable
 
 BASE_PATH = os.path.dirname(__file__)
 
-from settings import *
+import settings
 
 # For looking up my IP
 INTERFACES_TO_SCAN = ("eth0", "eth1", "wlan0", "em1")
