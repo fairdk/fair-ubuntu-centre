@@ -30,11 +30,11 @@ do_start() {
 	cp -Rf teacher /home
 
 	# Hotfix: Create some symlinks that were unsafe for tar
-	if [ -e /home/teacher/Desktop/Share\ materials\ with\ students ]
+	if [ ! -e /home/teacher/Desktop/Share\ materials\ with\ students ]
 	then
 		ln -s /var/materials /home/teacher/Desktop/Share\ materials\ with\ students
 	fi
-	if [ -e /home/student/Desktop/Materials\ for\ Students ]
+	if [ ! -e /home/student/Desktop/Materials\ for\ Students ]
 	then
 		ln -s /var/materials /home/student/Desktop/Materials\ for\ Students
 	fi

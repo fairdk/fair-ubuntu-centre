@@ -125,7 +125,7 @@ rm -f /etc/xdg/autostart/ubuntuone-launch.desktop
 # Disable annoying and useless HUD service
 chmod -x /usr/lib/i386-linux-gnu/hud/hud-service
 
-./install_create_homes.sh
+bash install_create_homes.sh
 
 mkdir -p /var/movies/
 mkdir -p /var/materials/
@@ -182,7 +182,7 @@ dpkg-reconfigure -phigh keyboard-configuration
 # Execute final local configuration script
 cd local
 cp -Rf filesystem/* /
-./final.sh
+bash final.sh
 cd ..
 
 # Create home directories for teachers and students
