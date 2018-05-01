@@ -1,9 +1,9 @@
-fair-ubuntu-centre
-==================
+Offline Digital Library
+=======================
 
 [![Docs](https://readthedocs.org/projects/fair-ubuntu-centre/badge/?version=latest)](http://fair-ubuntu-centre.readthedocs.org/)
 
-This project automatically configures a server for a Digital Library.
+This project automatically configures an Ubuntu-based server for a Digital Library.
 Client computers for students/users are then installed through PXE netboot.
 The server contains a number of offline educational resources, together with
 the full Ubuntu software repositories.
