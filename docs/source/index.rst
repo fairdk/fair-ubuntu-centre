@@ -35,13 +35,14 @@ combined with TFTP services for installing client desktops.
 
 .. _FAIR: http://www.fairinternational.org
 
-
 Offline resources
 -----------------
 
 In addition to LAN-managed installations of Ubuntu, the server can also provide a range of contemporary
 offline projects, such as KA Lite and Kiwix, together with an Intranet-like service that collects the
 various resources for internet browser access.
+
+.. image:: _static/screenshot1.jpeg
 
 Indices and tables
 ==================
