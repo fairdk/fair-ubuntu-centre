@@ -43,6 +43,22 @@ offline projects, such as KA Lite and Kiwix, together with an Intranet-like serv
 various resources for internet browser access.
 
 .. image:: _static/screenshot1.jpeg
+    :scale: 20%
+
+.. image:: _static/screenshot2.jpeg
+    :scale: 20%
+
+.. image:: _static/screenshot3.jpeg
+    :scale: 20%
+
+.. image:: _static/screenshot4.jpeg
+    :scale: 20%
+
+.. image:: _static/screenshot5.jpeg
+    :scale: 20%
+
+.. image:: _static/screenshot6.jpeg
+    :scale: 20%
 
 Indices and tables
 ==================
