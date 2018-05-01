@@ -11,3 +11,5 @@ the full Ubuntu software repositories.
 For more information, please refer to the documentation:
 
 [http://fair-ubuntu-centre.readthedocs.org/](http://fair-ubuntu-centre.readthedocs.org/)
+
+![Screenshot of built-in Intranet](docs/source/_static/screenshot1.jpeg)
