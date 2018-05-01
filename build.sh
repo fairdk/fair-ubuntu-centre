@@ -49,3 +49,6 @@ git archive $BRANCH installscripts/ | tar x --ignore-command-error -C build/
 cd build
 echo "Creating tarball..."
 tar cz -f installscripts.tar.gz installscripts
+
+echo ""
+echo "Final result stored in build/installscripts.tar.gz"

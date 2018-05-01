@@ -90,7 +90,7 @@ fi
 cp sources.list /etc/apt/
 
 # Make sure previous abn. terminated instances of DPKG are fixed
-echo "Ensuring constency of package installation"
+echo "Ensuring consistency of package installation"
 dpkg --configure -a
 apt-get -y -f install
 
@@ -98,8 +98,9 @@ echo "Update repositories from server"
 apt-get update
 
 # Install extra packages
+# https://superuser.com/questions/164553/automatically-answer-yes-when-using-apt-get-install
 echo "Install extra software"
-apt-get install -q -y `cat packages.install.lst | egrep "^[^#]+$"`
+apt-get install -q -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" `cat packages.install.lst | egrep "^[^#]+$"`
 
 # These ones do not support noninteractive mode
 echo "Retry some package configurations that do not allow noninteractive mode"
