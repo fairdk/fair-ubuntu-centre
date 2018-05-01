@@ -1,5 +1,5 @@
-Technician's documentation
-==========================
+Setting up a server
+===================
 
 Server requirements
 -------------------
@@ -104,72 +104,3 @@ Make sure to also copy the configuration overlay, for instance::
 
     cd /media/fair/usb-flash/path/to/installscripts/config/local
     cp -R . /root/
-
-
-Setting up a Wireless center
-----------------------------
-
-Prerequisits
-____________
-
-* A wireless access point (AP) with bridging enabled, i.e. not acting as a router
-* Server connected to AP.
-* Server configured with a local overlay for wireless setups.
-* mini.iso prepared on a USB for booting clients before installing
-
-  * Obtain mini.iso:
-    `http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-i386/current/images/netboot/ <http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-i386/current/images/netboot/>`__
-
-* Copy the .iso image to a USB flash, this will overwrite everything of the USB:
-
-  * Insert flash, it may be automatically mounted so should be unmounted if it's mounted.
-
-    * To see what is mount: ``mount``
-    * To unmount: ``umount /dev/sdX1``
-    * To copy: ``sudo dd bs=4M if=Downloads/mini.iso of=/dev/sdb``
-
-  * Now the flash is bootable
-
-
-Installing a client
-___________________
-
-- Turn on the machine, press for instance F12 and choose to boot from USB
-- Press TAB to edit the first "Install" option for Ubuntu
-- Delete the ``quiet`` part.
-- Put: ``ks=http://192.168.10.1/ks.cfg ksdevice=WLAN0``
-- When installing, you should be able to choose the wireless network that you have configured
-
-
-Configuring DIR-635 access points
-_________________________________
-
-#. Reset the device
-#. Attach to a machine and obtain DHCP from the AP
-#. Connect to ``192.168.0.1``
-#. Setup an un-encrypted wireless, DO NOT REBOOT YET
-#. Go to Network
-
-   #. Disable DHCP
-   #. Disable DNS relay
-   #. Give the router a static IP, i.e. ``192.168.10.2`` (must be unique to your network!)
-
-#. Go to Advanced and disable features you know are useless.
-#. Reboot device
-#. Connect to server on one of the Switch ports, not the internet/WAN port
-
-
-.. tip:: Do not start too many machines, because the wireless network easily gets congested. 5-10 machines is often the limit.
-
-.. tip:: Use two access points and configure them on separate channels.
-
-
-Cloning hard drives
--------------------
-
-In order to obtain a data drive for the server, clone a **master** (or **source**) hard drive onto a **target**. There is nothing special about the master, just that it's a hard drive that you keep safe such that other hard drives can be cloned from it.
-
-.. tip:: Keep your hard drives labeled with a version (or date). Confusion can be quite costly timewise.
-
-.. warning:: Never deploy your last master copy, it is recommendable to have 2 master copies.
-
