@@ -1,7 +1,7 @@
-Check list for setting up a new centre
-======================================
+Equipment check list
+====================
 
-List of stuff not to forget!
+Do not forget packing this before departing!
 
 .. note:: Never let equipment pass through the doors of the warehouse without writing down its ID!
 

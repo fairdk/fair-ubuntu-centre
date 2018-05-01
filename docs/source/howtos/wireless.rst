@@ -3,42 +3,59 @@ Setting up a Wireless center
 
 .. warning:: It is not recommended to do Wireless centers, as the installation and booting from networks have been proven very difficult.
 
-Prerequisits
-------------
 
- - A wireless access point (AP) with bridging enabled, i.e. not acting as a router
- - Server connected to AP.
- - Server configured with a local overlay for wireless setups.
- - The file ``mini.iso`` prepared on a USB for booting clients before installing
+Prerequisits
+____________
+
+* A wireless access point (AP) with bridging enabled, i.e. not acting as a router
+* Server connected to AP.
+* Server configured with a local overlay for wireless setups.
+* mini.iso prepared on a USB for booting clients before installing
+
+  * Obtain mini.iso:
+    `http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-i386/current/images/netboot/ <http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-i386/current/images/netboot/>`__
+
+* Copy the .iso image to a USB flash, this will overwrite everything of the USB:
+
+  * Insert flash, it may be automatically mounted so should be unmounted if it's mounted.
+
+    * To see what is mount: ``mount``
+    * To unmount: ``umount /dev/sdX1``
+    * To copy: ``sudo dd bs=4M if=Downloads/mini.iso of=/dev/sdb``
+
+  * Now the flash is bootable
 
 
 Installing a client
 -------------------
 
- - Turn on the machine, press for instance F12 and choose to boot from USB
- - Press TAB to edit the first "Install" option for Ubuntu
- - Delete the "quiet" part.
- - Put: "ks=http://192.168.10.1/ks.cfg ksdevice=WLAN0"
- - When installing, you should be able to choose the wireless network that you have configured
+- Turn on the machine, press for instance F12 and choose to boot from USB
+- Press TAB to edit the first "Install" option for Ubuntu
+- Delete the ``quiet`` part.
+- Put: ``ks=http://192.168.10.1/ks.cfg ksdevice=WLAN0``
+- When installing, you should be able to choose the wireless network that you have configured
 
 
 Configuring DIR-635 access points
 ---------------------------------
 
- 1. Reset the device
- 1. Attach to a machine and obtain DHCP from the AP
- 1. Connect to 192.168.0.1
- 1. Setup an un-encrypted wireless, DO NOT REBOOT YET
- 1. Go to Network
 
-     1. Disable DHCP
-     2. Disable DNS relay
-     3. Give the router a static IP, i.e. 192.168.10.2 (must be unique to your network!)
+#. Reset the device
+#. Attach to a machine and obtain DHCP from the AP
+#. Connect to ``192.168.0.1``
+#. Setup an un-encrypted wireless, DO NOT REBOOT YET
+#. Go to Network
 
- 1. Go to Advanced and disable features you know are useless.
- 1. Reboot device
- 1. Connect to server on one of the Switch ports, not the internet/WAN port
+   #. Disable DHCP
+   #. Disable DNS relay
+   #. Give the router a static IP, i.e. ``192.168.10.2`` (must be unique to your network!)
 
+#. Go to Advanced and disable features you know are useless.
+#. Reboot device
+#. Connect to server on one of the Switch ports, not the internet/WAN port
+
+
+.. tip:: Use two access points and configure them on separate channels.
 
 Booting from the network
 ------------------------
@@ -47,8 +64,8 @@ Once the server is installed, and the network is ready, you need to boot from th
 
 However, as computers do not support TFTP via WIFI, you need to:
 
- 1. Boot from a USB flash
- 1. Tell the Ubuntu installation program (debinstall) where to find the configuration for automatic installations, and to configure the WIFI in order to retrieve this list.
+#. Boot from a USB flash
+#. Tell the Ubuntu installation program (debinstall) where to find the configuration for automatic installations, and to configure the WIFI in order to retrieve this list.
 
 Creating the bootable USB flash
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,7 +73,6 @@ Creating the bootable USB flash
 Retrieve the mini.iso for installing Ubuntu, one which is from the same date as the data drive, but never newer!
 
  * 14.04: http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-i386/current/images/netboot/
- * 16.04: ...
 
 .. warning:: The USB flash you use will be overwritten!
 
@@ -78,9 +94,4 @@ As you are booting from the flash, you have to edit the default entry by adding 
 
     ks=http://192.168.10.1/ks.cfg ksdevice=wlan0 netcfg/wireless_essid=FAIR
 
-Tips
-----
-
- * Do not start too many machines, because the wireless network easily gets congested. 5-10 machines is often the limit.
- * Use to access points and configure them on separate channels.
-
+.. tip:: Do not start too many machines, because the wireless network easily gets congested. 5-10 machines is often the limit.

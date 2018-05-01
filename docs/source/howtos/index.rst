@@ -6,6 +6,7 @@ How-to
    
    internet_connection
    checklist
+   server_disk
    wireless
 
 
