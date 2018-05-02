@@ -104,3 +104,44 @@ Make sure to also copy the configuration overlay, for instance::
 
     cd /media/fair/usb-flash/path/to/installscripts/config/local
     cp -R . /root/
+
+    
+Installing clients (student computers)
+--------------------------------------
+
+Make sure that network booting is enabled in the BIOS. When booting from the
+network, select the ``Automatic Ubuntu install`` option which will install
+everything without asking questions.
+
+After the installation is completed, the client will reboot
+**but it's not yet finished!**
+
+It will complete a *post-install* procedure, which is a custom script
+that will run, also installing additional software.
+
+This process takes time, and even if you do not see any progress on the screen
+for up to 20 minutes, just let the script finish.
+
+
+Verifying an installed client
+-----------------------------
+
+It's important to check that the client has installed everything correctly,
+because an interruption during the unattended intallation will sometimes cause
+computers to be in a bad state.
+
+Verify for instance:
+
+* When logging in as a student, you receive the Gnome Classic desktop
+  interface, which has the Applications + Places menu in the top left corner.
+  Not the Unity desktop! If you are directed to the Unity desktop, log back
+  out and select Gnome Fallback (Metacity) instead from the menu next to the
+  username selection.
+
+* That the ``student`` and ``teacher`` account are setup correctly, and that there
+  is not password required for the ``student`` account.
+
+* KA Lite videos are playing correctly.
+
+* That the folder with *Materials For Students* is working and teachers can
+  write to it.
